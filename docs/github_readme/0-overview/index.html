@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>SeqWare › Source Code - Overview</title>
+<meta content="nanoc 3.7.1" name="generator">
+<link href="../../../assets/style-v17.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://feeds.feedburner.com/seqware" rel="alternate" title="The SeqWare Blog" type="application/atom+xml">
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-34523087-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script><script type="text/javascript">         var disqus_shortname = 'seqware';          (function() {             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);         })();     </script>
+</head>
+<body>
+<div class="wrapper">
+<!-- ***** navigation ***** -->
+<div class="nav">
+<ol>
+<li><a href="../../../"><span>Home</span></a></li>
+<li><a href="../../../blog/"><span>News</span></a></li>
+<li><a href="../../"><span>Documentation</span></a></li>
+<li><a href="../../../community/"><span>Community</span></a></li>
+<li><a href="../../../partners/"><span>Partners</span></a></li>
+<li><a href="../../../about/"><span>About</span></a></li>
+</ol>
+</div>
+<!-- ***** sidebar ***** -->
+<div class="side">
+<ol>
+<li><a href="../../1-introduction/"><span>Introduction to SeqWare</span></a></li>
+<li><a href="../../2-installation/"><span>Installation</span></a></li>
+<li><a href="../../3-getting-started/"><span>Getting Started</span></a></li>
+<li><a href="../../6-pipeline/"><span>SeqWare Pipeline</span></a></li>
+<li><a href="../../4-metadb/"><span>SeqWare MetaDB</span></a></li>
+<li><a href="../../5-portal/"><span>SeqWare Portal</span></a></li>
+<li><a href="../../7-web-service/"><span>SeqWare Web Service</span></a></li>
+<li><a href="../../8-query-engine/"><span>SeqWare Query Engine</span></a></li>
+<li><a href="../../9-glossary/"><span>Glossary</span></a></li>
+<li><a href="../../10-faq/"><span>Frequently Asked Questions</span></a></li>
+<li><a href="../../11-api/"><span>APIs</span></a></li>
+<li><a href="../../13-code/"><span>Source Code</span></a></li>
+<li><a href="../../17-plugins/"><span>Plugins</span></a></li>
+<li><a href="../../17a-modules/"><span>Modules</span></a></li>
+</ol>
+</div>
+<!-- ***** body ***** -->
+<div class="body">
+<div class="article">
+<div class="header">
+<h1>Source Code - Overview</h1>
+</div>
+<p><a href="http://dx.doi.org/10.5281/zenodo.10785"><img src="https://zenodo.org/badge/doi/10.5281/zenodo.10785.png" alt="DOI"></a></p>
+
+<div class="section" id="introduction">
+<h2>Introduction</h2>
+
+<p>This README is just a quick overview of building SeqWare. See our
+<a href="http://seqware.github.com">project homepage</a> for much more documentation.</p>
+
+<p>This is top level of the <a href="http://seqware.github.com">SeqWare Project</a>.
+This contains the 6 major components of the SeqWare project along with
+documentation and testing:</p>
+
+<ul>
+<li>seqware-meta-db</li>
+  <li>seqware-webservice</li>
+  <li>seqware-admin-webservice</li>
+  <li>seqware-portal</li>
+  <li>seqware-pipeline</li>
+  <li>seqware-queryengine</li>
+  <li>seqware-common</li>
+  <li>the http://seqware.github.com website and manual</li>
+  <li>seqware-ext-testing</li>
+  <li>seqware-ext-admin-testing</li>
+</ul>
+<p>The seqware-common sub-project provides a location for common code
+and most of the other sub-projects have this as a dependency.</p>
+
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites</h2>
+
+<div class="section" id="a-recent-linux-distribution">
+<h3>A Recent Linux Distribution</h3>
+
+<p>This pretty much goes without saying but the SeqWare project is targeted at
+Linux.  You may be able to compile and use the software on MacOS X but, in all
+honesty, we recommend you use a recent Linux distribution such as Debian
+(Ubuntu, Linux Mint, etc) or RedHat (RedHat Enterprise, Fedora, etc).  This
+software, although written in Java mostly, was never intended to work on
+Windows. If you need to use Windows for development or deployment we recommend
+you simply use our VirtualBox VM for both activities, see our extensive documentation
+on http://seqware.github.com for more information. You can also use this same
+approach on MacOS (or even another version of Linux).</p>
+
+</div>
+<div class="section" id="java">
+<h3>Java</h3>
+
+<p>SeqWare requires Oracle JDK 1.6 or greater, we primarily write and test with JDK 1.6.x.
+An example of instructions on how to update your Linux installation can be found <a href="https://ccp.cloudera.com/display/CDH4DOC/Before+You+Install+CDH4+on+a+Single+Node#BeforeYouInstallCDH4onaSingleNode-InstalltheOracleJavaDevelopmentKit">here</a>. You will need to use the method appropriate to your distribution to install this.</p>
+
+</div>
+</div>
+<div class="section" id="building">
+<h2>Building</h2>
+
+<div class="section" id="getting-the-source-code">
+<h3>Getting the Source Code</h3>
+
+<p>Our source code is available from <a href="https://github.com/SeqWare/seqware">GitHub</a> or the “Fork me on GitHub” banner at the upper right of our website</p>
+
+<p>To get a copy of of our source code you will first need to install Git (<code>sudo apt-get install git</code> in Ubuntu) and then clone our repository.</p>
+
+<pre title="Cloning the git repository">
+<span class="prompt">~$</span> <kbd>git clone git://github.com/SeqWare/seqware.git</kbd>
+Cloning into &#8216;seqware&#8217;&#8230;
+remote: Counting objects: 8984, done.
+remote: Compressing objects: 100% (2908/2908), done.
+remote: Total 8984 (delta 4308), reused 8940 (delta 4265)
+Receiving objects: 100% (8984/8984), 33.57 MiB | 392 KiB/s, done.
+Resolving deltas: 100% (4308/4308), done.
+</pre>
+
+<p>By default, this will land you on the default branch. You will want to check-out the latest release. </p>
+
+<p>For example:</p>
+
+<pre><code>~$ cd seqware_github/
+~/seqware_github$ git checkout 0.13.6.5
+HEAD is now at f8698e9... Merge branch 'hotfix/0.13.6.5'
+</code></pre>
+
+</div>
+<div class="section" id="building-and-automated-testing">
+<h3>Building and Automated Testing</h3>
+
+<p>We’re moving to Maven for our builds, this is currently how
+you build without running any tests in the trunk directory:</p>
+
+<pre><code>mvn clean install -DskipTests
+</code></pre>
+
+<p>Maven now runs unit tests as follows (unit tests in the SeqWare context are quick tests that do not require the embedded HBase or Tomcat instance):</p>
+
+<pre><code>mvn clean install  
+</code></pre>
+
+<p>In order to run the integration tests on the entire project, please ensure that you have followed the steps in each of the integration testing guides for our sub-projects. This includes <a href="http://seqware.github.com/docs/github_readme/3-metadb/">MetaDB</a> , <a href="http://seqware.github.com/docs/github_readme/4-webservice/">Web Service</a> , and <a href="http://seqware.github.com/docs/github_readme/2-queryengine/">Query Engine</a>. </p>
+
+<p><strong>WARNING:  While integration and extended tests are running, launching workflows and workflow status checking MUST not occur.  If you have a cronjob performing these tasks it MUST be disabled prior to integration and extended testing.</strong></p>
+
+<p>When this is complete: </p>
+
+<pre><code>export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"  (This ensures that enough memory is allocated for integration tests)
+mvn clean install -DskipITs=false (This runs all unit tests and integration tests that only require postgres as a prerequisite)
+mvn clean install -DskipITs=false -P extITs,embeddedTomcat (runs all unit tests and all integration tests including those that require Oozie)
+</code></pre>
+
+<p>In the last case, the extended integration tests profile is used to trigger integration tests that run our command line utilities. 
+In order to point your command-line tools at the web service brought up by the integration tests, you will need to comment out your crontab and modify your SeqWare ~/.seqware/settings to include:</p>
+
+<pre><code>SW_REST_URL=http://localhost:8889/seqware-webservice
+</code></pre>
+
+<p>It is possible to disable our embedded tomcat instance and run against both a remote postgres and Tomcat instance. Set the following variables in your .seqware/settings to override these settings for basic integration tests and extended integration tests respectively:</p>
+
+<pre><code>BASIC_TEST_DB_HOST=otherserver.ca
+BASIC_TEST_DB_NAME=test_seqware_meta_db
+BASIC_TEST_DB_USER=seqware
+BASIC_TEST_DB_PASSWORD=seqware
+
+EXTENDED_TEST_DB_HOST=otherserver.ca
+EXTENDED_TEST_DB_NAME=test_seqware_meta_db
+EXTENDED_TEST_DB_USER=seqware
+EXTENDED_TEST_DB_PASSWORD=seqware
+</code></pre>
+
+<p>Then set your SW_REST_URL to the web service that uses the above database and invoke the following command. Note that you will need to deploy the seqware-webservice war yourself. </p>
+
+<pre><code>mvn clean install -DskipITs=false -P 'extITs,!embeddedTomcat'
+</code></pre>
+
+<p>Alternatively, if you wish to still use an embedded tomcat instance for testing, modify the properties at the beginning of your seqware-webservice/pom.xml to match the above databases and invoke the integration tests with your SW_REST_URL set to http://localhost:8889/seqware-webservice</p>
+
+<pre><code>mvn clean install -DskipITs=false -P extITs,embeddedTomcat
+</code></pre>
+
+<p>You can also run the integration tests by using a locally installed tomcat instance. Make sure the BASIC_TEST<em>* and EXTENDED_TEST</em>* are defined to get this to work:</p>
+
+<pre><code>mvn clean install -DskipITs=false -P extITs
+</code></pre>
+
+<p>You can also build individual components such as the new query engine with: </p>
+
+<pre><code>cd seqware-queryengine
+mvn clean install
+</code></pre>
+
+</div>
+<div class="section" id="coding-standards">
+<h3>Coding Standards</h3>
+
+<p>Please refer to SeqWare’s <a href="https://seqware.github.io/docs/100-coding-standards/">Coding Standards</a>. </p>
+
+</div>
+<div class="section" id="building-our-site">
+<h3>Building Our Site</h3>
+
+<p>In order to publish to seqware.io , checkout our current master and publish our site:</p>
+
+<pre><code>git checkout master 
+mvn site-deploy
+</code></pre>
+
+<p>Then you would look at the site at: http://seqware.io</p>
+
+<p>In order to publish our docs leading up to 1.1.x , checkout from develop and publish:</p>
+
+<pre><code>git checkout develop 
+mvn site-deploy
+</code></pre>
+
+<p>Then you would look at the site at: http://seqware.github.io/unstable.seqware.io/</p>
+
+</div>
+<div class="section" id="problems-with-maven">
+<h3>Problems with Maven</h3>
+
+<p>Sometimes we run into problems when building, strange missing dependency issues
+and broken packages. A lot of the time this is an issue with Maven, try
+deleting your ~/.m2 directory and running the build process again.</p>
+
+</div>
+</div>
+<div class="section" id="installing">
+<h2>Installing</h2>
+
+<p>See our <a href="http://seqware.github.com/docs/2-installation/">Installation Guide</a> for detailed installation instructions
+including links to a pre-configured virtual machine that can be used for
+testing, development, and deployment.</p>
+
+</div>
+<div class="section" id="copyright">
+<h2>Copyright</h2>
+
+<p>Copyright 2008-2014 Brian D O’Connor, OICR, UNC, and Nimbus Informatics, LLC</p>
+
+</div>
+<div class="section" id="contributors">
+<h2>Contributors</h2>
+
+<p>Please see our <a href="http://seqware.github.com/partners/">partners and contributors</a></p>
+
+</div>
+<div class="section" id="license">
+<h2>License</h2>
+
+<p>SeqWare is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+
+<p>SeqWare is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License
+along with SeqWare.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+</div>
+</div>
+<p> </p>
+<p> </p>
+<div id="disqus_thread"></div>
+</div>
+</div>
+<!-- ***** footer ***** -->
+<div id="footer">
+<p>SeqWare © 2007–2014 Brian O&#8217;Connor. SeqWare is released under the a <a rel="license" href="http://www.gnu.org/licenses/licenses.html">GNU GPL v3</a>. This site is built using the excellent <a href="http://nanoc.ws/">nanoc</a> tool and example site along with the <a href="http://www.fonts.info/info/press/free-fonts-for-font-face-embedding.htm">Graublau</a> and <a href="https://en.wikipedia.org/wiki/Gentium">Gentium</a> fonts.</p>
+</div>
+</body>
+</html>

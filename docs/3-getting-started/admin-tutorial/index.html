@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>SeqWare › Admin Tutorial</title>
+<meta content="nanoc 3.7.1" name="generator">
+<link href="../../../assets/style-v17.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://feeds.feedburner.com/seqware" rel="alternate" title="The SeqWare Blog" type="application/atom+xml">
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-34523087-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script><script type="text/javascript">         var disqus_shortname = 'seqware';          (function() {             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);         })();     </script>
+</head>
+<body>
+<div class="wrapper">
+<!-- ***** navigation ***** -->
+<div class="nav">
+<ol>
+<li><a href="../../../"><span>Home</span></a></li>
+<li><a href="../../../blog/"><span>News</span></a></li>
+<li><a href="../../"><span>Documentation</span></a></li>
+<li><a href="../../../community/"><span>Community</span></a></li>
+<li><a href="../../../partners/"><span>Partners</span></a></li>
+<li><a href="../../../about/"><span>About</span></a></li>
+</ol>
+</div>
+<!-- ***** sidebar ***** -->
+<div class="side">
+<ol>
+<li><a href="../../1-introduction/"><span>Introduction to SeqWare</span></a></li>
+<li><a href="../../2-installation/"><span>Installation</span></a></li>
+<li>
+<a href="../"><span>Getting Started</span></a><ol class="toc">
+<li><a href="#by-the-end-of-these-tutorials">By the End of These Tutorials</a></li>
+<li><a href="#how-to-install-a-workflow">How to Install a Workflow</a></li>
+<li><a href="#how-to-launch">How to Launch</a></li>
+<li><a href="#how-to-monitor">How to Monitor</a></li>
+<li><a href="#see-also">See Also</a></li>
+</ol>
+</li>
+<li><a href="../../6-pipeline/"><span>SeqWare Pipeline</span></a></li>
+<li><a href="../../4-metadb/"><span>SeqWare MetaDB</span></a></li>
+<li><a href="../../5-portal/"><span>SeqWare Portal</span></a></li>
+<li><a href="../../7-web-service/"><span>SeqWare Web Service</span></a></li>
+<li><a href="../../8-query-engine/"><span>SeqWare Query Engine</span></a></li>
+<li><a href="../../9-glossary/"><span>Glossary</span></a></li>
+<li><a href="../../10-faq/"><span>Frequently Asked Questions</span></a></li>
+<li><a href="../../11-api/"><span>APIs</span></a></li>
+<li><a href="../../13-code/"><span>Source Code</span></a></li>
+<li><a href="../../17-plugins/"><span>Plugins</span></a></li>
+<li><a href="../../17a-modules/"><span>Modules</span></a></li>
+</ol>
+</div>
+<!-- ***** body ***** -->
+<div class="body">
+<div class="article">
+<div class="header">
+<h1>Admin Tutorial</h1>
+</div>
+<p class="warning"><strong>Note:</strong>This guide assumes you have installed
+SeqWare already. If you have not, please install SeqWare by either downloading
+the VirtualBox VM or launching the AMI on the Amazon cloud.  See <a href="../../2-installation/">Installation</a> for directions. We also recommend
+you follow the [User Tutorial](/docs/3-getting-started/user-tutorial/) and
+[Developer Tutorial](/docs/3-getting-started/developer-tutorial/) before this
+guide.</p>
+
+<p>This guide is intended for a SeqWare administrator. Currently, it covers the
+tools required to install workflows, monitor workflows globally, and launch
+scheduled jobs. We also cover tools that are required for cancelling workflows
+that have started and restarting workflows.</p>
+
+<!--In the near future, this guide will also include information on how to setup
+SeqWare at your site or on the cloud.  It focuses on what you need to do to get
+“real” work done e.g. to run workflows you create on datasets that require
+multiple nodes to analyze the data in a reasonable amount of time.  There are
+basically two approaches for this, connect the VirtualBox VM to a cluster at
+your local site or to launch a full SeqWare cluster on EC2 using Starcluster.
+Either of these approaches will leave you with a system that can process large
+amounts of data. This guide assumes you are an IT admin at your site or are
+working with an admin since some of the steps will require “root” privileges.
+-->
+
+<div class="section" id="by-the-end-of-these-tutorials">
+<h2>By the End of These Tutorials</h2>
+
+<p>By the end of these tutorials you will:</p>
+
+<ul>
+<li>install workflows</li>
+  <li>monitor workflows</li>
+  <li>see how to connect a local VM to a local cluster for running large-scale workflows</li>
+  <li>see how to launch a cluster on Amazon’s cloud for running large-scale workflows</li>
+</ul>
+</div>
+<div class="section" id="how-to-install-a-workflow">
+<h2>How to Install a Workflow</h2>
+
+<!-- make this install from a zip for the admin guide -->
+<p>When provided with a tested workflow bundle from a workflow developer, the next step
+is to install it, this means it will be inserted into the MetaDB via a running
+web service.  During this process it will copy the bundle into your
+released-bundles directory and provision it into your provisioned-bundles
+directory. The provisioned bundles directory is where running workflows will
+access their files.</p>
+
+<p>Here is an example showing how this process works on the VM and what is
+happening in the database and your released-bundles directory as you do this.</p>
+
+<p>See the <a href="../developer-tutorial/">Developer Tutorial</a> for
+how to make the zipped workflow bundle. After the zip bundle is created, the
+bundle can be provided to the admin for install as below.</p>
+
+<pre><code>$ seqware bundle install --zip ~/packaged-bundles/Workflow_Bundle_MyHelloWorld_1.0_SeqWare_1.0.11.zip 
+Now transferring /home/seqware/packaged-bundles/Workflow_Bundle_MyHelloWorld_1.0_SeqWare_1.0.11.zip to the directory: /home/seqware/released-bundles Please be aware, this process can take hours if the bundle is many GB in size. Processing input: /home/seqware/packaged-bundles/Workflow_Bundle_MyHelloWorld_1.0_SeqWare_1.0.11.zip
+  output-dir: /home/seqware/released-bundles
+
+WORKFLOW_ACCESSION: 16
+Bundle Has Been Installed to the MetaDB and Provisioned to /home/seqware/packaged-bundles/Workflow_Bundle_MyHelloWorld_1.0_SeqWare_1.0.11.zip!
+</code></pre>
+
+<p>What happens here is the <code>Workflow_Bundle_MyHelloWorld_1.0_SeqWare_1.0.11.zip</code> copied to your released-bundles directory and unzip’d into your provisioned-bundles directory. The metadata about the workflow is then saved to the database.</p>
+
+</div>
+<div class="section" id="how-to-launch">
+<h2>How to Launch</h2>
+
+<p>In our reference SeqWare environment, we
+typically schedule jobs and then launch them asynchronously via a cronjob. </p>
+
+<p>A user will schedule workflow launches using a command similar to
+that below:</p>
+
+<pre><code>$ seqware workflow schedule --accession 1 --parent-accession 99  --ini workflow.ini --host `hostname --long` 
+</code></pre>
+
+<p>Then in a cronjob we use the following command to launch scheduled jobs: </p>
+
+<pre><code>$ seqware workflow-run launch-scheduled
+</code></pre>
+
+<p>Note that in the first command, we allow jobs to be scheduled on a specific
+host. When we launch scheduled workflows, we check this value in order to
+determine whether a particular scheduled workflow should be launched on this
+host.  Note that while we normally use a fully qualified hostname,
+any unique string can be used to designate a host for launching  (for example
+on Amazon S3). </p>
+
+</div>
+<div class="section" id="how-to-monitor">
+<h2>How to Monitor</h2>
+
+<p>Since the engine that executes the workflow is separate from the SeqWare MetaDB, a separate process is used to propagate statuses between the workflow engine and MetaDB:</p>
+
+<pre><code>$ seqware workflow-run propagate-statuses
+</code></pre>
+
+<p>Once this is executed, workflow-run reports will reflect the updated status.</p>
+
+<div class="section" id="cron-jobs">
+<h3>Cron Jobs</h3>
+
+<p>The SeqWare VM performs both of the above functions via a cronjob:</p>
+
+<pre><code>$ crontab -l
+* * * * * /home/seqware/crons/status.cron &gt;&gt; /home/seqware/logs/status.log
+
+$ cat /home/seqware/crons/status.cron
+
+#!/bin/bash
+
+source /home/seqware/.bash_profile
+
+seqware workflow-run launch-scheduled
+seqware workflow-run propagate-statuses --threads 10
+</code></pre>
+
+<p>This script runs every minute and uses the first command to launch workflows that have been previously scheduled while the
+second command is used to check the status of launched workflows.</p>
+
+<p>For more information see the <a href="../../6-pipeline/monitor_configuration/">Monitor Configuration</a> documentation.</p>
+
+</div>
+</div>
+<div class="section" id="see-also">
+<h2>See Also</h2>
+
+<p class="warning"><strong>Note:</strong>
+Before proceeding further, it is worth noting that the SeqWare MetaDB should be regularly backed-up. 
+On our deployment, we have a cron script which calls the Files Report and <code>pg_dump</code> nightly to do back-up. 
+</p>
+
+<p>As an admin the next steps are to explore the various sub-project guides in
+this documentation.  Also take a look at the guide for <a href="../../2a-installation-from-scratch/">creating a SeqWare
+VM</a> which provides low-level, technical
+details on how to install the components of the SeqWare software stack. </p>
+
+<!--
+## Coming Soon
+
+We are also preparing guides which will walk administrators through
+
+* Hooking up to an SGE cluster (Oozie)
+* Hooking up to an Oozie cluster
+* Hooking up to an LSF cluster
+-->
+</div>
+</div>
+<p> </p>
+<p> </p>
+<div id="disqus_thread"></div>
+</div>
+</div>
+<!-- ***** footer ***** -->
+<div id="footer">
+<p>SeqWare © 2007–2014 Brian O&#8217;Connor. SeqWare is released under the a <a rel="license" href="http://www.gnu.org/licenses/licenses.html">GNU GPL v3</a>. This site is built using the excellent <a href="http://nanoc.ws/">nanoc</a> tool and example site along with the <a href="http://www.fonts.info/info/press/free-fonts-for-font-face-embedding.htm">Graublau</a> and <a href="https://en.wikipedia.org/wiki/Gentium">Gentium</a> fonts.</p>
+</div>
+</body>
+</html>

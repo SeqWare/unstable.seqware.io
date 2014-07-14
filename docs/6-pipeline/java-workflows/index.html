@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>SeqWare › Java Workflows</title>
+<meta content="nanoc 3.7.1" name="generator">
+<link href="../../../assets/style-v17.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://feeds.feedburner.com/seqware" rel="alternate" title="The SeqWare Blog" type="application/atom+xml">
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-34523087-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script><script type="text/javascript">         var disqus_shortname = 'seqware';          (function() {             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);         })();     </script>
+</head>
+<body>
+<div class="wrapper">
+<!-- ***** navigation ***** -->
+<div class="nav">
+<ol>
+<li><a href="../../../"><span>Home</span></a></li>
+<li><a href="../../../blog/"><span>News</span></a></li>
+<li><a href="../../"><span>Documentation</span></a></li>
+<li><a href="../../../community/"><span>Community</span></a></li>
+<li><a href="../../../partners/"><span>Partners</span></a></li>
+<li><a href="../../../about/"><span>About</span></a></li>
+</ol>
+</div>
+<!-- ***** sidebar ***** -->
+<div class="side">
+<ol>
+<li><a href="../../1-introduction/"><span>Introduction to SeqWare</span></a></li>
+<li><a href="../../2-installation/"><span>Installation</span></a></li>
+<li><a href="../../3-getting-started/"><span>Getting Started</span></a></li>
+<li>
+<a href="../"><span>SeqWare Pipeline</span></a><ol class="toc">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#creating-a-java-workflow-bundle">Creating a Java Workflow Bundle</a></li>
+<li><a href="#a-tour-of-the-java-workflow-syntax">A Tour of the Java Workflow Syntax</a></li>
+<li><a href="#running-the-workflow">Running the Workflow</a></li>
+<li><a href="#for-more-information">For More Information</a></li>
+</ol>
+</li>
+<li><a href="../../4-metadb/"><span>SeqWare MetaDB</span></a></li>
+<li><a href="../../5-portal/"><span>SeqWare Portal</span></a></li>
+<li><a href="../../7-web-service/"><span>SeqWare Web Service</span></a></li>
+<li><a href="../../8-query-engine/"><span>SeqWare Query Engine</span></a></li>
+<li><a href="../../9-glossary/"><span>Glossary</span></a></li>
+<li><a href="../../10-faq/"><span>Frequently Asked Questions</span></a></li>
+<li><a href="../../11-api/"><span>APIs</span></a></li>
+<li><a href="../../13-code/"><span>Source Code</span></a></li>
+<li><a href="../../17-plugins/"><span>Plugins</span></a></li>
+<li><a href="../../17a-modules/"><span>Modules</span></a></li>
+</ol>
+</div>
+<!-- ***** body ***** -->
+<div class="body">
+<div class="article">
+<div class="header">
+<h1>Java Workflows</h1>
+</div>
+<!-- TODO: 
+* add more info on variables defined like random
+-->
+
+<div class="section" id="overview">
+<h2>Overview</h2>
+
+<p class="warning"><strong>Tip:</strong> The Java workflow language is 
+our recommended workflow language for new development.</p>
+
+<p>This document really focuses on the format of the Java workflow language. For
+more information about the entire workflow bundle please see the <a href="../../3-getting-started/developer-tutorial/">Developer
+Tutorial</a>.  You should read this
+guide before this page.</p>
+
+</div>
+<div class="section" id="limitations">
+<h2>Limitations</h2>
+
+<p>The Java workflows work with both the Pegasus and Oozie Workflow Engines. 
+That being said, if you use MapReduce or other Hadoop-specific job types in your Java
+workflows they will not function in the Pegasus Workflow Engine (since
+Hadoop is only present for the Oozie Workflow Engine).</p>
+
+</div>
+<div class="section" id="creating-a-java-workflow-bundle">
+<h2>Creating a Java Workflow Bundle</h2>
+
+<p>In the <a href="../../3-getting-started/developer-tutorial/">Developer Tutorial</a> you
+saw how to create a MyHelloWorld Java workflow using archetype.</p>
+
+<p>The first step to get started is to generate your workflow skeleton using Maven 
+archetypes. You will want to do this in a directory without <code>pom.xml</code> files (i.e. 
+outside of the SeqWare development directories).  Here we are working in the workflow-dev directory: </p>
+
+<pre><code>$ cd ~/workflow-dev
+$ mvn archetype:generate
+...
+829: local -&gt; com.github.seqware:seqware-archetype-decider (SeqWare Java Decider archetype)
+830: local -&gt; com.github.seqware:seqware-archetype-java-workflow (SeqWare Java workflow archetype)
+831: local -&gt; com.github.seqware:seqware-archetype-module (SeqWare module archetype)
+Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 294: 
+</code></pre>
+
+<p class="warning"><strong>Note:</strong>You can inform Maven about the archetypes by downloading the latest <a href="https://github.com/SeqWare/seqware/releases/download/1.0.11/archetype-catalog.xml">archetype-catalog.xml</a> file and placing it in <code>~/.m2/</code>.</p>
+
+<p>The numbers used to identify  the archetypes will vary 
+depending on what you have installed, so you will need to scan through the list 
+to find the SeqWare archetype you are looking for, in this case “SeqWare Java workflow archetype”.  Following the prompts, use “MyHelloWorld” as the artifactId and accept the defaults for the remaining by just pressing return.</p>
+
+<p>Alternately, the archetype can be generated without any interaction:</p>
+
+<pre><code>$ mvn archetype:generate \
+  -DinteractiveMode=false \
+  -DarchetypeCatalog=local \
+  -DarchetypeGroupId=com.github.seqware \
+  -DarchetypeArtifactId=seqware-archetype-java-workflow \
+  -DgroupId=com.github.seqware \
+  -DartifactId=workflow-MyHelloWorld \
+  -Dworkflow-name=MyHelloWorld
+</code></pre>
+
+<p>Alternatively, enter the workflow name and version you want to use.  When complete, you can
+<tt>cd</tt> into the new workflow directory and use <tt>mvn install</tt> to
+build the workflow. This copies files to the correct location and pulls in
+needed dependencies.</p>
+
+<pre><code>    $ cd ~/workflow-dev/workflow-MyHelloWorld/
+    $ mvn clean install
+    [INFO] Scanning for projects...
+    ...
+    [INFO] ------------------------------------------------------------------------
+    [INFO] BUILD SUCCESS
+    [INFO] ------------------------------------------------------------------------
+    [INFO] Total time: 40.100s
+    [INFO] Finished at: Thu Aug 15 19:59:22 UTC 2013
+    [INFO] Final Memory: 28M/67M
+    [INFO] ------------------------------------------------------------------------
+</code></pre>
+
+<p>You will now have a workflow directory called <tt>target/Workflow_Bundle_&lt;WorkflowName&gt;</tt>
+which contains your assembled workflow.</p>
+
+</div>
+<div class="section" id="a-tour-of-the-java-workflow-syntax">
+<h2>A Tour of the Java Workflow Syntax</h2>
+
+<p>You can see the full Java workflow source code by looking at <a href="../../15-workflow-examples/">Workflow
+Examples</a> or, in this case, just the
+<tt>src/main/java/com/github/seqware/MyHelloWorldWorkflow.java</tt> file produced by the Maven Archetype above.</p>
+
+<p>This Java class is pretty simple in its construction. It is used to define
+input and output files along with the individual steps in the workflow and how
+they relate to each other.  It is used to create a workflow object model which
+is then handed of to a workflow engine that knows how to turn that into a
+directed acyclic graph of jobs that can run on a cluster (local VM, an HPC
+cluster, a cloud-based cluster, etc).</p>
+
+<p>The full contents of the <tt>MyHelloWorldWorkflow.java</tt> are included below. We will 
+describe each section in more detail next:</p>
+
+<pre><code class="language-java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">seqware</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.logging.Level</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.logging.Logger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.sourceforge.seqware.pipeline.workflowV2.AbstractWorkflowDataModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.sourceforge.seqware.pipeline.workflowV2.model.Job</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.sourceforge.seqware.pipeline.workflowV2.model.SqwFile</span><span class="o">;</span>
+<span class="cm">/**</span>
+<span class="cm"> * For more information on developing workflows, see the documentation at</span>
+<span class="cm"> * SeqWare Java Workflows.</span>
+<span class="cm"> * </span>
+<span class="cm"> * Quick reference for the order of methods called:</span>
+<span class="cm"> * 1. setupDirectory</span>
+<span class="cm"> * 2. setupFiles</span>
+<span class="cm"> * 3. setupWorkflow</span>
+<span class="cm"> * 4. setupEnvironment</span>
+<span class="cm"> * 5. buildWorkflow</span>
+<span class="cm"> * </span>
+<span class="cm"> * See the SeqWare API for </span>
+<span class="cm"> * AbstractWorkflowDataModel </span>
+<span class="cm"> * for more information.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyHelloWorldWorkflow</span> <span class="kd">extends</span> <span class="n">AbstractWorkflowDataModel</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">manualOutput</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">catPath</span><span class="o">,</span> <span class="n">echoPath</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">greeting</span> <span class="o">=</span><span class="s">""</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">//optional properties</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">hasPropertyAndNotNull</span><span class="o">(</span><span class="s">"manual_output"</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">manualOutput</span> <span class="o">=</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">getProperty</span><span class="o">(</span><span class="s">"manual_output"</span><span class="o">));</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">hasPropertyAndNotNull</span><span class="o">(</span><span class="s">"greeting"</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">greeting</span> <span class="o">=</span> <span class="n">getProperty</span><span class="o">(</span><span class="s">"greeting"</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="c1">//these two properties are essential to the workflow. If they are null or do not </span>
+            <span class="c1">//exist in the INI, the workflow should exit.</span>
+            <span class="n">catPath</span> <span class="o">=</span> <span class="n">getProperty</span><span class="o">(</span><span class="s">"cat"</span><span class="o">);</span>
+            <span class="n">echoPath</span> <span class="o">=</span> <span class="n">getProperty</span><span class="o">(</span><span class="s">"echo"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setupDirectory</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//since setupDirectory is the first method run, we use it to initialize variables too.</span>
+        <span class="n">init</span><span class="o">();</span>
+        <span class="c1">// creates a dir1 directory in the current working directory where the workflow runs</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">addDirectory</span><span class="o">(</span><span class="s">"dir1"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">SqwFile</span><span class="o">&gt;</span> <span class="n">setupFiles</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// register an plaintext input file using the information from the INI</span>
+        <span class="c1">// provisioning this file to the working directory will be the first step in the workflow</span>
+        <span class="n">SqwFile</span> <span class="n">file0</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">createFile</span><span class="o">(</span><span class="s">"file_in_0"</span><span class="o">);</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">getProperty</span><span class="o">(</span><span class="s">"input_file"</span><span class="o">));</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">"text/plain"</span><span class="o">);</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setIsInput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">getFiles</span><span class="o">();</span>
+    <span class="o">}</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildWorkflow</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="c1">// a simple bash job to call mkdir</span>
+        <span class="c1">// note that this job uses the system's mkdir (which depends on the system being *nix)</span>
+        <span class="n">Job</span> <span class="n">mkdirJob</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_mkdir"</span><span class="o">);</span>
+        <span class="n">mkdirJob</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="s">"mkdir test1"</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">inputFilePath</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getFiles</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"file_in_0"</span><span class="o">).</span><span class="na">getProvisionedPath</span><span class="o">();</span>
+
+        <span class="c1">// a simple bash job to cat a file into a test file</span>
+        <span class="c1">// the file is not saved to the metadata database</span>
+        <span class="n">Job</span> <span class="n">copyJob1</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">inputFilePath</span> <span class="o">+</span> <span class="s">"&gt; test1"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
+
+        <span class="c1">// a simple bash job to echo to an output file and concat an input file</span>
+        <span class="c1">// the file IS saved to the metadata database</span>
+        <span class="n">Job</span> <span class="n">copyJob2</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="n">echoPath</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="n">greeting</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="s">" &gt; "</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="s">";"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span><span class="n">inputFilePath</span><span class="o">+</span> <span class="s">" &gt;&gt; dir1/output"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addFile</span><span class="o">(</span><span class="n">createOutputFile</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">,</span> <span class="s">"txt/plain"</span><span class="o">,</span> <span class="n">manualOutput</span><span class="o">));</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">SqwFile</span> <span class="nf">createOutputFile</span><span class="o">(</span><span class="n">String</span> <span class="n">workingPath</span><span class="o">,</span> <span class="n">String</span> <span class="n">metatype</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">manualOutput</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// register an output file</span>
+        <span class="n">SqwFile</span> <span class="n">file1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqwFile</span><span class="o">();</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">workingPath</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="n">metatype</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setIsOutput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setForceCopy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="c1">// if manual_output is set in the ini then use it to set the destination of this file</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">manualOutput</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">file1</span><span class="o">.</span><span class="na">setOutputPath</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getMetadata_output_file_prefix</span><span class="o">()</span> <span class="o">+</span> <span class="n">getMetadata_output_dir</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">workingPath</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">file1</span><span class="o">.</span><span class="na">setOutputPath</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getMetadata_output_file_prefix</span><span class="o">()</span> <span class="o">+</span> <span class="n">getMetadata_output_dir</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span>
+                <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getVersion</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getRandom</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">workingPath</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">file1</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+
+<div class="section" id="variables">
+<h3>Variables</h3>
+
+<p>Variables are simply defined as any other object variables would be in Java. To
+access variables from the workflow’s ini file simply use the
+<tt>getProperty(“key”)</tt> method.</p>
+
+<pre><code class="language-java"><span class="c1">// showing how to access the workflow bundle install location</span>
+<span class="n">file0</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getWorkflowBaseDir</span><span class="o">()+</span><span class="s">"/data/input.txt"</span><span class="o">);</span>
+
+<span class="c1">// showing how to access a property from the INI file</span>
+<span class="n">file0</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">getProperty</span><span class="o">(</span><span class="s">"input_file"</span><span class="o">));</span>
+
+<span class="c1">// showing how to access variables out of the ini file</span>
+<span class="k">this</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"output_file_1"</span><span class="o">);</span></code></pre>
+
+</div>
+<div class="section" id="files-directories">
+<h3>Files &amp; Directories</h3>
+
+<p>Files that are inputs or outputs from workflows need to be copied in or out
+respectively.  Under the hood, this uses the ProvisionFiles module that knows
+how to move around local files, files over HTTP, or remote files on Amazon’s
+S3. The Java syntax simplifies the declaration of these input and output files
+for workflows by providing the method below. Keep in mind, you can also just
+transfer input or output files by using a standard job that calls the necessary
+command line tool and bypass this built in system. But the
+<tt>setupFiles()</tt> method will likely work for most purposes and is the
+easiest way to register workflow files.</p>
+
+<pre><code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">SqwFile</span><span class="o">&gt;</span> <span class="n">setupFiles</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// register an plaintext input file using the information from the INI</span>
+        <span class="c1">// provisioning this file to the working directory will be the first step in the workflow</span>
+        <span class="n">SqwFile</span> <span class="n">file0</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">createFile</span><span class="o">(</span><span class="s">"file_in_0"</span><span class="o">);</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">getProperty</span><span class="o">(</span><span class="s">"input_file"</span><span class="o">));</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">"text/plain"</span><span class="o">);</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setIsInput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">getFiles</span><span class="o">();</span>
+    <span class="o">}</span></code></pre>
+
+<p>Output files are linked to the jobs that produce those files with addFile(SqwFile). 
+A convenience method is provided in the archetype for creating output files. Note that
+these files are not available from this.getFiles().get(String).</p>
+
+<pre><code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildWorkflow</span><span class="o">()</span> <span class="o">{</span>
+	<span class="o">...</span>
+
+	<span class="n">Job</span> <span class="n">copyJob2</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+	<span class="o">...</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addFile</span><span class="o">(</span><span class="n">createOutputFile</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">,</span> <span class="s">"txt/plain"</span><span class="o">,</span> <span class="n">manualOutput</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">SqwFile</span> <span class="nf">createOutputFile</span><span class="o">(</span><span class="n">String</span> <span class="n">workingPath</span><span class="o">,</span> <span class="n">String</span> <span class="n">metatype</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">manualOutput</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// register an output file</span>
+        <span class="n">SqwFile</span> <span class="n">file1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqwFile</span><span class="o">();</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">workingPath</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="n">metatype</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setIsOutput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setForceCopy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="c1">// if manual_output is set in the ini then use it to set the destination of this file</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">manualOutput</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">file1</span><span class="o">.</span><span class="na">setOutputPath</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getMetadata_output_file_prefix</span><span class="o">()</span> <span class="o">+</span> <span class="n">getMetadata_output_dir</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">workingPath</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">file1</span><span class="o">.</span><span class="na">setOutputPath</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getMetadata_output_file_prefix</span><span class="o">()</span> <span class="o">+</span> <span class="n">getMetadata_output_dir</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span>
+                <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getVersion</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getRandom</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">workingPath</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">file1</span><span class="o">;</span>
+    <span class="o">}</span></code></pre>
+
+<p>You can also specify directories to be created in the working directory of your workflow.</p>
+
+<pre><code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setupDirectory</span><span class="o">()</span> <span class="o">{</span>
+	<span class="c1">// creates a dir1 directory in the current working directory where the workflow runs</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">addDirectory</span><span class="o">(</span><span class="s">"dir1"</span><span class="o">);</span>
+    <span class="o">}</span></code></pre>
+
+</div>
+<div class="section" id="jobs-dependencies">
+<h3>Jobs &amp; Dependencies</h3>
+
+<p>The jobs need to have distinct IDs and you can generate these using a for loop
+in FTL if need be. You can put any command in the <tt>argument</tt> section
+but mostly this is used to call GenericCommandRunner which runs the command
+provided in a Bash shell. </p>
+
+<pre><code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildWorkflow</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="c1">// a simple bash job to call mkdir</span>
+        <span class="c1">// note that this job uses the system's mkdir (which depends on the system being *nix)</span>
+        <span class="n">Job</span> <span class="n">mkdirJob</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_mkdir"</span><span class="o">);</span>
+        <span class="n">mkdirJob</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="s">"mkdir test1"</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">inputFilePath</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getFiles</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"file_in_0"</span><span class="o">).</span><span class="na">getProvisionedPath</span><span class="o">();</span>
+
+        <span class="c1">// a simple bash job to cat a file into a test file</span>
+        <span class="c1">// the file is not saved to the metadata database</span>
+        <span class="n">Job</span> <span class="n">copyJob1</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">inputFilePath</span> <span class="o">+</span> <span class="s">"&gt; test1"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
+
+        <span class="c1">// a simple bash job to echo to an output file and concat an input file</span>
+        <span class="c1">// the file IS saved to the metadata database</span>
+        <span class="n">Job</span> <span class="n">copyJob2</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="n">echoPath</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="n">greeting</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="s">" &gt; "</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="s">";"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span><span class="n">inputFilePath</span><span class="o">+</span> <span class="s">" &gt;&gt; dir1/output"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addFile</span><span class="o">(</span><span class="n">createOutputFile</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">,</span> <span class="s">"txt/plain"</span><span class="o">,</span> <span class="n">manualOutput</span><span class="o">));</span>
+
+    <span class="o">}</span></code></pre>
+
+<p>Currently only the job supported is using the <tt>createBashJob()</tt> method. In the
+future we will provide and expanded list of convenience job types for example
+MapReduce, Pig, Java jar, etc.</p>
+
+<p>The dependencies section links together all the individual jobs in the correct
+order so they can be executed successfully. Parent/child relationships are used
+to specify job pre-requisites.</p>
+
+<p>TODO: discuss the JobTypes, namely Bash</p>
+
+</div>
+<div class="section" id="symbolic-links-to-local-dependencies">
+<h3>Symbolic Links to Local Dependencies</h3>
+
+<p>This type of dependency is not generally recommended. In most cases you will want to 
+check a dependency into a maven repository or add it into the binary or data directories 
+of a workflow. </p>
+
+<p>However, in the following cases, you will need to rely on symbolic links:</p>
+
+<ul>
+<li>The dependency is too large to go into a maven repository </li>
+  <li>The dependency is proprietary or cannot be redistributed </li>
+</ul>
+<p>By convention, the symlinks go into a directory in the root of the workflow called links. 
+They should link to a directory, not to a single file (for the purposes of copying the 
+dependencies to the final bundle. Maven doesn’t accept single files for copying upon 
+install. The SeqWare archeype for Java workflow symlinks the entire ‘links’ folder to the 
+‘data’ directory in the final workflow bundle.</p>
+
+<p>First, create the link:</p>
+
+<pre><code>[seqware@seqwarevm workflow-MyHelloWorld]$ cd links
+[seqware@seqwarevm links]$ rm -Rf *
+[seqware@seqwarevm links]$ ln -s ../workflow/data/
+[seqware@seqwarevm links]$ ls -alhtr
+total 8.0K
+drwxrwxr-x 5 seqware seqware 4.0K May 31 17:39 ..
+lrwxrwxrwx 1 seqware seqware   17 May 31 17:41 data -&gt; ../workflow/data/
+drwxrwxr-x 2 seqware seqware 4.0K May 31 17:41 .
+</code></pre>
+
+<p>Second, check your bundle’s pom.xml to verify that the maven-junction-plugin is present. 
+This plugin will create a link when compiling your bundle:</p>
+
+<pre><code>&lt;build&gt;
+   ...
+    &lt;plugins&gt;
+   ...
+        &lt;plugin&gt;
+            &lt;groupId&gt;com.pyx4j&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-junction-plugin&lt;/artifactId&gt;
+            &lt;executions&gt;
+                    &lt;execution&gt;
+                    &lt;phase&gt;package&lt;/phase&gt;
+                    &lt;goals&gt;
+                            &lt;goal&gt;link&lt;/goal&gt;
+                    &lt;/goals&gt;
+            &lt;/execution&gt;
+            &lt;execution&gt;
+                    &lt;id&gt;unlink&lt;/id&gt;
+                    &lt;phase&gt;clean&lt;/phase&gt;
+                    &lt;goals&gt;
+                            &lt;goal&gt;unlink&lt;/goal&gt;
+                    &lt;/goals&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+        &lt;configuration&gt;
+          &lt;links&gt;
+           &lt;link&gt;
+              &lt;dst&gt;${project.build.directory}/Workflow_Bundle_${workflow-name}_${project.version}_SeqWare_${seqware-version}/Workflow_Bundle_${workflow-directory-name}/${project.version}/data/data&lt;/dst&gt;
+              &lt;src&gt;${basedir}/links/data&lt;/src&gt;
+            &lt;/link&gt;
+          &lt;/links&gt;
+        &lt;/configuration&gt;
+     &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+
+<p>Your bundles will now contain a symbolic link to your dependency after “mvn clean install” 
+in the data directory and this will only be included in the bundle when the bundle is 
+packaged (and/or installed). Note that the destination directory cannot exist before the 
+junction occurs or it will fail.</p>
+
+</div>
+</div>
+<div class="section" id="running-the-workflow">
+<h2>Running the Workflow</h2>
+
+<p>You can run the Workflow using the test process shown in the <a href="../../3-getting-started/developer-tutorial/">Developer Tutorial</a>.  For example:</p>
+
+<pre><code class="language-bash">java -jar ~/seqware-full.jar -p net.sourceforge.seqware.pipeline.plugins.BundleManager -- -b <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span> -t --workflow simple-legacy-ftl-workflow --version 1.0
+Running Plugin: net.sourceforge.seqware.pipeline.plugins.BundleManager
+Setting Up Plugin: net.sourceforge.seqware.pipeline.plugins.BundleManager@e80d1ff
+Testing Bundle
+  Running Test Command:
+java -jar /home/seqware/Temp/simple-legacy-ftl-workflow/target/Workflow_Bundle_simple-legacy-ftl-workflow_1.0-SNAPSHOT_SeqWare_0.13.6.x/Workflow_Bundle_simple-legacy-ftl-workflow/1.0-SNAPSHOT/lib/seqware-distribution-0.13.6.x-full.jar --plugin net.sourceforge.seqware.pipeline.plugins.WorkflowLauncher --provisioned-bundle-dir /home/seqware/Temp/simple-legacy-ftl-workflow/target/Workflow_Bundle_simple-legacy-ftl-workflow_1.0-SNAPSHOT_SeqWare_0.13.6.x --workflow simple-legacy-ftl-workflow --version 1.0 --ini-files /home/seqware/Temp/simple-legacy-ftl-workflow/target/Workflow_Bundle_simple-lSHOT_SeqWare_0.13.6.x/Workflow_Bundle_simple-legacy-ftl-workflow/1.0-SNAPSHOT/config/workflow.ini
+MONITORING PEGASUS STATUS:
+RUNNING: step 1 of 5 <span class="o">(</span>20%<span class="o">)</span>
+RUNNING: step 2 of 5 <span class="o">(</span>40%<span class="o">)</span>
+...</code></pre>
+
+</div>
+<div class="section" id="for-more-information">
+<h2>For More Information</h2>
+
+<p>See the  <a href="../../3-getting-started/developer-tutorial/">Developer Tutorial</a>
+document for more information. For Java API documentation consult the <a href="../../11-api/">SeqWare
+Javadocs</a>.</p>
+</div>
+</div>
+<p> </p>
+<p> </p>
+<div id="disqus_thread"></div>
+</div>
+</div>
+<!-- ***** footer ***** -->
+<div id="footer">
+<p>SeqWare © 2007–2014 Brian O&#8217;Connor. SeqWare is released under the a <a rel="license" href="http://www.gnu.org/licenses/licenses.html">GNU GPL v3</a>. This site is built using the excellent <a href="http://nanoc.ws/">nanoc</a> tool and example site along with the <a href="http://www.fonts.info/info/press/free-fonts-for-font-face-embedding.htm">Graublau</a> and <a href="https://en.wikipedia.org/wiki/Gentium">Gentium</a> fonts.</p>
+</div>
+</body>
+</html>

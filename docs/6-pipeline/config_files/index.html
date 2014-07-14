@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>SeqWare › Workflow Config Files</title>
+<meta content="nanoc 3.7.1" name="generator">
+<link href="../../../assets/style-v17.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://feeds.feedburner.com/seqware" rel="alternate" title="The SeqWare Blog" type="application/atom+xml">
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-34523087-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script><script type="text/javascript">         var disqus_shortname = 'seqware';          (function() {             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);         })();     </script>
+</head>
+<body>
+<div class="wrapper">
+<!-- ***** navigation ***** -->
+<div class="nav">
+<ol>
+<li><a href="../../../"><span>Home</span></a></li>
+<li><a href="../../../blog/"><span>News</span></a></li>
+<li><a href="../../"><span>Documentation</span></a></li>
+<li><a href="../../../community/"><span>Community</span></a></li>
+<li><a href="../../../partners/"><span>Partners</span></a></li>
+<li><a href="../../../about/"><span>About</span></a></li>
+</ol>
+</div>
+<!-- ***** sidebar ***** -->
+<div class="side">
+<ol>
+<li><a href="../../1-introduction/"><span>Introduction to SeqWare</span></a></li>
+<li><a href="../../2-installation/"><span>Installation</span></a></li>
+<li><a href="../../3-getting-started/"><span>Getting Started</span></a></li>
+<li>
+<a href="../"><span>SeqWare Pipeline</span></a><ol class="toc"><li><a href="#overview">Overview</a></li></ol>
+</li>
+<li><a href="../../4-metadb/"><span>SeqWare MetaDB</span></a></li>
+<li><a href="../../5-portal/"><span>SeqWare Portal</span></a></li>
+<li><a href="../../7-web-service/"><span>SeqWare Web Service</span></a></li>
+<li><a href="../../8-query-engine/"><span>SeqWare Query Engine</span></a></li>
+<li><a href="../../9-glossary/"><span>Glossary</span></a></li>
+<li><a href="../../10-faq/"><span>Frequently Asked Questions</span></a></li>
+<li><a href="../../11-api/"><span>APIs</span></a></li>
+<li><a href="../../13-code/"><span>Source Code</span></a></li>
+<li><a href="../../17-plugins/"><span>Plugins</span></a></li>
+<li><a href="../../17a-modules/"><span>Modules</span></a></li>
+</ol>
+</div>
+<!-- ***** body ***** -->
+<div class="body">
+<div class="article">
+<div class="header">
+<h1>Workflow Config Files</h1>
+</div>
+<div class="section" id="overview">
+<h2>Overview</h2>
+
+<p>Each workflow uses a simple INI file to record which variables it accepts,
+their types, and default values.  For example:</p>
+
+<pre><code class="language-ini"><span class="c1"># key=input_file:type=file:display=F:file_meta_type=text/plain</span>
+<span class="na">input_file</span><span class="o">=</span><span class="s">${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/${workflow-version}/data/input.txt</span>
+<span class="c1"># key=greeting:type=text:display=T:display_name=Greeting</span>
+<span class="na">greeting</span><span class="o">=</span><span class="s">Testing</span>
+
+<span class="na">cat</span><span class="o">=</span><span class="s">${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/${workflow-version}/bin/gnu-coreutils-5.67/cat</span>
+<span class="na">echo</span><span class="o">=</span><span class="s">${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/${workflow-version}/bin/gnu-coreutils-5.67/echo</span>
+
+<span class="c1"># the output directory is a convention used in many workflows to specify a relative output path</span>
+<span class="na">output_dir</span><span class="o">=</span><span class="s">seqware-results</span>
+<span class="c1"># the output_prefix is a convention used to specify the root of the absolute output path or an S3 bucket name </span>
+<span class="c1"># you should pick a path that is available on all cluster nodes and can be written by your user</span>
+<span class="na">output_prefix</span><span class="o">=</span><span class="s">./</span>
+<span class="c1"># manual output determines whether or not SeqWare should enforce the uniqueness of the final directory or not. </span>
+<span class="c1"># If false, SeqWare places files in a directory specified by output_prefix/output_dir/workflowname_version/RANDOM/&lt;files&gt;</span>
+<span class="c1"># where RANDOM is an integer. If true, SeqWare places the files at output_prefix/output_dir and may overwrite existing</span>
+<span class="c1"># files</span>
+<span class="na">manual_output</span><span class="o">=</span><span class="s">false</span>
+
+<span class="c1"># Optional: This controls the default number of lines of stdout and stderr that jobs in a workflow will report as metadata</span>
+<span class="c1"># Otherwise, the default in GenericCommandRunner will be used (currently, 10)</span>
+<span class="na">seqware-output-lines-number</span><span class="o">=</span><span class="s">20</span></code></pre>
+
+<p>You access these variables in the Java workflow using the
+<tt>getProperty()</tt> method. When installing the workflow the ini file is
+parsed and extra metadata about each parameter is examined. This gives the
+system information about the type of the variable (integer, string, etc) and
+any default values.</p>
+
+<p>The ini file(s) follow the general pattern of:</p>
+
+<pre>
+# comment/specification
+key=value
+</pre>
+
+<p>To achieve this overloaded role for ini files you need to include hints to
+ensure the BundleManager that installs workflow bundles has enough information.
+Here is what the annotation syntax looks like:</p>
+
+<pre><code># key=&lt;name&gt;:type=[integer|float|text|pulldown|file]:display=[T|F][:display_name=&lt;name_to_display&gt;][:file_meta_type=&lt;mime_meta_type&gt;][:pulldown_items=&lt;key1&gt;|&lt;value1&gt;;&lt;key2&gt;|&lt;value2&gt;]
+key=default_value
+</code></pre>
+
+<p>The file_meta_type is only used for type=file.</p>
+
+<p>The pulldown type means that the pulldown_items should be defined as well. This looks like:</p>
+
+<pre><code>pulldown_items=&lt;key1&gt;|&lt;value1&gt;;&lt;key2&gt;|&lt;value2&gt;
+</code></pre>
+
+<p>The default value for this will refer to either value1 or value2 above.
+If you fail to include a metadata line for a particular key/value then it is assumed to be:</p>
+
+<pre><code>key=&lt;name&gt;:type=text:display=F
+</code></pre>
+
+<p>This is convenient since many of the values in an INI file should not be displayed to the end user.</p>
+
+<div class="section" id="required-ini-entries">
+<h3>Required INI Entries</h3>
+
+<p>There are (currently) two required entries that all workflows should define
+in their ini files. These are related to output file provisioning. In your workflow,
+if you produce output files and use the file provisioning mechanism built into
+workflows these two entries are used to construct the output location for the
+output file.</p>
+
+<ul>
+<li>output_dir</li>
+  <li>output_prefix</li>
+</ul>
+<p>For example, if you have a <tt>SqwFile</tt> object can call
+<tt>file.setIsOutput(true);</tt> the workflow engine constructs an output path
+for this file using the following:</p>
+
+<pre><code>&lt;output_prefix&gt;/&lt;output_dir&gt;/&lt;file_name&gt;
+</code></pre>
+
+<p>You can use <tt>s3://bucketname/</tt> or a local path as the prefix.</p>
+
+<p class="warning"><strong>Note:</strong> While the above entries are required, it is STRONGLY suggested that workflow developers no longer rely on them to decide the output path of a provisioned file.  Instead we recommend explicitly providing in the ini file whatever paths you may require, possibly using the variables described below, and then assigning that path to the output file via <code>SqwFile.setOutputPath(String path)</code>.</p>
+
+<div class="section" id="reserved-ini-entries">
+<h4>Reserved INI Entries</h4>
+
+<p>There are a number of entries that are used by SeqWare and should be avoided in your own workflows. They are:</p>
+
+<ul>
+<li>parent_accessions</li>
+  <li>parent-accessions</li>
+  <li>parent_accession</li>
+  <li>workflow-run-accession</li>
+  <li>workflow_run_accession</li>
+  <li>metadata</li>
+  <li>workflow_bundle_dir</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ini-variables">
+<h3>INI Variables</h3>
+
+<p>The ini files support variables, in the format <code>$(variable-name}</code>, that will be replaced when the workflow run is launched. The variable name can refer to another entry in the ini file, or can refer to the following SeqWare generated values:</p>
+
+<ul>
+<li>
+<code>sqw.bundle-dir</code>: the path to the directory of this workflow’s bundle. Support for the legacy version of this variable, <code>workflow_bundle_dir</code>, may be removed in a future version.</li>
+  <li>
+<code>sqw.date</code>: the current date in ISO 8601 format, e.g., 2013-10-31.  Support for the legacy version of this variable, <code>date</code>, may be removed in a future version.</li>
+  <li>
+<code>sqw.datetime</code>: the current datetime in ISO 8601 format, e.g., 2013-10-31T16:45:30.</li>
+  <li>
+<code>sqw.random</code>: a randomly generated integer from 0 to 2147483647.  Support for the legacy version of this variable, <code>random</code>, may be removed in a future version.</li>
+  <li>
+<code>sqw.timestamp</code>: the current number of milliseconds since January 1, 1970.</li>
+  <li>
+<code>sqw.uuid</code>: a randomly generated <a href="http://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29">universally unique identifier</a>.</li>
+</ul>
+<p>Each instance of the above <code>sqw.*</code> variables in an ini file will be replaced with a separately resolved value, e.g., multiple instances of <code>${sqw.uuid}</code> will each resolve to different values. If you desire to reuse the same generated value, do somthing akin to the following:</p>
+
+<pre><code class="language-ini"><span class="na">dirname</span><span class="o">=</span><span class="s">output</span>
+<span class="na">filename</span><span class="o">=</span><span class="s">${sqw.random}</span>
+<span class="na">text_file</span><span class="o">=</span><span class="s">${dirname}/${filename}.txt</span>
+<span class="na">json_file</span><span class="o">=</span><span class="s">${dirname}/${filename}.json</span></code></pre>
+
+<p>Thus if <code>filename</code> resolved to a value of <code>12345</code>, then <code>text_file</code> will have a value of <code>output/12345.txt</code> and <code>json_file</code> will have a value of <code>output/12345.json</code>.</p>
+</div>
+</div>
+</div>
+<p> </p>
+<p> </p>
+<div id="disqus_thread"></div>
+</div>
+</div>
+<!-- ***** footer ***** -->
+<div id="footer">
+<p>SeqWare © 2007–2014 Brian O&#8217;Connor. SeqWare is released under the a <a rel="license" href="http://www.gnu.org/licenses/licenses.html">GNU GPL v3</a>. This site is built using the excellent <a href="http://nanoc.ws/">nanoc</a> tool and example site along with the <a href="http://www.fonts.info/info/press/free-fonts-for-font-face-embedding.htm">Graublau</a> and <a href="https://en.wikipedia.org/wiki/Gentium">Gentium</a> fonts.</p>
+</div>
+</body>
+</html>

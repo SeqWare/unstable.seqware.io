@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>SeqWare › Developer Tutorial</title>
+<meta content="nanoc 3.7.1" name="generator">
+<link href="../../../assets/style-v17.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://feeds.feedburner.com/seqware" rel="alternate" title="The SeqWare Blog" type="application/atom+xml">
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-34523087-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script><script type="text/javascript">         var disqus_shortname = 'seqware';          (function() {             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);         })();     </script>
+</head>
+<body>
+<div class="wrapper">
+<!-- ***** navigation ***** -->
+<div class="nav">
+<ol>
+<li><a href="../../../"><span>Home</span></a></li>
+<li><a href="../../../blog/"><span>News</span></a></li>
+<li><a href="../../"><span>Documentation</span></a></li>
+<li><a href="../../../community/"><span>Community</span></a></li>
+<li><a href="../../../partners/"><span>Partners</span></a></li>
+<li><a href="../../../about/"><span>About</span></a></li>
+</ol>
+</div>
+<!-- ***** sidebar ***** -->
+<div class="side">
+<ol>
+<li><a href="../../1-introduction/"><span>Introduction to SeqWare</span></a></li>
+<li><a href="../../2-installation/"><span>Installation</span></a></li>
+<li>
+<a href="../"><span>Getting Started</span></a><ol class="toc">
+<li><a href="#by-the-end-of-this-tutorial">By the End of This Tutorial</a></li>
+<li><a href="#the-theory-behind-a-seqware-workflow-bundle">The Theory Behind a SeqWare Workflow Bundle</a></li>
+<li><a href="#note-about-working-directory-vs-workflow-bundle-directory">Note About Working Directory vs. Workflow Bundle Directory</a></li>
+<li><a href="#first-steps">First Steps</a></li>
+<li><a href="#overview-of-workflow-development-using-the-vm">Overview of Workflow Development Using the VM</a></li>
+<li><a href="#creating-a-new-workflow">Creating a New Workflow</a></li>
+<li><a href="#a-tour-of-workflow-bundle-components">A Tour of Workflow Bundle Components</a></li>
+<li><a href="#modifying-the-workflow">Modifying the Workflow</a></li>
+<li><a href="#building-the-workflow">Building the Workflow</a></li>
+<li><a href="#testing-the-workflow">Testing the Workflow</a></li>
+<li><a href="#packaging-the-workflow-into-a-workflow-bundle">Packaging the Workflow into a Workflow Bundle</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ol>
+</li>
+<li><a href="../../6-pipeline/"><span>SeqWare Pipeline</span></a></li>
+<li><a href="../../4-metadb/"><span>SeqWare MetaDB</span></a></li>
+<li><a href="../../5-portal/"><span>SeqWare Portal</span></a></li>
+<li><a href="../../7-web-service/"><span>SeqWare Web Service</span></a></li>
+<li><a href="../../8-query-engine/"><span>SeqWare Query Engine</span></a></li>
+<li><a href="../../9-glossary/"><span>Glossary</span></a></li>
+<li><a href="../../10-faq/"><span>Frequently Asked Questions</span></a></li>
+<li><a href="../../11-api/"><span>APIs</span></a></li>
+<li><a href="../../13-code/"><span>Source Code</span></a></li>
+<li><a href="../../17-plugins/"><span>Plugins</span></a></li>
+<li><a href="../../17a-modules/"><span>Modules</span></a></li>
+</ol>
+</div>
+<!-- ***** body ***** -->
+<div class="body">
+<div class="article">
+<div class="header">
+<h1>Developer Tutorial</h1>
+</div>
+<!-- TODO 
+* really, should be a tutorial for MyHelloWorld so it doesn't conflict with the workflow already installed
+* the adding new job step below should show how to call a user-created script! A one-step workflow!
+-->
+
+<p class="warning"><strong>Note:</strong>This guide assumes you have installed
+SeqWare already. If you have not, please install SeqWare by either downloading
+the VirtualBox VM or launching the AMI on the Amazon cloud.  See <a href="../../2-installation/">Installation</a> for directions. We also recommend you
+follow the [User Tutorial](/docs/3-getting-started/user-tutorial/) before this guide.</p>
+
+<p>This guide picks up where the <a href="../user-tutorial/">User
+Tutorial</a> left off. In that previous
+guide we showed you how to start up your local VM, create studies, experiments,
+and samples, associate an input file with a sample, and then launch a workflow
+to process that file.  These workflows can be complex (they include branching
+and looping) and in future tutorials you will see how to string multiple
+workflows together (output of one as input for the next) using
+<a href="../../6-pipeline/#deciders">deciders</a> for automation.</p>
+
+<p>In this tutorial the focus is on creating a workflow of your own based on the
+HelloWorld that comes bundled with the VM.  In theory you could use either a
+local VM or an Amazon instance to follow the tutorial below but in our case we
+will base it on the local VM.</p>
+
+<div class="section" id="by-the-end-of-this-tutorial">
+<h2>By the End of This Tutorial</h2>
+
+<p>By the end of these tutorials you will:</p>
+
+<ul>
+<li>create a new SeqWare Pipeline workflow bundle based on HelloWorld</li>
+  <li>test your workflow bundle locally</li>
+  <li>package your new workflow as a bundle for hand-off to an administrator for installation into SeqWare Pipeline </li>
+</ul>
+</div>
+<div class="section" id="the-theory-behind-a-seqware-workflow-bundle">
+<h2>The Theory Behind a SeqWare Workflow Bundle</h2>
+
+<p>In many workflow environments the concept of a workflow is encoded as a simple
+XML markup file that defines a series of steps, data inputs, etc. This may be
+interpreted by a user interface of some sort, e.g. a drag-n-drop workflow
+creation tool. These workflow systems tend to treat workflows as very
+light-weigh representations of steps.  One problem with this lightweight
+approach is dependencies for steps in the workflow, such as genome indexes for
+an aligner, are often times treated as parameters and are not managed by the
+workflow system.  SeqWare’s concept of a workflow is much more akin to a Linux
+distribution package (like RPM or DEB files) in which all necessary components
+are packaged inside a single binary file. In SeqWare we use Zip64 files to
+group the workflow definition file, workflow itself, sample settings, and data
+dependencies in a single file that can be exchanged between SeqWare users or
+archived. This allows SeqWare bundles to be much more portable than lightweight
+workflows that reference external tools and data. Being self-contained is at
+the core of the design goals for SeqWare bundles with the expense of often
+times large workflow bundle sizes.</p>
+
+</div>
+<div class="section" id="note-about-working-directory-vs-workflow-bundle-directory">
+<h2>Note About Working Directory vs. Workflow Bundle Directory</h2>
+
+<p>Just to be clear, there are two directory locations to consider when working
+with workflows.  The workflow bundle directory (often referred to as
+<tt>${workflow_bundle_dir}</tt> in various components) refers to the location
+of the installed workflow bundle. You use this variable throughout your
+workflow bundle to refer to the install directory since that will only be known
+after the workflow bundle is installed.  For example, in the Java workflow
+language you would refer to a script called <tt>foo.pl</tt> installed in the
+<tt>bin</tt> directory within the workflow bundle as
+<tt>this.getWorkflowBaseDir()+”/bin/foo.pl”</tt>.  Similarly, from inside the
+workflow INI config file you can refer to a data file as
+<tt>my_file=${workflow_bundle_dir}/data/data_file.txt</tt>.</p>
+
+<p>The second directory is the current working directory. Every time a workflow is
+launched, a temporary working directory is created for just that particular run
+of the workflow.  A shared
+filesystem (NFS, gluster, etc) is required to ensure each job in a workflow is
+able to access this shared workflow working location regardless of what cluster
+node is selected to run a particular job.  Before a job in a workflow executes
+the current working directory is set so workflow authors can assume their
+individual jobs are already in the correct location.</p>
+
+</div>
+<div class="section" id="first-steps">
+<h2>First Steps</h2>
+
+<p>Please launch your local VM in VirtualBox or cloud AMI on Amazon now.  For the
+local VM, login as user <kbd>seqware</kbd>, password <kbd>seqware</kbd> at this
+time. Click on the “SeqWare Directory” link on the desktop which will open a
+terminal to the location where we installed the SeqWare tools.</p>
+
+<p>Alternatively, on the Amazon AMI follow the directions to log in
+<a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html">here</a>.
+Make sure that you launch our VM with the “cc1.4xlarge” instance type.
+Also, please wait roughly 10 minutes for our startup scripts to run and fully setup your instance.</p>
+
+<p>Once logging into the remote instance you need to “switch user” to
+<kbd>seqware</kbd>, e.g.:</p>
+
+<pre><code>$ sudo su - seqware
+</code></pre>
+
+<p>Both the VirtualBox VM and Amazon AMI include a start page that links to key information
+for the VM such as the URLs for the installed Portal, Web Service, key file locations, etc.
+On the VirtualBox VM, just click the “Start Here” link on the desktop.  For the Amazon instance
+use the instance name provided by the AWS console. For example, it will look similar to:</p>
+
+<pre><code>http://ec2-54-224-22-195.compute-1.amazonaws.com
+</code></pre>
+
+<p>You fill in your instance DNS name from the Amazon console in place of ec2-54-224-22-195.compute-1.amazonaws.com above. Make sure you check your security group settings to ensure port 80 (and the other ports referenced in the landing page) are open.</p>
+
+</div>
+<div class="section" id="overview-of-workflow-development-using-the-vm">
+<h2>Overview of Workflow Development Using the VM</h2>
+
+<p>You should be in the <code>/home/seqware/</code> directory now.  Notice there are two important directories:
+<code>provisioned-bundles</code> (<code>SW_BUNDLE_DIR</code> in the config) which contains unzipped
+workflow bundles and <code>released-bundles</code>
+(<code>SW_BUNDLE_REPO_DIR</code> in the config) which contains zip versions of the workflows
+that you create when you package up these bundles and install them.</p>
+
+<p>There are two ways to create a new workflow, the first is simply to copy an
+existing workflow bundle from provisioned-bundles, rename it, and modify the
+workflow to meet your needs. The second is using <a href="http://maven.apache.org/guides/introduction/introduction-to-archetypes.html">Maven
+Archetypes</a>,
+a template system which generates a workflow skeleton making it fast and easy
+to get started with workflow development. In this tutorial we will use the
+Maven Archetypes system here since it is fast and easy. We will also test the
+new bundle and, once you finish, we will package it up, ready for handoff to an
+admin that will install it in the SeqWare system so users can run it.</p>
+
+<div class="section" id="common-steps">
+<h3>Common Steps</h3>
+
+<p>Most workflow developers follow a similar series of steps when developing new workflows. Generally one goes through the following process:</p>
+
+<ul>
+<li>
+    <dl>
+<dt>Plan your workflow</dt>
+      <dd>Most developers are bioinformaticists and will spend some time exploring the tools and algorithms they want to use in this workflow and decide what problems their workflow is trying to solve.</dd>
+    </dl>
+</li>
+  <li>
+    <dl>
+<dt>Find your tools and sample data</dt>
+      <dd>Tools are collected, synthetic or real test datasets are prepared, prototyping is done</dd>
+    </dl>
+</li>
+  <li>
+    <dl>
+<dt>Make and test the workflow</dt>
+      <dd>The developer writes and tests the workflow both with bundled test data and real data locally and on a cluster or cloud resource</dd>
+    </dl>
+</li>
+  <li>
+    <dl>
+<dt>Packaging and handoff</dt>
+      <dd>The developer zips up the finished workflow and hands off to an admin that installs the workflow so users can use it</dd>
+    </dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="creating-a-new-workflow">
+<h2>Creating a New Workflow</h2>
+
+<p>The SeqWare workflow archetype allows workflow developers to quickly create new
+workflows. The Maven archetypes generate skeletons that contain a simple
+example program that can be modified to create a new workflow. The archetypes
+also take parameters prior to skeleton generation that allow the name of the
+workflow to be specified and all configuration files to adjusted with respect
+to these parameters.</p>
+
+<p>The code generated by the archetype contains all the necessary files to
+generate a complete workflow bundle when the <tt>mvn install</tt> command is
+issued. This command will combine the workflow definition, the config file, the Java workflow file, and
+other external dependencies pulled in by Maven to create a complete
+workflow bundle. This makes the code  generated by the archetype ideal to place
+under version control. As maintenance changes are made to the Java file or any
+other aspect of the workflow, these files can be updated and a new workflow
+reflecting these changes can be generated by re-issuing the  <tt>mvn
+install</tt> command.</p>
+
+<p>The first step to get started is to generate your workflow skeleton using Maven 
+archetypes. You will want to do this in a directory without <code>pom.xml</code> files (i.e. 
+outside of the SeqWare development directories).  Here we are working in the workflow-dev directory: </p>
+
+<pre><code>$ cd ~/workflow-dev
+$ mvn archetype:generate
+...
+829: local -&gt; com.github.seqware:seqware-archetype-decider (SeqWare Java Decider archetype)
+830: local -&gt; com.github.seqware:seqware-archetype-java-workflow (SeqWare Java workflow archetype)
+831: local -&gt; com.github.seqware:seqware-archetype-module (SeqWare module archetype)
+Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 294: 
+</code></pre>
+
+<p class="warning"><strong>Note:</strong>You can inform Maven about the archetypes by downloading the latest <a href="https://github.com/SeqWare/seqware/releases/download/1.0.11/archetype-catalog.xml">archetype-catalog.xml</a> file and placing it in <code>~/.m2/</code>.</p>
+
+<p>The numbers used to identify  the archetypes will vary 
+depending on what you have installed, so you will need to scan through the list 
+to find the SeqWare archetype you are looking for, in this case “SeqWare Java workflow archetype”.  Following the prompts, use “MyHelloWorld” as the artifactId and accept the defaults for the remaining by just pressing return.</p>
+
+<p>Alternately, the archetype can be generated without any interaction:</p>
+
+<pre><code>$ mvn archetype:generate \
+  -DinteractiveMode=false \
+  -DarchetypeCatalog=local \
+  -DarchetypeGroupId=com.github.seqware \
+  -DarchetypeArtifactId=seqware-archetype-java-workflow \
+  -DgroupId=com.github.seqware \
+  -DartifactId=workflow-MyHelloWorld \
+  -Dworkflow-name=MyHelloWorld
+</code></pre>
+
+</div>
+<div class="section" id="a-tour-of-workflow-bundle-components">
+<h2>A Tour of Workflow Bundle Components</h2>
+
+<p>In this section we will examine the internals of the Workflow Bundle that was just generated.
+The first thing you should do is take a look at the workflow manifest showing which workflows
+are present in this bundle (a single Workflow Bundle can contain many workflows).</p>
+
+<pre><code>$ cd workflow-MyHelloWorld
+$ mvn install
+...
+$ seqware bundle list --dir target/Workflow*
+
+List Workflows:
+
+ Workflow:
+  Name: MyHelloWorld
+  Version: 1.0
+  Description: Add a description of the workflow here.
+  Workflow Class: ${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/1.0/classes/com/github/seqware/MyHelloWorldWorkflow.java
+  Config Path: ${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/1.0/config/MyHelloWorldWorkflow.ini
+  Requirements Compute: single Memory: 20M Network: local
+</code></pre>
+
+<p>This shows the one workflow in the generated workflow bundle.</p>
+
+<div class="section" id="directory-organization">
+<h3>Directory Organization</h3>
+
+<p>The directory structure created by the maven archetype includes a
+<tt>pom.xml</tt> file which is our Maven build file, a <tt>src</tt> directory
+which contains the Java workflow, and a workflow directory that contains any
+bundled data, the basic workflow config file which includes all the parameters
+this workflow accepts, the metadata.xml which defines the workflows available
+in this bundle, and any scripts, binaries, or libraries your workflow needs (in
+bin and lib respectively).</p>
+
+<p>When you issue the <tt>mvn install</tt> command the <code>target</code> directory is created
+which contains the compiled workflow along with the various necessary files all
+correctly assembled in the proper directory structure.  You can 
+run the workflow in test mode or package up the workflow as a zip file for
+exchange with others. Both topics are covered later in this tutorial.</p>
+
+<p>The Maven archetype workflows are quite nice, too, since it is easy to check in
+everything but the target directory into source control like git or subversion.
+This makes it a lot easier to share the development of workflows between
+developers.</p>
+
+<pre>
+|-- pom.xml
+|-- src
+|   `-- main
+|       `-- java
+|           `-- com
+|               `-- github
+|                   `-- seqware
+|                       `-- MyHelloWorldWorkflow.java
+|-- target
+|   `-- Workflow_Bundle_MyHelloWorld_1.0_SeqWare_1.0.11
+|       `-- Workflow_Bundle_MyHelloWorld
+|           `-- 1.0
+|               |-- bin
+|               |-- classes
+|               |   `-- com
+|               |       `-- github
+|               |           `-- seqware
+|               |               `-- MyHelloWorldWorkflow.class
+|               |-- config
+|               |   `-- MyHelloWorldWorkflow.ini
+|               |-- data
+|               |   `-- input.txt
+|               |-- lib
+|               |   `-- seqware-distribution-1.0.11-full.jar
+|               `-- metadata.xml
+|-- workflow
+|   |-- config
+|   |   `-- MyHelloWorldWorkflow.ini
+|   |-- data
+|   |   `-- input.txt
+|   |-- lib
+|   |-- metadata.xml
+|   `-- workflows
+`-- workflow.properties
+</pre>
+
+<p>Here are some additional details about these files:</p>
+
+<ul>
+<li>
+    <dl>
+<dt>pom.xml</dt>
+      <dd>A maven project file. Edit this to change the version of the workflow and to add or modify workflow dependencies such as program, modules and data.</dd>
+    </dl>
+</li>
+  <li>
+    <dl>
+<dt>workflow</dt>
+      <dd>This directory contains the workflow skeleton. Look in here to modify the workflow configuration and data files.</dd>
+    </dl>
+</li>
+  <li>
+    <dl>
+<dt>src</dt>
+      <dd>This directory contains the Java client. Look in here to modify the .java files (Java workflow). The examples of Java workflows can be found <a href="../../15-workflow-examples/">here</a>.</dd>
+    </dl>
+</li>
+  <li>
+    <dl>
+<dt>workflow.properties</dt>
+      <dd>You can edit the description and workflow names in this file.</dd>
+    </dl>
+</li>
+</ul>
+</div>
+<div class="section" id="workflow-manifest">
+<h3>Workflow Manifest</h3>
+
+<p>The workflow manifest (<tt>metadata.xml</tt>) includes the workflow name,
+version, description, test command, and enough information so that the SeqWare
+tools can test, execute, and install the workflow. Here is an example from the
+MyHelloWorld workflow:</p>
+
+<pre><code class="language-xml"><span class="nt">&lt;bundle</span> <span class="na">version=</span><span class="s">"1.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;workflow</span> <span class="na">name=</span><span class="s">"MyHelloWorld"</span> <span class="na">version=</span><span class="s">"1.0"</span> <span class="na">seqware_version=</span><span class="s">"1.0.11"</span>
+  <span class="na">basedir=</span><span class="s">"${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Add a description of the workflow here.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;workflow_class</span> <span class="na">path=</span><span class="s">"${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/1.0/classes/com/github/seqware/MyHelloWorldWorkflow.java"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;config</span> <span class="na">path=</span><span class="s">"${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/1.0/config/MyHelloWorldWorkflow.ini"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;requirements</span> <span class="na">compute=</span><span class="s">"single"</span> <span class="na">memory=</span><span class="s">"20M"</span> <span class="na">network=</span><span class="s">"local"</span>  <span class="na">workflow_engine=</span><span class="s">"Pegasus,Oozie"</span> <span class="na">workflow_type=</span><span class="s">"java"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/workflow&gt;</span>
+<span class="nt">&lt;/bundle&gt;</span></code></pre>
+
+<p>As mentioned above, you can edit the description and workflow name in the workflow.properties file.</p>
+
+</div>
+<div class="section" id="workflow-java-class">
+<h3>Workflow Java Class</h3>
+
+<p>You can see the full Java workflow source code by looking at <a href="../../15-workflow-examples/">Workflow
+Examples</a> or, in this case, just the
+<tt>src/main/java/com/github/seqware/MyHelloWorldWorkflow.java</tt> file produced by the Maven Archetype above.</p>
+
+<p>This Java class is pretty simple in its construction. It is used to define
+input and output files along with the individual steps in the workflow and how
+they relate to each other.  It is used to create a workflow object model which
+is then handed of to a workflow engine that knows how to turn that into a
+directed acyclic graph of jobs that can run on a cluster (local VM, an HPC
+cluster, a cloud-based cluster, etc).</p>
+
+<div class="section" id="files">
+<h4>Files</h4>
+
+<pre><code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">SqwFile</span><span class="o">&gt;</span> <span class="n">setupFiles</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// register an plaintext input file using the information from the INI</span>
+        <span class="c1">// provisioning this file to the working directory will be the first step in the workflow</span>
+        <span class="n">SqwFile</span> <span class="n">file0</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">createFile</span><span class="o">(</span><span class="s">"file_in_0"</span><span class="o">);</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">getProperty</span><span class="o">(</span><span class="s">"input_file"</span><span class="o">));</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">"text/plain"</span><span class="o">);</span>
+        <span class="n">file0</span><span class="o">.</span><span class="na">setIsInput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">getFiles</span><span class="o">();</span>
+    <span class="o">}</span></code></pre>
+
+<p>This method sets up files that are inputs for this workflow.  In
+this example the input <tt>data/input.txt</tt> comes from the workflow bundle
+itself. Here we pull in the information from the INI file using getProperty.</p>
+
+<p>Output files are defined differently.</p>
+
+<pre><code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildWorkflow</span><span class="o">()</span> <span class="o">{</span>
+	<span class="o">...</span>
+
+	<span class="n">Job</span> <span class="n">copyJob2</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+	<span class="o">...</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addFile</span><span class="o">(</span><span class="n">createOutputFile</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">,</span> <span class="s">"txt/plain"</span><span class="o">,</span> <span class="n">manualOutput</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">SqwFile</span> <span class="nf">createOutputFile</span><span class="o">(</span><span class="n">String</span> <span class="n">workingPath</span><span class="o">,</span> <span class="n">String</span> <span class="n">metatype</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">manualOutput</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// register an output file</span>
+        <span class="n">SqwFile</span> <span class="n">file1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqwFile</span><span class="o">();</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">workingPath</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="n">metatype</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setIsOutput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">file1</span><span class="o">.</span><span class="na">setForceCopy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="c1">// if manual_output is set in the ini then use it to set the destination of this file</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">manualOutput</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">file1</span><span class="o">.</span><span class="na">setOutputPath</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getMetadata_output_file_prefix</span><span class="o">()</span> <span class="o">+</span> <span class="n">getMetadata_output_dir</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">workingPath</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">file1</span><span class="o">.</span><span class="na">setOutputPath</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getMetadata_output_file_prefix</span><span class="o">()</span> <span class="o">+</span> <span class="n">getMetadata_output_dir</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span>
+                <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getVersion</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">getRandom</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">workingPath</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">file1</span><span class="o">;</span>
+    <span class="o">}</span></code></pre>
+
+<p>The ultimate location of the output file is determined by two
+parameters passed into the WorkflowLauncher which actually runs the workflow:
+<tt>–metadata-output-file-prefix</tt> (our <tt>output_prefix</tt> in the ini
+file) and <tt>–metadata-output-dir</tt> (or <tt>output_dir</tt> in the ini
+file). Alternatively, you can actually override the output location for a file
+as is the case with the above “manual_output”.  When this parameter is available
+in the ini file the automatic location of the output file
+(“output_prefix”+/+”output_dir”+/+”output”) is overridden to ensure the final output
+path is unique.</p>
+
+<p>The job that produces the output file is linked to that file by using job.addFile(SqwFile).</p>
+
+</div>
+<div class="section" id="directories">
+<h4>Directories</h4>
+
+<pre><code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setupDirectory</span><span class="o">()</span> <span class="o">{</span>
+	<span class="c1">// creates a dir1 directory in the current working directory where the workflow runs</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">addDirectory</span><span class="o">(</span><span class="s">"dir1"</span><span class="o">);</span>
+    <span class="o">}</span></code></pre>
+
+<p>This method sets up directories in the working directory that the workflow run in. In this case the workflow creates a directory called “dir1”.</p>
+
+</div>
+<div class="section" id="workflow-steps">
+<h4>Workflow Steps</h4>
+
+<pre><code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildWorkflow</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="c1">// a simple bash job to call mkdir</span>
+        <span class="c1">// note that this job uses the system's mkdir (which depends on the system being *nix)</span>
+        <span class="n">Job</span> <span class="n">mkdirJob</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_mkdir"</span><span class="o">);</span>
+        <span class="n">mkdirJob</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="s">"mkdir test1"</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">inputFilePath</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getFiles</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"file_in_0"</span><span class="o">).</span><span class="na">getProvisionedPath</span><span class="o">();</span>
+
+        <span class="c1">// a simple bash job to cat a file into a test file</span>
+        <span class="c1">// the file is not saved to the metadata database</span>
+        <span class="n">Job</span> <span class="n">copyJob1</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">inputFilePath</span> <span class="o">+</span> <span class="s">"&gt; test1"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
+
+        <span class="c1">// a simple bash job to echo to an output file and concat an input file</span>
+        <span class="c1">// the file IS saved to the metadata database</span>
+        <span class="n">Job</span> <span class="n">copyJob2</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="n">echoPath</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="n">greeting</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="s">" &gt; "</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="s">";"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span><span class="n">inputFilePath</span><span class="o">+</span> <span class="s">" &gt;&gt; dir1/output"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addFile</span><span class="o">(</span><span class="n">createOutputFile</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">,</span> <span class="s">"txt/plain"</span><span class="o">,</span> <span class="n">manualOutput</span><span class="o">));</span>
+
+    <span class="o">}</span></code></pre>
+
+<p>In this buildWorkflow() method three jobs are created.  You can see that the
+<tt>createBashJob</tt> can be used to run any arbitrary command. In the future
+we will add more job types (such as Map/Reduce for the Oozie engine).  Each
+child job is linked to its parent using the <tt>addParent</tt> method.  This
+information is enough to correctly schedule these jobs and run them in the
+correct order locally on the VM, on an HPC cluster, or on the cloud.  The more
+detailed Pipeline documentation will cover optional useful job methods
+including examples of how to control memory requirements for particular jobs.</p>
+
+<p class="warning"><strong>Tip:</strong>
+It can be confusing at first but there are two directories to think about when
+working with workflows.  The first is the ${workflow_bundle_dir} which is the
+location where the workflow bundle has been unzipped. This variable can be used
+both in the Java object (via the getWorkflowBaseDir() method) and the various
+config and metadata files (via ${workflow_bundle_dir}). You use this to access
+the location of data and other file types that you have included in the
+workflow bundle.  The second directory is the current working directory that
+your workflow steps will be executed in. This is a directory created at runtime
+by the underlying workflow engine and is shared for all steps in your workflow.
+You can use this as your temporary directory to process intermediate files.
+</p>
+
+</div>
+</div>
+<div class="section" id="configuration-file">
+<h3>Configuration File</h3>
+
+<p>Each workflow uses a simple INI file to record which variables it accepts,
+their types, and default values.  For example:</p>
+
+<pre><code class="language-ini"><span class="c1"># key=input_file:type=file:display=F:file_meta_type=text/plain</span>
+<span class="na">input_file</span><span class="o">=</span><span class="s">${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/${workflow-version}/data/input.txt</span>
+<span class="c1"># key=greeting:type=text:display=T:display_name=Greeting</span>
+<span class="na">greeting</span><span class="o">=</span><span class="s">Testing</span>
+
+<span class="na">cat</span><span class="o">=</span><span class="s">${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/${workflow-version}/bin/gnu-coreutils-5.67/cat</span>
+<span class="na">echo</span><span class="o">=</span><span class="s">${workflow_bundle_dir}/Workflow_Bundle_MyHelloWorld/${workflow-version}/bin/gnu-coreutils-5.67/echo</span>
+
+<span class="c1"># the output directory is a convention used in many workflows to specify a relative output path</span>
+<span class="na">output_dir</span><span class="o">=</span><span class="s">seqware-results</span>
+<span class="c1"># the output_prefix is a convention used to specify the root of the absolute output path or an S3 bucket name </span>
+<span class="c1"># you should pick a path that is available on all cluster nodes and can be written by your user</span>
+<span class="na">output_prefix</span><span class="o">=</span><span class="s">./</span>
+<span class="c1"># manual output determines whether or not SeqWare should enforce the uniqueness of the final directory or not. </span>
+<span class="c1"># If false, SeqWare places files in a directory specified by output_prefix/output_dir/workflowname_version/RANDOM/&lt;files&gt;</span>
+<span class="c1"># where RANDOM is an integer. If true, SeqWare places the files at output_prefix/output_dir and may overwrite existing</span>
+<span class="c1"># files</span>
+<span class="na">manual_output</span><span class="o">=</span><span class="s">false</span>
+
+<span class="c1"># Optional: This controls the default number of lines of stdout and stderr that jobs in a workflow will report as metadata</span>
+<span class="c1"># Otherwise, the default in GenericCommandRunner will be used (currently, 10)</span>
+<span class="na">seqware-output-lines-number</span><span class="o">=</span><span class="s">20</span></code></pre>
+
+<p>You access these variables in the Java workflow using the
+<tt>getProperty()</tt> method. When installing the workflow the ini file is
+parsed and extra metadata about each parameter is examined. This gives the
+system information about the type of the variable (integer, string, etc) and
+any default values.</p>
+
+<p>The ini file(s) follow the general pattern of:</p>
+
+<pre>
+# comment/specification
+key=value
+</pre>
+
+<p>To achieve this overloaded role for ini files you need to include hints to
+ensure the BundleManager that installs workflow bundles has enough information.
+Here is what the annotation syntax looks like:</p>
+
+<pre><code># key=&lt;name&gt;:type=[integer|float|text|pulldown|file]:display=[T|F][:display_name=&lt;name_to_display&gt;][:file_meta_type=&lt;mime_meta_type&gt;][:pulldown_items=&lt;key1&gt;|&lt;value1&gt;;&lt;key2&gt;|&lt;value2&gt;]
+key=default_value
+</code></pre>
+
+<p>The file_meta_type is only used for type=file.</p>
+
+<p>The pulldown type means that the pulldown_items should be defined as well. This looks like:</p>
+
+<pre><code>pulldown_items=&lt;key1&gt;|&lt;value1&gt;;&lt;key2&gt;|&lt;value2&gt;
+</code></pre>
+
+<p>The default value for this will refer to either value1 or value2 above.
+If you fail to include a metadata line for a particular key/value then it is assumed to be:</p>
+
+<pre><code>key=&lt;name&gt;:type=text:display=F
+</code></pre>
+
+<p>This is convenient since many of the values in an INI file should not be displayed to the end user.</p>
+
+</div>
+<div class="section" id="required-ini-entries">
+<h3>Required INI Entries</h3>
+
+<p>There are (currently) two required entries that all workflows should define
+in their ini files. These are related to output file provisioning. In your workflow,
+if you produce output files and use the file provisioning mechanism built into
+workflows these two entries are used to construct the output location for the
+output file.</p>
+
+<ul>
+<li>output_dir</li>
+  <li>output_prefix</li>
+</ul>
+<p>For example, if you have a <tt>SqwFile</tt> object can call
+<tt>file.setIsOutput(true);</tt> the workflow engine constructs an output path
+for this file using the following:</p>
+
+<pre><code>&lt;output_prefix&gt;/&lt;output_dir&gt;/&lt;file_name&gt;
+</code></pre>
+
+<p>You can use <tt>s3://bucketname/</tt> or a local path as the prefix.</p>
+
+<p class="warning"><strong>Note:</strong> While the above entries are required, it is STRONGLY suggested that workflow developers no longer rely on them to decide the output path of a provisioned file.  Instead we recommend explicitly providing in the ini file whatever paths you may require, possibly using the variables described below, and then assigning that path to the output file via <code>SqwFile.setOutputPath(String path)</code>.</p>
+
+<div class="section" id="reserved-ini-entries">
+<h4>Reserved INI Entries</h4>
+
+<p>There are a number of entries that are used by SeqWare and should be avoided in your own workflows. They are:</p>
+
+<ul>
+<li>parent_accessions</li>
+  <li>parent-accessions</li>
+  <li>parent_accession</li>
+  <li>workflow-run-accession</li>
+  <li>workflow_run_accession</li>
+  <li>metadata</li>
+  <li>workflow_bundle_dir</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ini-variables">
+<h3>INI Variables</h3>
+
+<p>The ini files support variables, in the format <code>$(variable-name}</code>, that will be replaced when the workflow run is launched. The variable name can refer to another entry in the ini file, or can refer to the following SeqWare generated values:</p>
+
+<ul>
+<li>
+<code>sqw.bundle-dir</code>: the path to the directory of this workflow’s bundle. Support for the legacy version of this variable, <code>workflow_bundle_dir</code>, may be removed in a future version.</li>
+  <li>
+<code>sqw.date</code>: the current date in ISO 8601 format, e.g., 2013-10-31.  Support for the legacy version of this variable, <code>date</code>, may be removed in a future version.</li>
+  <li>
+<code>sqw.datetime</code>: the current datetime in ISO 8601 format, e.g., 2013-10-31T16:45:30.</li>
+  <li>
+<code>sqw.random</code>: a randomly generated integer from 0 to 2147483647.  Support for the legacy version of this variable, <code>random</code>, may be removed in a future version.</li>
+  <li>
+<code>sqw.timestamp</code>: the current number of milliseconds since January 1, 1970.</li>
+  <li>
+<code>sqw.uuid</code>: a randomly generated <a href="http://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29">universally unique identifier</a>.</li>
+</ul>
+<p>Each instance of the above <code>sqw.*</code> variables in an ini file will be replaced with a separately resolved value, e.g., multiple instances of <code>${sqw.uuid}</code> will each resolve to different values. If you desire to reuse the same generated value, do somthing akin to the following:</p>
+
+<pre><code class="language-ini"><span class="na">dirname</span><span class="o">=</span><span class="s">output</span>
+<span class="na">filename</span><span class="o">=</span><span class="s">${sqw.random}</span>
+<span class="na">text_file</span><span class="o">=</span><span class="s">${dirname}/${filename}.txt</span>
+<span class="na">json_file</span><span class="o">=</span><span class="s">${dirname}/${filename}.json</span></code></pre>
+
+<p>Thus if <code>filename</code> resolved to a value of <code>12345</code>, then <code>text_file</code> will have a value of <code>output/12345.txt</code> and <code>json_file</code> will have a value of <code>output/12345.json</code>.</p>
+
+</div>
+</div>
+<div class="section" id="modifying-the-workflow">
+<h2>Modifying the Workflow</h2>
+
+<p>At this point, one would normally want to edit the workflow by modifying the MyHelloWorldWorkflow.java file as is appropriate for the workflow.
+In the example below I just added an extra job that does a simple shell operation (dateJob). I also moved the addFile method appropriately since
+dateJob is now the final job that manipulates the dir1/output file.</p>
+
+<pre>
+<code class="language-java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildWorkflow</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="c1">// a simple bash job to call mkdir</span>
+        <span class="c1">// note that this job uses the system's mkdir (which depends on the system being *nix)</span>
+        <span class="n">Job</span> <span class="n">mkdirJob</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_mkdir"</span><span class="o">);</span>
+        <span class="n">mkdirJob</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="s">"mkdir test1"</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">inputFilePath</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getFiles</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"file_in_0"</span><span class="o">).</span><span class="na">getProvisionedPath</span><span class="o">();</span>
+
+        <span class="c1">// a simple bash job to cat a file into a test file</span>
+        <span class="c1">// the file is not saved to the metadata database</span>
+        <span class="n">Job</span> <span class="n">copyJob1</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">inputFilePath</span> <span class="o">+</span> <span class="s">"&gt; test1"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
+
+        <span class="c1">// a simple bash job to echo to an output file and concat an input file</span>
+        <span class="c1">// the file IS saved to the metadata database</span>
+        <span class="n">Job</span> <span class="n">copyJob2</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="n">echoPath</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="n">greeting</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="s">" &gt; "</span><span class="o">).</span><span class="na">addArgument</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="s">";"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">getCommand</span><span class="o">().</span><span class="na">addArgument</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span><span class="n">inputFilePath</span><span class="o">+</span> <span class="s">" &gt;&gt; dir1/output"</span><span class="o">);</span>
+        <span class="n">copyJob2</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
+
+	<span class="n">Job</span> <span class="n">dateJob</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"date"</span><span class="o">);</span>
+	<span class="n">dateJob</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="s">"date &gt;&gt; dir1/output"</span><span class="o">);</span>
+	<span class="n">dateJob</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">copyJob2</span><span class="o">);</span>
+        <span class="n">dateJob</span><span class="o">.</span><span class="na">addFile</span><span class="o">(</span><span class="n">createOutputFile</span><span class="o">(</span><span class="s">"dir1/output"</span><span class="o">,</span> <span class="s">"txt/plain"</span><span class="o">,</span> <span class="n">manualOutput</span><span class="o">));</span>
+    <span class="o">}</span></code>
+</pre>
+
+</div>
+<div class="section" id="building-the-workflow">
+<h2>Building the Workflow</h2>
+
+<p>If you made changes to the workflow files now would be a good time to to use
+“mvn clean install” to refresh the workflow bundle in the target directory. For
+example:</p>
+
+<pre><code>    $ cd ~/workflow-dev/workflow-MyHelloWorld/
+    $ mvn clean install
+    [INFO] Scanning for projects...
+    ...
+    [INFO] ------------------------------------------------------------------------
+    [INFO] BUILD SUCCESS
+    [INFO] ------------------------------------------------------------------------
+    [INFO] Total time: 40.100s
+    [INFO] Finished at: Thu Aug 15 19:59:22 UTC 2013
+    [INFO] Final Memory: 28M/67M
+    [INFO] ------------------------------------------------------------------------
+</code></pre>
+
+</div>
+<div class="section" id="testing-the-workflow">
+<h2>Testing the Workflow</h2>
+
+<p>During the launch process, a number of files are generated into the <code>generated-scripts</code> directory inside the run’s working directory.  For each job in a workflow, a <code>&lt;job-name&gt;.sh</code> script contains the content of the associated <code>BashJob</code> defined by the developer.</p>
+
+<p>When using the Oozie-SGE engine, some additional files are included:
+* <code>&lt;job-name&gt;-runner.sh</code>: The script invoked by SGE, which will either perform a file provisioning (copying files into/out of the working directory), or invoke <code>&lt;job-name&gt;.sh</code>
+* <code>&lt;job-name&gt;-qsub.opts</code>: The options to be provided to the <code>qsub</code> command, e.g. setting max memory.</p>
+
+<p>Prior to testing your bundle, it will be worthwhile to ensure that the files generated are what you expect.  You can accomplish this with the <code>dry-run</code> command:</p>
+
+<pre><code>$ seqware bundle dry-run --dir target/Workflow_Bundle_*
+Performing dry-run of workflow 'MyHelloWorld' version '1.0'
+Using working directory: /usr/tmp/seqware-oozie/oozie-3d971491-ca43-48fb-a5d8-a73e18e7db44
+Files copied to hdfs://master:8020/user/seqware/seqware_workflow/oozie-3d971491-ca43-48fb-a5d8-a73e18e7db44
+
+$ ls /usr/tmp/seqware-oozie/oozie-3d971491-ca43-48fb-a5d8-a73e18e7db44
+bash_cp_4.sh  bash_cp_5.sh  bash_mkdir_3.sh  start_0.sh
+</code></pre>
+
+<p>In the above, <code>/usr/tmp/seqware-oozie</code> is the configured location of <code>OOZIE_WORK_DIR</code>. Each of the scripts represents a bash job specified by the developer, with the exception of <code>start_0.sh</code> which creates the directories specified in the workflow’s <code>setupDirectory()</code> method.</p>
+
+<p>At this point, the individual scripts can be executed to ensure they do what you expect.</p>
+
+<p>The next step after authoring your workflows in the Java workflow language, and verifying the generated scripts, is to run them:</p>
+
+<pre><code>$ seqware bundle launch --dir target/Workflow_Bundle_*
+Performing launch of workflow 'MyHelloWorld' version '1.0'
+Using working directory: /usr/tmp/seqware-oozie/oozie-eccfb3b6-cda5-46c3-89ce-7839d4210531
+Files copied to hdfs://master:8020/user/seqware/seqware_workflow/oozie-eccfb3b6-cda5-46c3-89ce-7839d4210531
+Submitted Oozie job: 0000001-130930203123321-oozie-oozi-W
+
+Polling workflow run status every 10 seconds.
+Terminating this program will NOT affect the running workflow.
+
+Workflow job running ...
+Application Path   : hdfs://master:8020/user/seqware/seqware_workflow/oozie-eccfb3b6-cda5-46c3-89ce-7839d4210531
+Application Name   : MyHelloWorld
+Application Status : RUNNING
+Application Actions:
+   Name: :start: Type: :START: Status: OK
+   Name: start_0 Type: java Status: RUNNING
+...
+</code></pre>
+
+<p>The above will bypass the whole workflow scheduling and asynchronous launching process that you saw in the User Tutorial. What you lose is the metadata tracking functionality. The command runs the workflow which produces file outputs but that is all, no record of the run will be recorded in the MetaDB.</p>
+
+<div class="section" id="running-with-the-oozie-sge-workflow-engine">
+<h3>Running with the Oozie-SGE Workflow Engine</h3>
+
+<p>By default workflows are executed on the <a href="http://oozie.apache.org/">Oozie</a> workflow engine, with each step treated as a MapReduce job.
+In the future, using this workflow engine will allow for mixed workflows that
+include traditional scripts along with steps using MapReduce, Pig, Hive, and
+other Hadoop-associated technologies.</p>
+
+<p>There are a few caveats for the Oozie workflow engine in SeqWare.  For example,
+to run the workflow above you will need to do the following:</p>
+
+<ul>
+<li>Ensure your .seqware/settings file includes the correct parameters. If you are using our VM this will be true.</li>
+  <li>Jobs are run by the ‘mapred’ user not the seqware user (this is not the case with oozie-sge, mentioned below). So when you author and run workflows make sure the output destination can be written to by mapred. In the future we will eliminate this constraint.</li>
+  <li>Workflows include bash jobs but in the future we will add other Hadoop-specific types (e.g. MapReduce). For now these are not implemented.</li>
+  <li>The monitoring tools for Oozie are good, but check out Hue for even better interaction (it should already be running on port 8888 on the VM). You can monitor and debug workflows through this very nice web interface.</li>
+  <li>This engine will only work on the 1.0.0 release of SeqWare or newer. The 0.13.6.x and earlier releases will only work with the Pegasus workflow engine.</li>
+</ul>
+<p>We also provide an alternate “engine” that will allow jobs to be managed and scheduled by Oozie but
+run on a traditional Sun Grid Engine (SGE) cluster.  For workflows that execute on SGE, either change the SeqWare settings file to specify <code>SW_DEFAULT_ENGINE=oozie-sge</code>, or add <code>--engine oozie-sge</code> to the command line.  Unlike the oozie engine, the oozie-sge engine will execute jobs as the submitting user.</p>
+
+<p>In this following example the same workflow as above is executed with the oozie-sge engine:</p>
+
+<pre><code>$ cd /home/seqware/workflow-dev/workflow-MyHelloWorld
+$ seqware bundle launch --dir target/Workflow_Bundle_* --engine oozie-sge
+</code></pre>
+
+<p>This will cause the workflow to run and not exit until it finishes.  You can also monitor the workflow using the Hue web
+application installed at http://hostname:8888/oozie/. For our VMs the username
+and password are “seqware”. This is a great way to monitor and debug workflows,
+you can very easily get to the logs for each step, for example.</p>
+
+</div>
+</div>
+<div class="section" id="packaging-the-workflow-into-a-workflow-bundle">
+<h2>Packaging the Workflow into a Workflow Bundle</h2>
+
+<p>Assuming the workflow above worked fine the next step is to package it.</p>
+
+<pre><code>$ mkdir ~/packaged-bundles
+$ seqware bundle package --dir target/Workflow_Bundle_* --to ~/packaged-bundles/
+Validating Bundle structure
+Packaging Bundle
+Bundle has been packaged to /home/seqware/packaged-bundles
+</code></pre>
+
+<p>What happens here is the <code>Workflow_Bundle_MyHelloWorld_1.0_SeqWare_1.0.11</code> directory is zip’d up to your output directory (<code>~/packaged-bundles</code>) and that can be provided to an admin for installation.</p>
+
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps</h2>
+
+<p>The next step is the <a href="../admin-tutorial/">Admin Tutorial</a> which will show you how to install the workflow created above so other users can call it.</p>
+</div>
+</div>
+<p> </p>
+<p> </p>
+<div id="disqus_thread"></div>
+</div>
+</div>
+<!-- ***** footer ***** -->
+<div id="footer">
+<p>SeqWare © 2007–2014 Brian O&#8217;Connor. SeqWare is released under the a <a rel="license" href="http://www.gnu.org/licenses/licenses.html">GNU GPL v3</a>. This site is built using the excellent <a href="http://nanoc.ws/">nanoc</a> tool and example site along with the <a href="http://www.fonts.info/info/press/free-fonts-for-font-face-embedding.htm">Graublau</a> and <a href="https://en.wikipedia.org/wiki/Gentium">Gentium</a> fonts.</p>
+</div>
+</body>
+</html>

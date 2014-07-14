@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>SeqWare › SeqWare MetaDB</title>
+<meta content="nanoc 3.7.1" name="generator">
+<link href="../../assets/style-v17.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://feeds.feedburner.com/seqware" rel="alternate" title="The SeqWare Blog" type="application/atom+xml">
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-34523087-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script><script type="text/javascript">         var disqus_shortname = 'seqware';          (function() {             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);         })();     </script>
+</head>
+<body>
+<div class="wrapper">
+<!-- ***** navigation ***** -->
+<div class="nav">
+<ol>
+<li><a href="../../"><span>Home</span></a></li>
+<li><a href="../../blog/"><span>News</span></a></li>
+<li><a href="../"><span>Documentation</span></a></li>
+<li><a href="../../community/"><span>Community</span></a></li>
+<li><a href="../../partners/"><span>Partners</span></a></li>
+<li><a href="../../about/"><span>About</span></a></li>
+</ol>
+</div>
+<!-- ***** sidebar ***** -->
+<div class="side">
+<ol>
+<li><a href="../1-introduction/"><span>Introduction to SeqWare</span></a></li>
+<li><a href="../2-installation/"><span>Installation</span></a></li>
+<li><a href="../3-getting-started/"><span>Getting Started</span></a></li>
+<li><a href="../6-pipeline/"><span>SeqWare Pipeline</span></a></li>
+<li>
+<span class="active" title="You're here."><span>SeqWare MetaDB</span></span><ol class="toc">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#building-and-installing">Building and Installing</a></li>
+<li><a href="#tables">Tables</a></li>
+<li><a href="#sequence-data">Sequence Data</a></li>
+<li><a href="#upgrading-from-0-13-6-x-to-1-0-x">Upgrading From 0.13.6.X to 1.0.X</a></li>
+</ol>
+</li>
+<li><a href="../5-portal/"><span>SeqWare Portal</span></a></li>
+<li><a href="../7-web-service/"><span>SeqWare Web Service</span></a></li>
+<li><a href="../8-query-engine/"><span>SeqWare Query Engine</span></a></li>
+<li><a href="../9-glossary/"><span>Glossary</span></a></li>
+<li><a href="../10-faq/"><span>Frequently Asked Questions</span></a></li>
+<li><a href="../11-api/"><span>APIs</span></a></li>
+<li><a href="../13-code/"><span>Source Code</span></a></li>
+<li><a href="../17-plugins/"><span>Plugins</span></a></li>
+<li><a href="../17a-modules/"><span>Modules</span></a></li>
+</ol>
+</div>
+<!-- ***** body ***** -->
+<div class="body">
+<div class="article">
+<div class="header">
+<h1>SeqWare MetaDB</h1>
+</div>
+<div class="section" id="overview">
+<h2>Overview</h2>
+
+<p>The SeqWare MetaDB is a metadatabase modeled on the <a href="http://www.ncbi.nlm.nih.gov/Traces/sra">Short Read
+Archive</a> schema and built with
+<a href="http://www.postgresql.org/">PostgreSQL</a>. It includes tables to model the run
+of the sequencers, analysis “processing” events, and installed workflows. A
+common database for tracking metadata, used by the other SeqWare components.</p>
+
+</div>
+<div class="section" id="building-and-installing">
+<h2>Building and Installing</h2>
+
+<p>Most users will want to use our pre-configured VMs, see the <a href="../2-installation/">SeqWare Install
+Guide</a> for how to get the VM.  For those interested in
+installing the MetaDB from scratch please see the <a href="../github_readme/3-metadb/">Install
+Guide</a></p>
+
+</div>
+<div class="section" id="tables">
+<h2>Tables</h2>
+
+<p>The SeqWare MetaDB was built on top of the <a href="http://www.ncbi.nlm.nih.gov/Traces/sra">Short Read Archive
+(SRA)</a> data model.  It is not a 100%
+translation of the data model, there may be places where the SRA model provides
+greater flexibility and places where we simplified the model for our own
+purposes.  But we generally tried to keep with the SRA model as much as
+possible.  You can find out more information from the following documents:</p>
+
+<ul>
+<li><a href="http://www.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=show&amp;f=concepts&amp;m=doc&amp;s=concepts">SRA Concepts</a></li>
+  <li><a href="http://www.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=show&amp;f=rfc&amp;m=doc&amp;s=rfc%20SRA%20Schema">Documentation</a></li>
+</ul>
+<p><img src="../../assets/images/metadb/Db_simple.png" alt="Simple DB"></p>
+
+</div>
+<div class="section" id="sequence-data">
+<h2>Sequence Data</h2>
+
+<p>SeqWare uses the MetaDB to track processing events and to connect samples to
+processed data and/or to connect one set of processed data to another. For
+example linking between a biological sample, a sequencing run, the generated
+raw sequence data, and downstream processed sequence data is possible. This is
+actually a complicated process that depends on the specific path through a
+pipeline, with details like multiple samples being pooled for sequencing, or
+lanes contain data from multiple samples (multiplexed or so-called bar-coded
+samples) arising. First, a simple example.</p>
+
+<p><img src="../../assets/images/metadb/Study_hierarchy.png" alt="Simple DB"></p>
+
+<p>The ‘proper’ way to traverse the database from a study or sequencer_run is to
+go through ius, processing_ius, and processing. So from study, you traverse
+through experiment, sample to sample through the sample_hierarchy table, and
+ius, to processing_ius, and then to all of the processings. The processing tree
+starts from the processing linked through processing_ius, and then through the
+processing_relationship table. Each new processing event has the parent of the
+previous processing event; for example, if WorkflowA is run on IUSA, and then
+WorkflowB is also run on IUSA using the results from WorkflowA, the processing
+tree looks like IUSA -&gt; processing_ius -&gt; Processing of step 1,2,3 of WorkflowA
+-&gt; Processing of step 1,2,3 of WorkflowB.  Processings are linked to
+workflow_runs, which have connections to IUSes through ius_workflow_runs and/or
+Lanes through lane_workflow_runs, as a convenience only. These links are not
+necessarily present (though we try to make sure they are). The safest way to
+find all of the processing events linked with a Study is to traverse through
+the IUS to the root Processing through processing_ius, not through
+ius_workflow_runs.</p>
+
+<p>The following is a more complicated database diagram that includes tables used for 
+linking metadata to workflow runs and all attribute tables. This should be more 
+useful for developers rather than users. </p>
+
+<p><img src="../../assets/images/metadb/Db_complicated.png" alt="Complicated DB"></p>
+
+<p>There is one large division between the tables at the “top” of the database (sequencer_run, 
+lane, sample, ius, experiment, and study) which have physical counterparts
+and are typically created by migration by the LIMS and the tables at the “bottom” of 
+the database (workflow, workflow_run, processing, and file) which are actually used
+by SeqWare to maintain details on what workflows have been installed and run. </p>
+
+<p>Note there are also attribute tables for each of the above tables (of the form X_attribute) 
+which maintain arbitrary key value information that can be used to guide custom 
+behaviour at your particular SeqWare site. </p>
+
+<p>Finally, there are a host of linking tables (of the form processing_X) which maintain 
+information on which steps in your workflow are attributable to what physical entities. </p>
+
+<p>For more in-depth information on our schema including table-by-table descriptions, please refer to <a href="../../metadb-schema">this</a></p>
+
+</div>
+<div class="section" id="upgrading-from-0-13-6-x-to-1-0-x">
+<h2>Upgrading From 0.13.6.X to 1.0.X</h2>
+
+<p>First, let’s review which tools depend on what. </p>
+
+<p><img src="../../assets/images/metadb/database_paths.png" alt="Required Infrastructure"></p>
+
+<p>All currently supported command-line utilities from 0.13.6.X use the SeqWare web service and in their 1.0.X incarnation, will rely upon a 1.0.X web service. The new deletion utility relies upon the 1.0.X admin web service (to be documented). The checkDB and migration plugin (used to copy input file paths from the old workflow run reports) rely upon a direct database connection as well. Please refer to 
+<a href="../github_readme/6-pipeline/user-configuration">User Configuration</a> for additional information on setting these up. </p>
+
+<p>You will need both your SeqWare webservice and SeqWare database settings configured before attempting to update your database. The procedure is as follows:</p>
+
+<p>First, run the various update scripts:</p>
+
+<pre><code>psql -U seqware seqware_meta_db &lt; 0.13.6.x_to_1.0.1.sql
+psql -U seqware seqware_meta_db &lt; 1.0.1_to_1.0.3.sql
+psql -U seqware seqware_meta_db &lt; 1.0.4_to_1.0.5.sql
+</code></pre>
+
+<p>Second, run the migration plugin:</p>
+
+<pre><code>java -jar seqware-distribution/target/seqware-distribution-1.0.11-full.jar -p net.sourceforge.seqware.pipeline.plugins.WorkflowRunFilesInitialPopulationPlugin
+</code></pre>
+
+<p>Third, you’ll probably want to create the initial file-provenance-report (note, you’ll probably want this to run on a schedule for updates)</p>
+
+<pre><code>seqware files refresh
+</code></pre>
+
+<p>Optionally, you may want to setup database comments if you wish to explore the database schema:</p>
+
+<pre><code>psql -U seqware seqware_meta_db &lt; comments_on_tables.sql
+</code></pre>
+</div>
+</div>
+<p> </p>
+<p> </p>
+<div id="disqus_thread"></div>
+</div>
+</div>
+<!-- ***** footer ***** -->
+<div id="footer">
+<p>SeqWare © 2007–2014 Brian O&#8217;Connor. SeqWare is released under the a <a rel="license" href="http://www.gnu.org/licenses/licenses.html">GNU GPL v3</a>. This site is built using the excellent <a href="http://nanoc.ws/">nanoc</a> tool and example site along with the <a href="http://www.fonts.info/info/press/free-fonts-for-font-face-embedding.htm">Graublau</a> and <a href="https://en.wikipedia.org/wiki/Gentium">Gentium</a> fonts.</p>
+</div>
+</body>
+</html>
