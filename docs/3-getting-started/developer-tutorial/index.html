@@ -70,7 +70,7 @@
 <p class="warning"><strong>Note:</strong>This guide assumes you have installed
 SeqWare already. If you have not, please install SeqWare by either downloading
 the VirtualBox VM or launching the AMI on the Amazon cloud.  See <a href="../../2-installation/">Installation</a> for directions. We also recommend you
-follow the [User Tutorial](/docs/3-getting-started/user-tutorial/) before this guide.</p>
+follow the <a href="../user-tutorial/">User Tutorial</a> before this guide.</p>
 
 <p>This guide picks up where the <a href="../user-tutorial/">User
 Tutorial</a> left off. In that previous
@@ -714,7 +714,7 @@ dateJob is now the final job that manipulates the dir1/output file.</p>
         <span class="c1">// a simple bash job to cat a file into a test file</span>
         <span class="c1">// the file is not saved to the metadata database</span>
         <span class="n">Job</span> <span class="n">copyJob1</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getWorkflow</span><span class="o">().</span><span class="na">createBashJob</span><span class="o">(</span><span class="s">"bash_cp"</span><span class="o">);</span>
-        <span class="n">copyJob1</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">inputFilePath</span> <span class="o">+</span> <span class="s">"&gt; test1"</span><span class="o">);</span>
+        <span class="n">copyJob1</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">catPath</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">inputFilePath</span> <span class="o">+</span> <span class="s">"&gt; test1/test.out"</span><span class="o">);</span>
         <span class="n">copyJob1</span><span class="o">.</span><span class="na">addParent</span><span class="o">(</span><span class="n">mkdirJob</span><span class="o">);</span>
 
         <span class="c1">// a simple bash job to echo to an output file and concat an input file</span>
