@@ -2,6 +2,8 @@ io.seqware
 io.seqware.cli
 io.seqware.common.model
 io.seqware.metadb.util
+io.seqware.pipeline.api
+io.seqware.pipeline.plugins
 io.seqware.pipeline.plugins.sanity
 io.seqware.pipeline.plugins.sanity.checks
 io.seqware.webservice.adapter
@@ -56,7 +58,6 @@ net.sourceforge.seqware.pipeline.plugins.filelinker
 net.sourceforge.seqware.pipeline.plugins.fileprovenance
 net.sourceforge.seqware.pipeline.runner
 net.sourceforge.seqware.pipeline.tools
-net.sourceforge.seqware.pipeline.workflow
 net.sourceforge.seqware.pipeline.workflowV2
 net.sourceforge.seqware.pipeline.workflowV2.engine.oozie
 net.sourceforge.seqware.pipeline.workflowV2.engine.oozie.object

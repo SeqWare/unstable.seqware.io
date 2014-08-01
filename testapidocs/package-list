@@ -1,3 +1,4 @@
+io.seqware.pipeline.plugins
 io.seqware.webservice.client
 net.sourceforge.seqware.common
 net.sourceforge.seqware.common.business.impl
@@ -23,7 +24,6 @@ net.sourceforge.seqware.pipeline.runner
 net.sourceforge.seqware.pipeline.tools
 net.sourceforge.seqware.pipeline.tutorial
 net.sourceforge.seqware.pipeline.workflow
-net.sourceforge.seqware.queryengine.webservice.util
 net.sourceforge.seqware.webservice.resources
 net.sourceforge.seqware.webservice.resources.filters
 net.sourceforge.seqware.webservice.resources.queries
