@@ -2,7 +2,10 @@ io.seqware
 io.seqware.cli
 io.seqware.common.model
 io.seqware.metadb.util
+io.seqware.pipeline
 io.seqware.pipeline.api
+io.seqware.pipeline.engines
+io.seqware.pipeline.engines.whitestar
 io.seqware.pipeline.plugins
 io.seqware.pipeline.plugins.sanity
 io.seqware.pipeline.plugins.sanity.checks

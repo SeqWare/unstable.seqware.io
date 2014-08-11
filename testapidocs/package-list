@@ -15,11 +15,14 @@ net.sourceforge.seqware.common.util.xmltools
 net.sourceforge.seqware.database
 net.sourceforge.seqware.pipeline
 net.sourceforge.seqware.pipeline.cli_tutorial
+net.sourceforge.seqware.pipeline.debugging_tutorial
+net.sourceforge.seqware.pipeline.decider_tutorial
 net.sourceforge.seqware.pipeline.deciders
 net.sourceforge.seqware.pipeline.module
 net.sourceforge.seqware.pipeline.modules
 net.sourceforge.seqware.pipeline.plugins
 net.sourceforge.seqware.pipeline.plugins.filelinker
+net.sourceforge.seqware.pipeline.regression_testing
 net.sourceforge.seqware.pipeline.runner
 net.sourceforge.seqware.pipeline.tools
 net.sourceforge.seqware.pipeline.tutorial
