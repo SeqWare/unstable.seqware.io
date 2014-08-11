@@ -236,7 +236,7 @@ public class BuggyWorkflowWorkflow extends AbstractWorkflowDataModel {
 
 <pre><code>$ mvn clean install
 ...
-$ seqware bundle launch --dir target/Workflow_Bundle_BuggyWorkflow_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.0/
+$ seqware bundle launch --dir target/Workflow_Bundle_BuggyWorkflow_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.1/
 ...
 Caused by: java.lang.ArithmeticException: / by zero
 	at com.github.seqware.BuggyWorkflowWorkflow.init(BuggyWorkflowWorkflow.java:46)
@@ -252,7 +252,7 @@ java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
 
 <pre><code>$ vim src/main/java/com/github/seqware/BuggyWorkflowWorkflow.java 
 $ mvn clean install
-$ seqware bundle launch --dir target/Workflow_Bundle_BuggyWorkflow_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.0/
+$ seqware bundle launch --dir target/Workflow_Bundle_BuggyWorkflow_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.1/
 ...
 Caused by: java.lang.NullPointerException
 	at com.github.seqware.BuggyWorkflowWorkflow.setupDirectory(BuggyWorkflowWorkflow.java:59)
@@ -265,7 +265,7 @@ java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
 
 <pre><code>$ vim src/main/java/com/github/seqware/BuggyWorkflowWorkflow.java 
 $ mvn clean install
-$ seqware bundle launch --dir target/Workflow_Bundle_BuggyWorkflow_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.0/
+$ seqware bundle launch --dir target/Workflow_Bundle_BuggyWorkflow_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.1/
 ...
 Caused by: java.lang.ArrayIndexOutOfBoundsException: 5
 	at com.github.seqware.BuggyWorkflowWorkflow.setupFiles(BuggyWorkflowWorkflow.java:72)
@@ -392,7 +392,7 @@ public class BuggyWorkflowWorkflow extends AbstractWorkflowDataModel {
 <p>Build the workflow and launch using ‘seqware bundle launch’. You should see the workflow launch successfully, submit to Oozie, and then the WorkflowWatcher start up to watch the running of the workflow: </p>
 
 <pre><code>$ mvn clean install
-$ seqware bundle launch --dir target/Workflow_Bundle_BuggyWorkflow_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.0/
+$ seqware bundle launch --dir target/Workflow_Bundle_BuggyWorkflow_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.1/
 ...
 Files copied to /usr/tmp/oozie/oozie-3967f3de-6153-4618-806e-2e29a51293b9
 Submitted Oozie job: 0000003-140801172645564-oozie-oozi-W
@@ -570,7 +570,7 @@ will be written here.  Look for the <tt><em>.out.00</em></tt> files which contai
 
 <p>You will also need to have the workflow status checker reset the status of the workflow_run via a command like:</p>
 
-<pre><code>java -jar ~/seqware-distribution-1.1.0-alpha.0-full.jar -p net.sourceforge.seqware.pipeline.plugins.WorkflowStatusChecker -- --wra 525814 --check-failed
+<pre><code>java -jar ~/seqware-distribution-1.1.0-alpha.1-full.jar -p net.sourceforge.seqware.pipeline.plugins.WorkflowStatusChecker -- --wra 525814 --check-failed
 </code></pre>
 </div>
 </div>
