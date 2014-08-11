@@ -39,6 +39,98 @@ Procedure now is at https://wiki.oicr.on.ca/pages/viewpage.action?pageId=4453317
 -->
 
 
+<div class="section" id="1-1-0-alpha-1-2014-08-11">
+<h2>1.1.0-alpha.1 (2014-08-11)</h2>
+
+<p>This release refactors much of the code and removes many of the features that were deprecated in 1.0.0.
+A couple of new workflow engines, &#8216;whitestar&#8217; and &#8216;whitestar-sge&#8217;, are provided for development and debugging without oozie + sge and oozie respectively.</p>
+
+<p>Significant refactoring of the plugins backing our CLI was done, splitting out the functionality in WorkflowLauncher into a (Scheduled)WorkflowLauncher, WorkflowWatcher, WorkflowScheduler, and WorkflowLifeCycle (which mimics our old WorkflowLauncher). Unused .seqware/settings parameters and plugin parameters have been removed and ini parsing has been consolidated to schedule-time only.</p>
+
+<p>We have also introduced coding standards and a host of fixes for workflow developers.</p>
+
+<p>Deprecated utilities removed includes:</p>
+
+<ul>
+<li>SequencerRunReporter</li>
+<li>SymLinkFileReporter (replaced by File Provenance Reporter)</li>
+</ul>
+<p>Database tables removed include:</p>
+
+<ul>
+<li>all x_link tables</li>
+<li>all shareX tables except for study and workflow run</li>
+<li>sample_search</li>
+</ul>
+<p>Web resources:
+* webservice DTO classes
+* asychronous classes for scheduling and running workflows (Pegasus)
+* web-resources that back SymLinkFileReporter (reporting files associated with studies, sequencer runs, samples, etc.)
+* web resources that back SequencerRunReporter
+* IUSsearch, &#8220;x&#8221; libraries resources, and excess file attributes services</p>
+
+<p>We have also removed support for the old workflow engine meaning we have dropped support for Pegasus, Condor, and Globus.</p>
+
+<div class="section" id="improvement">
+<h3>Improvement</h3>
+
+<ul>
+<li>[SEQWARE-1797] - Create integration tests for BasicDecider based on tutorial and hook them in</li>
+<li>[SEQWARE-1882] - More informative error output in seqware bundle launch</li>
+<li>[SEQWARE-1902] - Retrieve the effective INI for a workflow-run in the CLI</li>
+</ul>
+</div>
+<div class="section" id="task">
+<h3>Task</h3>
+
+<ul>
+<li>[SEQWARE-1604] - Make output from BundleManager &#8211;test WorkflowLauncher consistent</li>
+<li>[SEQWARE-1635] - Documentation/tutorial: Breaking workflows</li>
+<li>[SEQWARE-1645] - using job.addFile() together with setting a file as an output create redundant db records</li>
+<li>[SEQWARE-1801] - Workflow status for failed workflow run is marked as &#8220;Completed&#8221; (when using &#8211;wait)</li>
+<li>[SEQWARE-1840] - install-dir-only option for io.seqware.cli</li>
+<li>[SEQWARE-1858] - Refactor WorkflowLauncher for consistency</li>
+<li>[SEQWARE-1869] - Generate ini file with workflows with no parameters may crash</li>
+<li>[SEQWARE-1890] - Creating jobs out of order causes strange NPE</li>
+<li>[SEQWARE-1906] - Non-deterministic failure in tests</li>
+<li>[SEQWARE-1927] - Clean-up legacy Pegasus code</li>
+<li>[SEQWARE-1929] - Remove the symlink file reporter</li>
+<li>[SEQWARE-1930] - Remove unused database tables and associated Hibernate code</li>
+<li>[SEQWARE-1936] - Remove global ReturnValue antipattern from throughout SeqWare</li>
+<li>[SEQWARE-1937] - BasicDecider cannot find files injected using the CLI</li>
+<li>[SEQWARE-1939] - Create a controlled ENUM of all possible .seqware/settings keys</li>
+<li>[SEQWARE-1943] - seqware check is missing commons exec dependency</li>
+<li>[SEQWARE-1946] - Auto-generate listing of .seqware/settings variables from new enum</li>
+<li>[SEQWARE-1947] - Create a simple workflow engine to test our abstractions</li>
+</ul>
+</div>
+<div class="section" id="technical-task">
+<h3>Technical task</h3>
+
+<ul>
+<li>[SEQWARE-549] - Coding standards</li>
+<li>[SEQWARE-1456] - Investigate rapidly growing jar size</li>
+<li>[SEQWARE-1466] - Create nanoc documentation WorkflowLauncher</li>
+<li>[SEQWARE-1467] - Create nanoc documentation WorkflowStatusChecker</li>
+<li>[SEQWARE-1468] - Create integration tests for WorkflowLauncher</li>
+<li>[SEQWARE-1469] - Create integration tests for WorkflowStatusChecker</li>
+<li>[SEQWARE-1550] - FileAttributeResources fixes</li>
+</ul>
+</div>
+</div>
+<div class="section" id="1-0-18-2014-07-18">
+<h2>1.0.18 (2014-07-18)</h2>
+
+<p>This release contains a hotfix for file import via the CLI and associated tutorials.</p>
+
+<div class="section" id="improvement">
+<h3>Improvement</h3>
+
+<ul>
+<li>[SEQWARE-1937] -  BasicDecider cannot find files injected using the CLI</li>
+</ul>
+</div>
+</div>
 <div class="section" id="1-0-17-2014-07-07">
 <h2>1.0.17 (2014-07-07)</h2>
 
