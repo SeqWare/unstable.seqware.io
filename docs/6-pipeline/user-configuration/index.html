@@ -104,117 +104,117 @@ Our tools will abort and refuse to run if this is not set. </p>
 
 
 <span class="c1"># COMMON</span>
-<span class="c1"># required: Common Seqware settings</span>
+<span class="c1"># Common Seqware settings</span>
 
-<span class="c1"># SeqWare MetaDB communication method, can be 'database' or 'webservice' or 'inmemory' or 'none'</span>
+<span class="c1"># required: SeqWare MetaDB communication method, can be 'database' or 'webservice' or 'inmemory' or 'none'</span>
 <span class="na">SW_METADATA_METHOD</span><span class="o">=</span><span class="s">webservice</span>
-<span class="c1"># Amazon cloud settings. Only used if reading and writing to S3 buckets.</span>
+<span class="c1"># optional: Amazon cloud settings. Only used if reading and writing to S3 buckets.</span>
 <span class="na">AWS_ACCESS_KEY</span><span class="o">=</span><span class="s">FILLMEIN</span>
-<span class="c1"># Amazon cloud settings. Only used if reading and writing to S3 buckets.</span>
+<span class="c1"># optional: Amazon cloud settings. Only used if reading and writing to S3 buckets.</span>
 <span class="na">AWS_SECRET_KEY</span><span class="o">=</span><span class="s">FILLMEIN</span>
 
 <span class="c1"># COMMON_WS</span>
-<span class="c1"># required: Seqware webservice settings. Only used if SW_METADATA_METHOD=webservice</span>
+<span class="c1"># Seqware webservice settings. Only used if SW_METADATA_METHOD=webservice</span>
 
-<span class="c1"># Specify the URL for the seqware-webservice</span>
+<span class="c1"># required: Specify the URL for the seqware-webservice</span>
 <span class="na">SW_REST_URL</span><span class="o">=</span><span class="s">http://localhost:8080/SeqWareWebService</span>
-<span class="c1"># Specify the username for the seqware-webservice</span>
+<span class="c1"># required: Specify the username for the seqware-webservice</span>
 <span class="na">SW_REST_USER</span><span class="o">=</span><span class="s">admin</span>
-<span class="c1"># Specify the password for the seqware-webservice</span>
+<span class="c1"># required: Specify the password for the seqware-webservice</span>
 <span class="na">SW_REST_PASS</span><span class="o">=</span><span class="s">admin@admin.com</span>
 
 <span class="c1"># COMMON_DB</span>
-<span class="c1"># optional: Seqware database settings. Only used if SW_METADATA_METHOD=database and by the database check utility</span>
+<span class="c1"># Seqware database settings. Only used if SW_METADATA_METHOD=database and by the database check utility</span>
 
-<span class="c1"># JDBC user for the seqware metadb</span>
+<span class="c1"># optional: JDBC user for the seqware metadb</span>
 <span class="na">SW_DB_USER</span><span class="o">=</span><span class="s">seqware</span>
-<span class="c1"># JDBC password for the seqware metadb</span>
+<span class="c1"># optional: JDBC password for the seqware metadb</span>
 <span class="na">SW_DB_PASS</span><span class="o">=</span><span class="s">seqware</span>
-<span class="c1"># Host for the metadb</span>
+<span class="c1"># optional: Host for the metadb</span>
 <span class="na">SW_DB_SERVER</span><span class="o">=</span><span class="s">localhost</span>
-<span class="c1"># database name</span>
+<span class="c1"># optional: database name</span>
 <span class="na">SW_DB</span><span class="o">=</span><span class="s">seqware_meta_db</span>
 
 <span class="c1"># SCHEDULE_LAUNCH</span>
-<span class="c1"># required: Settings used by scheduling and launching bundles</span>
+<span class="c1"># Settings used by scheduling and launching bundles</span>
 
-<span class="c1"># the default engine to use if otherwise unspecified (one of: oozie, oozie-sge, whitestar, whitestar-parallel, whitestar-sge)</span>
+<span class="c1"># required: the default engine to use if otherwise unspecified (one of: oozie, oozie-sge, whitestar, whitestar-parallel, whitestar-sge)</span>
 <span class="na">SW_DEFAULT_WORKFLOW_ENGINE</span><span class="o">=</span><span class="s">oozie-sge</span>
 
 <span class="c1"># INSTALL_LAUNCH</span>
-<span class="c1"># required: Settings used by both installing and launching bundles</span>
+<span class="c1"># Settings used by both installing and launching bundles</span>
 
-<span class="c1"># The directory containing bundle directories (into which bundle archives are unzipped)</span>
+<span class="c1"># required: The directory containing bundle directories (into which bundle archives are unzipped)</span>
 <span class="na">SW_BUNDLE_DIR</span><span class="o">=</span><span class="s">/home/seqware/SeqWare/provisioned-bundles</span>
 
 <span class="c1"># INSTALL</span>
-<span class="c1"># required: Settings used to configure the installation of workflow bundles</span>
+<span class="c1"># Settings used to configure the installation of workflow bundles</span>
 
-<span class="c1"># The directory containing bundle archives (into which a bundle archive is first copied during install)</span>
+<span class="c1"># required: The directory containing bundle archives (into which a bundle archive is first copied during install)</span>
 <span class="na">SW_BUNDLE_REPO_DIR</span><span class="o">=</span><span class="s">/home/seqware/SeqWare/released-bundles</span>
-<span class="c1"># Default is to use compression, this can be set to OFF to disable compression</span>
+<span class="c1"># optional: Default is to use compression, this can be set to OFF to disable compression</span>
 <span class="na">BUNDLE_COMPRESSION</span><span class="o">=</span><span class="s">ON</span>
 
 <span class="c1"># LAUNCH</span>
-<span class="c1"># required: Oozie engine settings. Only used for both 'oozie' and 'oozie-sge' engines.</span>
+<span class="c1"># Oozie engine settings. Only used for both 'oozie' and 'oozie-sge' engines.</span>
 
-<span class="c1"># URL for the Oozie webservice</span>
+<span class="c1"># required: URL for the Oozie webservice</span>
 <span class="na">OOZIE_URL</span><span class="o">=</span><span class="s">http://localhost:11000/oozie</span>
-<span class="c1"># HDFS directory for storing workflow xml</span>
+<span class="c1"># required: HDFS directory for storing workflow xml</span>
 <span class="na">OOZIE_APP_ROOT</span><span class="o">=</span><span class="s">seqware_workflow</span>
-<span class="c1"># Hadoop job tracker, used to schedule jobs for oozie-hadoop engine</span>
+<span class="c1"># required: Hadoop job tracker, used to schedule jobs for oozie-hadoop engine</span>
 <span class="na">OOZIE_JOBTRACKER</span><span class="o">=</span><span class="s">localhost:8021</span>
-<span class="c1"># Hadoop name node, possibly redundant (should be refactored)</span>
+<span class="c1"># required: Hadoop name node, possibly redundant (should be refactored)</span>
 <span class="na">OOZIE_NAMENODE</span><span class="o">=</span><span class="s">hdfs://localhost:8020</span>
-<span class="c1"># Hadoop queue onto which to schedule jobs</span>
+<span class="c1"># required: Hadoop queue onto which to schedule jobs</span>
 <span class="na">OOZIE_QUEUENAME</span><span class="o">=</span><span class="s">default</span>
-<span class="c1"># Working directory where your workflow steps execute and where we store generated scripts and logs</span>
+<span class="c1"># required: Working directory where your workflow steps execute and where we store generated scripts and logs</span>
 <span class="na">OOZIE_WORK_DIR</span><span class="o">=</span><span class="s">/usr/tmp/seqware-oozie</span>
-<span class="c1"># Number of times that Oozie will retry user steps in workflows</span>
+<span class="c1"># optional: Number of times that Oozie will retry user steps in workflows</span>
 <span class="na">OOZIE_RETRY_MAX</span><span class="o">=</span><span class="s">5</span>
-<span class="c1"># Minutes to wait before retry for user steps in workflows</span>
+<span class="c1"># optional: Minutes to wait before retry for user steps in workflows</span>
 <span class="na">OOZIE_RETRY_INTERVAL</span><span class="o">=</span><span class="s">5</span>
-<span class="c1"># Above this threshold, provision file events on the same job/workflow will be batched together</span>
+<span class="c1"># optional: Above this threshold, provision file events on the same job/workflow will be batched together</span>
 <span class="na">OOZIE_BATCH_THRESHOLD</span><span class="o">=</span><span class="s">10</span>
-<span class="c1"># Number of provision file events that should be batched together</span>
+<span class="c1"># optional: Number of provision file events that should be batched together</span>
 <span class="na">OOZIE_BATCH_SIZE</span><span class="o">=</span><span class="s">100</span>
-<span class="c1"># HDFS implementation class</span>
+<span class="c1"># required: HDFS implementation class</span>
 <span class="na">FS.HDFS.IMPL</span><span class="o">=</span><span class="s">org.apache.hadoop.hdfs.DistributedFileSystem</span>
-<span class="c1"># Only used for 'oozie-sge' engine. Format of qsub flag for specifying number of threads. If present, ${threads} will be replaced with the job-specific value.</span>
+<span class="c1"># optional: Only used for 'oozie-sge' engine. Format of qsub flag for specifying number of threads. If present, ${threads} will be replaced with the job-specific value.</span>
 <span class="na">OOZIE_SGE_THREADS_PARAM_FORMAT</span><span class="o">=</span><span class="s">-pe serial ${threads}</span>
-<span class="c1"># Format of qsub flag for specifying the max memory. If present, ${maxMemory} will be replaced with the job-specific value.</span>
+<span class="c1"># required: Format of qsub flag for specifying the max memory. If present, ${maxMemory} will be replaced with the job-specific value.</span>
 <span class="na">OOZIE_SGE_MAX_MEMORY_PARAM_FORMAT</span><span class="o">=</span><span class="s">-l h_vmem=${maxMemory}M</span>
 
 <span class="c1"># ADMIN</span>
-<span class="c1"># optional: Settings used for administrators</span>
+<span class="c1"># Settings used for administrators</span>
 
-<span class="c1"># Location of the admin web service, currently used for deletion</span>
+<span class="c1"># optional: Location of the admin web service, currently used for deletion</span>
 <span class="na">SW_ADMIN_REST_URL</span><span class="o">=</span><span class="s">http://localhost:38080/seqware-admin-webservice</span>
-<span class="c1"># Used to override the JUnique lock used to ensure that utilities don't run concurrently</span>
+<span class="c1"># optional: Used to override the JUnique lock used to ensure that utilities don't run concurrently</span>
 <span class="na">SW_LOCK_ID</span><span class="o">=</span><span class="s">seqware</span>
-<span class="c1"># Legacy key used to encrypt provisioned files</span>
+<span class="c1"># optional: Legacy key used to encrypt provisioned files</span>
 <span class="na">SW_ENCRYPT_KEY</span><span class="o">=</span><span class="s">seqware</span>
-<span class="c1"># Legacy key used to decrypt provisioned files</span>
+<span class="c1"># optional: Legacy key used to decrypt provisioned files</span>
 <span class="na">SW_DECRYPT_KEY</span><span class="o">=</span><span class="s">seqware</span>
 
 <span class="c1"># TESTING</span>
-<span class="c1"># optional: Used for regression testing</span>
+<span class="c1"># Used for regression testing</span>
 
-<span class="c1"># Used to designate a database for integration tests</span>
+<span class="c1"># optional: Used to designate a database for integration tests</span>
 <span class="na">BASIC_TEST_DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
-<span class="c1"># Used to designate a database name for integration tests</span>
+<span class="c1"># optional: Used to designate a database name for integration tests</span>
 <span class="na">BASIC_TEST_DB_NAME</span><span class="o">=</span><span class="s">seqware_meta_db</span>
-<span class="c1"># Used to designate a database username for integration tests</span>
+<span class="c1"># optional: Used to designate a database username for integration tests</span>
 <span class="na">BASIC_TEST_DB_USER</span><span class="o">=</span><span class="s">seqware</span>
-<span class="c1"># Used to designate a database password for integration tests</span>
+<span class="c1"># optional: Used to designate a database password for integration tests</span>
 <span class="na">BASIC_TEST_DB_PASSWORD</span><span class="o">=</span><span class="s">seqware</span>
-<span class="c1"># Used to designate a database for extended integration tests</span>
+<span class="c1"># optional: Used to designate a database for extended integration tests</span>
 <span class="na">EXTENDED_TEST_DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
-<span class="c1"># Used to designate a database name for extended integration tests</span>
+<span class="c1"># optional: Used to designate a database name for extended integration tests</span>
 <span class="na">EXTENDED_TEST_DB_NAME</span><span class="o">=</span><span class="s">seqware_meta_db</span>
-<span class="c1"># Used to designate a database username for extended integration tests</span>
+<span class="c1"># optional: Used to designate a database username for extended integration tests</span>
 <span class="na">EXTENDED_TEST_DB_USER</span><span class="o">=</span><span class="s">seqware</span>
-<span class="c1"># Used to designate a database password for extended integration tests</span>
+<span class="c1"># optional: Used to designate a database password for extended integration tests</span>
 <span class="na">EXTENDED_TEST_DB_PASSWORD</span><span class="o">=</span><span class="s">seqware</span></code></pre>
 
 </div>
