@@ -98,11 +98,13 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="c1"># Administrators need COMMON, DELETION, and INSTALL.</span>
 <span class="c1"># Cronjobs/daemon processes will need COMMON and LAUNCH.</span>
 
+<span class="c1"># Keys that are required for a typical Oozie-sge with metadata via web service are marked as required.</span>
+
 <span class="c1"># Note that this document was auto-generated using the UserSettingsPlugin</span>
 
 
 <span class="c1"># COMMON</span>
-<span class="c1"># Common Seqware settings</span>
+<span class="c1"># required: Common Seqware settings</span>
 
 <span class="c1"># SeqWare MetaDB communication method, can be 'database' or 'webservice' or 'inmemory' or 'none'</span>
 <span class="na">SW_METADATA_METHOD</span><span class="o">=</span><span class="s">webservice</span>
@@ -112,7 +114,7 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="na">AWS_SECRET_KEY</span><span class="o">=</span><span class="s">FILLMEIN</span>
 
 <span class="c1"># COMMON_WS</span>
-<span class="c1"># Seqware webservice settings. Only used if SW_METADATA_METHOD=webservice</span>
+<span class="c1"># required: Seqware webservice settings. Only used if SW_METADATA_METHOD=webservice</span>
 
 <span class="c1"># Specify the URL for the seqware-webservice</span>
 <span class="na">SW_REST_URL</span><span class="o">=</span><span class="s">http://localhost:8080/SeqWareWebService</span>
@@ -122,7 +124,7 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="na">SW_REST_PASS</span><span class="o">=</span><span class="s">admin@admin.com</span>
 
 <span class="c1"># COMMON_DB</span>
-<span class="c1"># Seqware database settings. Only used if SW_METADATA_METHOD=database and by the database check utility</span>
+<span class="c1"># optional: Seqware database settings. Only used if SW_METADATA_METHOD=database and by the database check utility</span>
 
 <span class="c1"># JDBC user for the seqware metadb</span>
 <span class="na">SW_DB_USER</span><span class="o">=</span><span class="s">seqware</span>
@@ -134,19 +136,19 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="na">SW_DB</span><span class="o">=</span><span class="s">seqware_meta_db</span>
 
 <span class="c1"># SCHEDULE_LAUNCH</span>
-<span class="c1"># Settings used by scheduling and launching bundles</span>
+<span class="c1"># required: Settings used by scheduling and launching bundles</span>
 
 <span class="c1"># the default engine to use if otherwise unspecified (one of: oozie, oozie-sge, whitestar, whitestar-parallel, whitestar-sge)</span>
 <span class="na">SW_DEFAULT_WORKFLOW_ENGINE</span><span class="o">=</span><span class="s">oozie-sge</span>
 
 <span class="c1"># INSTALL_LAUNCH</span>
-<span class="c1"># Settings used by both installing and launching bundles</span>
+<span class="c1"># required: Settings used by both installing and launching bundles</span>
 
 <span class="c1"># The directory containing bundle directories (into which bundle archives are unzipped)</span>
 <span class="na">SW_BUNDLE_DIR</span><span class="o">=</span><span class="s">/home/seqware/SeqWare/provisioned-bundles</span>
 
 <span class="c1"># INSTALL</span>
-<span class="c1"># Settings used to configure the installation of workflow bundles</span>
+<span class="c1"># required: Settings used to configure the installation of workflow bundles</span>
 
 <span class="c1"># The directory containing bundle archives (into which a bundle archive is first copied during install)</span>
 <span class="na">SW_BUNDLE_REPO_DIR</span><span class="o">=</span><span class="s">/home/seqware/SeqWare/released-bundles</span>
@@ -154,7 +156,7 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="na">BUNDLE_COMPRESSION</span><span class="o">=</span><span class="s">ON</span>
 
 <span class="c1"># LAUNCH</span>
-<span class="c1"># Oozie engine settings. Only used for both 'oozie' and 'oozie-sge' engines.</span>
+<span class="c1"># required: Oozie engine settings. Only used for both 'oozie' and 'oozie-sge' engines.</span>
 
 <span class="c1"># URL for the Oozie webservice</span>
 <span class="na">OOZIE_URL</span><span class="o">=</span><span class="s">http://localhost:11000/oozie</span>
@@ -184,7 +186,7 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="na">OOZIE_SGE_MAX_MEMORY_PARAM_FORMAT</span><span class="o">=</span><span class="s">-l h_vmem=${maxMemory}M</span>
 
 <span class="c1"># ADMIN</span>
-<span class="c1"># Settings used for administrators</span>
+<span class="c1"># optional: Settings used for administrators</span>
 
 <span class="c1"># Location of the admin web service, currently used for deletion</span>
 <span class="na">SW_ADMIN_REST_URL</span><span class="o">=</span><span class="s">http://localhost:38080/seqware-admin-webservice</span>
@@ -196,7 +198,7 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="na">SW_DECRYPT_KEY</span><span class="o">=</span><span class="s">seqware</span>
 
 <span class="c1"># TESTING</span>
-<span class="c1"># Used for regression testing</span>
+<span class="c1"># optional: Used for regression testing</span>
 
 <span class="c1"># Used to designate a database for integration tests</span>
 <span class="na">BASIC_TEST_DB_HOST</span><span class="o">=</span><span class="s">localhost</span>

@@ -57,7 +57,6 @@
 <li><a href="#usersettingsplugin">UserSettingsPlugin</a></li>
 <li><a href="#workflowlauncher">WorkflowLauncher</a></li>
 <li><a href="#workflowlifecycle">WorkflowLifecycle</a></li>
-<li><a href="#workflowrescheduler">WorkflowRescheduler</a></li>
 <li><a href="#workflowrunfilesinitialpopulationplugin">WorkflowRunFilesInitialPopulationPlugin</a></li>
 <li><a href="#workflowrunreporter">WorkflowRunReporter</a></li>
 <li><a href="#workflowscheduler">WorkflowScheduler</a></li>
@@ -776,7 +775,7 @@ This plugin will take in a sw_accession of a processing, and translate the hiera
 <div class="section" id="usersettingsplugin">
 <h2>UserSettingsPlugin</h2>
 <p>io.seqware.pipeline.plugins.UserSettingsPlugin
-A plugin that generates a commented .seqware settings file that can be used for documentation.</p>
+A plugin that a documented .seqware settings file that can be used for documentation.</p>
 
 <table>
 <thead><tr>
@@ -888,44 +887,6 @@ A plugin that lets you (install)/schedule/launch/watch/status check workflows in
 <tr>
 <td>–workflow-engine</td>
       <td>Optional: Specifies a workflow engine, one of: oozie, oozie-sge, whitestar, whitestar-parallel, whitestar-sge. Defaults to oozie.</td>
-    </tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="workflowrescheduler">
-<h2>WorkflowRescheduler</h2>
-<p>io.seqware.pipeline.plugins.WorkflowRescheduler
-A plugin that lets you re-schedule previously launched workflow runs.</p>
-
-<table>
-<thead><tr>
-<th>Command-line option</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td>–?, –h, –help</td>
-      <td>Provides this help message.</td>
-    </tr>
-<tr>
-<td>–[arguments]</td>
-      <td> </td>
-    </tr>
-<tr>
-<td>–ho, –host</td>
-      <td>Used to schedule onto a specific host</td>
-    </tr>
-<tr>
-<td>–out</td>
-      <td>Optional: Will output a workflow-run by sw_accession</td>
-    </tr>
-<tr>
-<td>–workflow-engine</td>
-      <td>Optional: Specifies a workflow engine, one of: oozie, oozie-sge, whitestar, whitestar-parallel, whitestar-sge. Defaults to oozie.</td>
-    </tr>
-<tr>
-<td>–workflow-run, –wr</td>
-      <td>Required: specify workflow-run(s) by swid, comma-delimited, to re-schedule</td>
     </tr>
 </tbody>
 </table>
