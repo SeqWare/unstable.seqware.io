@@ -104,7 +104,7 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="c1"># COMMON</span>
 <span class="c1"># Common Seqware settings</span>
 
-<span class="c1"># SeqWare MetaDB communication method, can be 'database' or 'webservice' or 'none'</span>
+<span class="c1"># SeqWare MetaDB communication method, can be 'database' or 'webservice' or 'inmemory' or 'none'</span>
 <span class="na">SW_METADATA_METHOD</span><span class="o">=</span><span class="s">webservice</span>
 <span class="c1"># Amazon cloud settings. Only used if reading and writing to S3 buckets.</span>
 <span class="na">AWS_ACCESS_KEY</span><span class="o">=</span><span class="s">FILLMEIN</span>
@@ -136,7 +136,7 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="c1"># SCHEDULE_LAUNCH</span>
 <span class="c1"># Settings used by scheduling and launching bundles</span>
 
-<span class="c1"># the default engine to use if otherwise unspecified (one of: oozie, oozie-sge, whitestar, whitestar-sge)</span>
+<span class="c1"># the default engine to use if otherwise unspecified (one of: oozie, oozie-sge, whitestar, whitestar-parallel, whitestar-sge)</span>
 <span class="na">SW_DEFAULT_WORKFLOW_ENGINE</span><span class="o">=</span><span class="s">oozie-sge</span>
 
 <span class="c1"># INSTALL_LAUNCH</span>
