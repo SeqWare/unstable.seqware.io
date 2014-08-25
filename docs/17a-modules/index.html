@@ -90,6 +90,10 @@ This is a simple command runner.</p>
       <td>Specify this option one or more times for each output file created by the command called by this module. The argument is a ‘::’ delimited list of type, meta_type, and file_path.</td>
     </tr>
 <tr>
+<td>–gcr-permanent-storage-prefix</td>
+      <td>Optional: Stream a copy of stdout and stderr to this prefix + .stderr/stdout</td>
+    </tr>
+<tr>
 <td>–gcr-skip-if-missing</td>
       <td>If the registered output files don’t exist don’t worry about it. Useful for workflows that can produce variable file outputs but also potentially dangerous.</td>
     </tr>
@@ -99,19 +103,19 @@ This is a simple command runner.</p>
     </tr>
 <tr>
 <td>–gcr-stderr</td>
-      <td>Optional: Returns the full stderr (stderr of the command called is normally trimmed to gcr-stderr-buffer-size lines</td>
+      <td>Optional: Returns the full stderr as metadata (stderr of the command called is normally trimmed to gcr-stderr-buffer-size lines</td>
     </tr>
 <tr>
 <td>–gcr-stderr-buffer-size</td>
-      <td>Used if gcr-stderr is not set. This sets the number of lines of stderr to report (Default is 10).</td>
+      <td>Optional: Used if gcr-stderr is not set. This sets the number of lines of stderr to report as metadata (Default is 10).</td>
     </tr>
 <tr>
 <td>–gcr-stdout</td>
-      <td>Optional: Reports the full stdout (stdout of the command called is normally trimmed to gcr-stdout-buffer-size lines</td>
+      <td>Optional: Reports the full stdout as metadata (stdout of the command called is normally trimmed to gcr-stdout-buffer-size lines</td>
     </tr>
 <tr>
 <td>–gcr-stdout-buffer-size</td>
-      <td>Used if gcr-stdout is not set. This sets the number of lines of stdout to report (Default is 10).</td>
+      <td>Optional: Used if gcr-stdout is not set. This sets the number of lines of stdout to report as metadata (Default is 10).</td>
     </tr>
 </tbody>
 </table>
