@@ -33,7 +33,6 @@
 <li><a href="#overview">Overview</a></li>
 <li><a href="#the-oozie-engine">The Oozie Engine</a></li>
 <li><a href="#debugging-and-troubleshooting-tutorial">Debugging and Troubleshooting Tutorial</a></li>
-<li><a href="#the-pegasus-engine-unsupported">The Pegasus Engine - Unsupported</a></li>
 </ol>
 </li>
 <li><a href="../../4-metadb/"><span>SeqWare MetaDB</span></a></li>
@@ -499,79 +498,7 @@ Return value was: 1
 -----------------------------------------------------------------------
 </code></pre>
 
-<p>Fix the two errors and your workflow should now run to completion. </p>
-
-</div>
-</div>
-<div class="section" id="the-pegasus-engine-unsupported">
-<h2>The Pegasus Engine - Unsupported</h2>
-
-<p>The Pegasus engine is deprecated in 1.0.X and is no longer supported in 11.0.
-The Pegasus Engine used <tt>pegasus-status</tt> as the primary command for monitoring the status of workflows.</p>
-
-<div class="section" id="debugging-workflows">
-<h3>Debugging Workflows</h3>
-
-<p>WorkflowLauncher prints the <tt>pegasus-status</tt> command used to monitor the running workflow.  For example:</p>
-
-<pre><code>pegasus-status -l /home/seqware/SeqWare/pegasus-dax/seqware/pegasus/seqware-archetype-java-workflow/run0126
-</code></pre>
-
-<p>This directory shown is actually the logging directory so, if anything goes wrong with the workflow, information
-will be written here.  Look for the <tt><em>.out.00</em></tt> files which contain the stderr and stdout logs.</p>
-
-<p>Also, the WorkflowLauncher tool is capable of printing the stderr/stdout of failed jobs within the launched workflow.</p>
-
-</div>
-<div class="section" id="restarting-workflows">
-<h3>Restarting Workflows</h3>
-
-<p>If a workflow has failed due to a transient error (such as cluster downtime or a disk quota being reached), you can restart a workflow at the last failed step.</p>
-
-<pre><code>    cd /home/seqware/pegasus-dax/seqware/pegasus/seqware-archetype-java-workflow/run0126
-    pegasus-run -Dpegasus.user.properties=pegasus.*.properties --nodatabase `pwd`
-    Rescued /home/seqware/pegasus-dax/seqware/pegasus/seqware-archetype-java-workflow/run0126/seqware-archetype-java-workflow-0.log as /home/seqware/pegasus-dax/seqware/pegasus/seqware-archetype-java-workflow/run0126/seqware-archetype-java-workflow-0.log.000
-
-    Running rescue DAG 1
-    -----------------------------------------------------------------------
-    File for submitting this DAG to Condor           : seqware-archetype-java-workflow-0.dag.condor.sub
-    Log of DAGMan debugging messages                 : seqware-archetype-java-workflow-0.dag.dagman.out
-    Log of Condor library output                     : seqware-archetype-java-workflow-0.dag.lib.out
-    Log of Condor library error messages             : seqware-archetype-java-workflow-0.dag.lib.err
-    Log of the life of condor_dagman itself          : seqware-archetype-java-workflow-0.dag.dagman.log
-
-    -no_submit given, not submitting DAG to Condor.  You can do this with:
-    "condor_submit seqware-archetype-java-workflow-0.dag.condor.sub"
-    -----------------------------------------------------------------------
-    Submitting job(s).
-    1 job(s) submitted to cluster 2851.
-
-    Your Workflow has been started and runs in base directory given below
-
-    cd /home/seqware/pegasus-dax/seqware/pegasus/seqware-archetype-java-workflow/run0126
-
-    *** To monitor the workflow you can run ***
-
-    pegasus-status -l /home/seqware/pegasus-dax/seqware/pegasus/seqware-archetype-java-workflow/run0126
-
-    *** To remove your workflow run ***
-    pegasus-remove -d 2848.0
-    or
-    pegasus-remove /home/seqware/pegasus-dax/seqware/pegasus/seqware-archetype-java-workflow/run0126
-
-    [seqware@seqwarevm run0126]$ condor_q
-
-
-    -- Submitter: seqwarevm : &lt;10.0.2.15:57652&gt; : seqwarevm
-     ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
-    2851.0   seqware         3/28 11:31   0+00:00:05 R  0   0.3  condor_dagman -f -
-1 jobs; 0 completed, 0 removed, 0 idle, 1 running, 0 held, 0 suspended
-</code></pre>
-
-<p>You will also need to have the workflow status checker reset the status of the workflow_run via a command like:</p>
-
-<pre><code>java -jar ~/seqware-distribution-1.1.0-alpha.1-full.jar -p net.sourceforge.seqware.pipeline.plugins.WorkflowStatusChecker -- --wra 525814 --check-failed
-</code></pre>
+<p>Fix the two errors and your workflow should now run to completion.</p>
 </div>
 </div>
 </div>

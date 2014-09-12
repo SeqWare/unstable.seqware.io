@@ -71,8 +71,12 @@ monitoring workflows.</p>
 
 <p><img width="600" src="../../assets/images/seqware_hpc_oozie.png"></p>
 
-<p>We currently support one workflow languages (Java) and four 
-workflow engines (oozie, oozie-sge, whitestar, and whitestar-sge). Our current recommended combination is
+<p>We currently support one workflow language (Java) and four 
+workflow engines (oozie, oozie-sge, whitestar, and whitestar-sge). </p>
+
+<p>(Previously, we also supported Pegasus/Condor/Globus as a workflow engine). </p>
+
+<p>Our current recommended combination is
 Java workflows with the Oozie-sge engine.</p>
 
 <ul>
@@ -173,12 +177,6 @@ run on a randomly chosen cluster node.</p>
 </li>
   <li>
     <dl>
-<dt><a href="legacy-ftl-workflows/">Deprecated FTL Workflows</a></dt>
-      <dd>This is our older, more verbose workflow language based on FreeMarker. This provides information on the structure of a typical workflow descriptor written in this language. FTL is deprecated, do not use it for new workflows.</dd>
-    </dl>
-</li>
-  <li>
-    <dl>
 <dt><a href="workflow_bundles/">Workflow Bundle Conventions</a></dt>
       <dd>We rely on a bundle format for packaging up and exchanging workflows. This document describes the format and directory structure.</dd>
     </dl>
@@ -211,7 +209,7 @@ run on a randomly chosen cluster node.</p>
 <li>
     <dl>
 <dt><a href="debug-workflows/">Debugging, Troubleshooting, &amp; Restarting Workflow</a></dt>
-      <dd>A guide to debugging, troubleshooting, and restarting failed workflows for both workflow engines (Pegasus and Oozie).</dd>
+      <dd>A guide to debugging, troubleshooting, and restarting failed workflows for the Oozie workflow engine.</dd>
     </dl>
 </li>
   <li>
