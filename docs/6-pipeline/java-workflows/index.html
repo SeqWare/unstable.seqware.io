@@ -213,7 +213,7 @@ describe each section in more detail next:</p>
         <span class="k">this</span><span class="o">.</span><span class="na">addDirectory</span><span class="o">(</span><span class="s">"dir1"</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">SqwFile</span><span class="o">&gt;</span> <span class="n">setupFiles</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">SqwFile</span><span class="o">&gt;</span> <span class="nf">setupFiles</span><span class="o">()</span> <span class="o">{</span>
       <span class="k">try</span> <span class="o">{</span>
         <span class="c1">// register an plaintext input file using the information from the INI</span>
         <span class="c1">// provisioning this file to the working directory will be the first step in the workflow</span>
@@ -259,7 +259,7 @@ describe each section in more detail next:</p>
 
     <span class="kd">private</span> <span class="n">SqwFile</span> <span class="nf">createOutputFile</span><span class="o">(</span><span class="n">String</span> <span class="n">workingPath</span><span class="o">,</span> <span class="n">String</span> <span class="n">metatype</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">manualOutput</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// register an output file</span>
-        <span class="n">SqwFile</span> <span class="n">file1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqwFile</span><span class="o">();</span>
+        <span class="n">SqwFile</span> <span class="n">file1</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SqwFile</span><span class="o">();</span>
         <span class="n">file1</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">workingPath</span><span class="o">);</span>
         <span class="n">file1</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="n">metatype</span><span class="o">);</span>
         <span class="n">file1</span><span class="o">.</span><span class="na">setIsOutput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
@@ -308,7 +308,7 @@ command line tool and bypass this built in system. But the
 easiest way to register workflow files.</p>
 
 <pre><code class="language-java">    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">SqwFile</span><span class="o">&gt;</span> <span class="n">setupFiles</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">SqwFile</span><span class="o">&gt;</span> <span class="nf">setupFiles</span><span class="o">()</span> <span class="o">{</span>
       <span class="k">try</span> <span class="o">{</span>
         <span class="c1">// register an plaintext input file using the information from the INI</span>
         <span class="c1">// provisioning this file to the working directory will be the first step in the workflow</span>
@@ -339,7 +339,7 @@ these files are not available from this.getFiles().get(String).</p>
 
     <span class="kd">private</span> <span class="n">SqwFile</span> <span class="nf">createOutputFile</span><span class="o">(</span><span class="n">String</span> <span class="n">workingPath</span><span class="o">,</span> <span class="n">String</span> <span class="n">metatype</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">manualOutput</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// register an output file</span>
-        <span class="n">SqwFile</span> <span class="n">file1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqwFile</span><span class="o">();</span>
+        <span class="n">SqwFile</span> <span class="n">file1</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SqwFile</span><span class="o">();</span>
         <span class="n">file1</span><span class="o">.</span><span class="na">setSourcePath</span><span class="o">(</span><span class="n">workingPath</span><span class="o">);</span>
         <span class="n">file1</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="n">metatype</span><span class="o">);</span>
         <span class="n">file1</span><span class="o">.</span><span class="na">setIsOutput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
@@ -499,8 +499,8 @@ Testing Bundle
   Running Test Command:
 java -jar /home/seqware/Temp/simple-legacy-ftl-workflow/target/Workflow_Bundle_simple-legacy-ftl-workflow_1.0-SNAPSHOT_SeqWare_0.13.6.x/Workflow_Bundle_simple-legacy-ftl-workflow/1.0-SNAPSHOT/lib/seqware-distribution-0.13.6.x-full.jar --plugin net.sourceforge.seqware.pipeline.plugins.WorkflowLauncher --provisioned-bundle-dir /home/seqware/Temp/simple-legacy-ftl-workflow/target/Workflow_Bundle_simple-legacy-ftl-workflow_1.0-SNAPSHOT_SeqWare_0.13.6.x --workflow simple-legacy-ftl-workflow --version 1.0 --ini-files /home/seqware/Temp/simple-legacy-ftl-workflow/target/Workflow_Bundle_simple-lSHOT_SeqWare_0.13.6.x/Workflow_Bundle_simple-legacy-ftl-workflow/1.0-SNAPSHOT/config/workflow.ini
 MONITORING PEGASUS STATUS:
-RUNNING: step 1 of 5 <span class="o">(</span>20%<span class="o">)</span>
-RUNNING: step 2 of 5 <span class="o">(</span>40%<span class="o">)</span>
+RUNNING: step <span class="m">1</span> of <span class="m">5</span> <span class="o">(</span>20%<span class="o">)</span>
+RUNNING: step <span class="m">2</span> of <span class="m">5</span> <span class="o">(</span>40%<span class="o">)</span>
 ...</code></pre>
 
 </div>
