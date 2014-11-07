@@ -1,4 +1,6 @@
+io.seqware.pipeline
 io.seqware.pipeline.plugins
+io.seqware.pipeline.whitestar
 io.seqware.webservice.client
 net.sourceforge.seqware.common
 net.sourceforge.seqware.common.business.impl
