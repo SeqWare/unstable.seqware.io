@@ -68,7 +68,6 @@ net.sourceforge.seqware.pipeline.workflowV2.model
 net.sourceforge.seqware.queryengine.webservice.controller
 net.sourceforge.seqware.queryengine.webservice.model
 net.sourceforge.seqware.queryengine.webservice.security
-net.sourceforge.seqware.queryengine.webservice.view
 net.sourceforge.seqware.webservice.resources
 net.sourceforge.seqware.webservice.resources.filters
 net.sourceforge.seqware.webservice.resources.queries

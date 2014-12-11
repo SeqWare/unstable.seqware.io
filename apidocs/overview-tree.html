@@ -135,7 +135,6 @@
 <li><a href="net/sourceforge/seqware/queryengine/webservice/controller/package-tree.html">net.sourceforge.seqware.queryengine.webservice.controller</a>, </li>
 <li><a href="net/sourceforge/seqware/queryengine/webservice/model/package-tree.html">net.sourceforge.seqware.queryengine.webservice.model</a>, </li>
 <li><a href="net/sourceforge/seqware/queryengine/webservice/security/package-tree.html">net.sourceforge.seqware.queryengine.webservice.security</a>, </li>
-<li><a href="net/sourceforge/seqware/queryengine/webservice/view/package-tree.html">net.sourceforge.seqware.queryengine.webservice.view</a>, </li>
 <li><a href="net/sourceforge/seqware/webservice/resources/package-tree.html">net.sourceforge.seqware.webservice.resources</a>, </li>
 <li><a href="net/sourceforge/seqware/webservice/resources/filters/package-tree.html">net.sourceforge.seqware.webservice.resources.filters</a>, </li>
 <li><a href="net/sourceforge/seqware/webservice/resources/queries/package-tree.html">net.sourceforge.seqware.webservice.resources.queries</a>, </li>
@@ -597,6 +596,7 @@
 <li type="circle">net.sourceforge.seqware.pipeline.bundle.<a href="net/sourceforge/seqware/pipeline/bundle/BundleInfo.html" title="class in net.sourceforge.seqware.pipeline.bundle"><span class="strong">BundleInfo</span></a></li>
 <li type="circle">net.sourceforge.seqware.common.hibernate.<a href="net/sourceforge/seqware/common/hibernate/CheckForCycles.html" title="class in net.sourceforge.seqware.common.hibernate"><span class="strong">CheckForCycles</span></a></li>
 <li type="circle">io.seqware.pipeline.plugins.sanity.checks.<a href="io/seqware/pipeline/plugins/sanity/checks/CLICheck.html" title="class in io.seqware.pipeline.plugins.sanity.checks"><span class="strong">CLICheck</span></a> (implements io.seqware.pipeline.plugins.sanity.<a href="io/seqware/pipeline/plugins/sanity/SanityCheckPluginInterface.html" title="interface in io.seqware.pipeline.plugins.sanity">SanityCheckPluginInterface</a>)</li>
+<li type="circle">io.seqware.pipeline.plugins.sanity.checks.<a href="io/seqware/pipeline/plugins/sanity/checks/ClientServerConsistencyCheck.html" title="class in io.seqware.pipeline.plugins.sanity.checks"><span class="strong">ClientServerConsistencyCheck</span></a> (implements io.seqware.pipeline.plugins.sanity.<a href="io/seqware/pipeline/plugins/sanity/SanityCheckPluginInterface.html" title="interface in io.seqware.pipeline.plugins.sanity">SanityCheckPluginInterface</a>)</li>
 <li type="circle">net.sourceforge.seqware.pipeline.workflowV2.model.<a href="net/sourceforge/seqware/pipeline/workflowV2/model/Command.html" title="class in net.sourceforge.seqware.pipeline.workflowV2.model"><span class="strong">Command</span></a></li>
 <li type="circle">net.sourceforge.seqware.common.util.configtools.<a href="net/sourceforge/seqware/common/util/configtools/ConfigTools.html" title="class in net.sourceforge.seqware.common.util.configtools"><span class="strong">ConfigTools</span></a></li>
 <li type="circle">net.sourceforge.seqware.common.util.runtools.<a href="net/sourceforge/seqware/common/util/runtools/ConsoleAdapter.html" title="class in net.sourceforge.seqware.common.util.runtools"><span class="strong">ConsoleAdapter</span></a></li>
@@ -934,7 +934,6 @@
 <ul>
 <li type="circle">org.restlet.resource.ServerResource
 <ul>
-<li type="circle">net.sourceforge.seqware.queryengine.webservice.view.<a href="net/sourceforge/seqware/queryengine/webservice/view/VersionResource.html" title="class in net.sourceforge.seqware.queryengine.webservice.view"><span class="strong">VersionResource</span></a></li>
 <li type="circle">org.restlet.ext.wadl.WadlServerResource
 <ul>
 <li type="circle">net.sourceforge.seqware.webservice.resources.<a href="net/sourceforge/seqware/webservice/resources/BasicResource.html" title="class in net.sourceforge.seqware.webservice.resources"><span class="strong">BasicResource</span></a>
@@ -985,6 +984,7 @@
 <li type="circle">net.sourceforge.seqware.webservice.resources.tables.<a href="net/sourceforge/seqware/webservice/resources/tables/WorkflowRunResource.html" title="class in net.sourceforge.seqware.webservice.resources.tables"><span class="strong">WorkflowRunResource</span></a></li>
 </ul>
 </li>
+<li type="circle">net.sourceforge.seqware.webservice.resources.queries.<a href="net/sourceforge/seqware/webservice/resources/queries/EnvironmentResource.html" title="class in net.sourceforge.seqware.webservice.resources.queries"><span class="strong">EnvironmentResource</span></a></li>
 <li type="circle">net.sourceforge.seqware.webservice.resources.filters.<a href="net/sourceforge/seqware/webservice/resources/filters/ExperimentIDFilter.html" title="class in net.sourceforge.seqware.webservice.resources.filters"><span class="strong">ExperimentIDFilter</span></a></li>
 <li type="circle">net.sourceforge.seqware.webservice.resources.filters.<a href="net/sourceforge/seqware/webservice/resources/filters/IUSIDFilter.html" title="class in net.sourceforge.seqware.webservice.resources.filters"><span class="strong">IUSIDFilter</span></a></li>
 <li type="circle">net.sourceforge.seqware.webservice.resources.filters.<a href="net/sourceforge/seqware/webservice/resources/filters/LaneIDFilter.html" title="class in net.sourceforge.seqware.webservice.resources.filters"><span class="strong">LaneIDFilter</span></a></li>
@@ -1006,7 +1006,6 @@
 <li type="circle">org.restlet.ext.wadl.WadlApplication
 <ul>
 <li type="circle">net.sourceforge.seqware.queryengine.webservice.controller.<a href="net/sourceforge/seqware/queryengine/webservice/controller/SeqWareWebServiceApplication.html" title="class in net.sourceforge.seqware.queryengine.webservice.controller"><span class="strong">SeqWareWebServiceApplication</span></a></li>
-<li type="circle">net.sourceforge.seqware.queryengine.webservice.controller.<a href="net/sourceforge/seqware/queryengine/webservice/controller/SeqWareWebServiceApplicationVersion.html" title="class in net.sourceforge.seqware.queryengine.webservice.controller"><span class="strong">SeqWareWebServiceApplicationVersion</span></a></li>
 </ul>
 </li>
 </ul>
@@ -1015,7 +1014,6 @@
 <ul>
 <li type="circle">net.sourceforge.seqware.webservice.resources.queries.<a href="net/sourceforge/seqware/webservice/resources/queries/CycleCheckResource.html" title="class in net.sourceforge.seqware.webservice.resources.queries"><span class="strong">CycleCheckResource</span></a></li>
 <li type="circle">net.sourceforge.seqware.webservice.resources.queries.<a href="net/sourceforge/seqware/webservice/resources/queries/FileProvenanceResource.html" title="class in net.sourceforge.seqware.webservice.resources.queries"><span class="strong">FileProvenanceResource</span></a></li>
-<li type="circle">net.sourceforge.seqware.webservice.resources.queries.<a href="net/sourceforge/seqware/webservice/resources/queries/GenericDBResource.html" title="class in net.sourceforge.seqware.webservice.resources.queries"><span class="strong">GenericDBResource</span></a> (implements org.restlet.ext.wadl.WadlDescribable)</li>
 <li type="circle">net.sourceforge.seqware.webservice.resources.queries.<a href="net/sourceforge/seqware/webservice/resources/queries/ProcessIdProcessResource.html" title="class in net.sourceforge.seqware.webservice.resources.queries"><span class="strong">ProcessIdProcessResource</span></a></li>
 <li type="circle">net.sourceforge.seqware.webservice.resources.tables.<a href="net/sourceforge/seqware/webservice/resources/tables/ProcessingStructureResource.html" title="class in net.sourceforge.seqware.webservice.resources.tables"><span class="strong">ProcessingStructureResource</span></a></li>
 <li type="circle">net.sourceforge.seqware.webservice.resources.queries.<a href="net/sourceforge/seqware/webservice/resources/queries/RunWorkflowResource.html" title="class in net.sourceforge.seqware.webservice.resources.queries"><span class="strong">RunWorkflowResource</span></a></li>
@@ -1030,7 +1028,6 @@
 </ul>
 </li>
 <li type="circle">net.sourceforge.seqware.queryengine.webservice.controller.<a href="net/sourceforge/seqware/queryengine/webservice/controller/SeqWareWebServiceApplication.OptionalSlashRedirect.html" title="class in net.sourceforge.seqware.queryengine.webservice.controller"><span class="strong">SeqWareWebServiceApplication.OptionalSlashRedirect</span></a></li>
-<li type="circle">net.sourceforge.seqware.queryengine.webservice.controller.<a href="net/sourceforge/seqware/queryengine/webservice/controller/SeqWareWebServiceApplicationVersion.OptionalSlashRedirect.html" title="class in net.sourceforge.seqware.queryengine.webservice.controller"><span class="strong">SeqWareWebServiceApplicationVersion.OptionalSlashRedirect</span></a></li>
 </ul>
 </li>
 <li type="circle">net.sourceforge.seqware.common.util.<a href="net/sourceforge/seqware/common/util/Rethrow.html" title="class in net.sourceforge.seqware.common.util"><span class="strong">Rethrow</span></a></li>
@@ -1090,7 +1087,6 @@
 <li type="circle">io.seqware.webservice.client.<a href="io/seqware/webservice/client/SeqWareWebServiceClient.html" title="class in io.seqware.webservice.client"><span class="strong">SeqWareWebServiceClient</span></a></li>
 </ul>
 </li>
-<li type="circle">net.sourceforge.seqware.queryengine.webservice.controller.<a href="net/sourceforge/seqware/queryengine/webservice/controller/SeqWareWebServiceMain.html" title="class in net.sourceforge.seqware.queryengine.webservice.controller"><span class="strong">SeqWareWebServiceMain</span></a></li>
 <li type="circle">net.sourceforge.solexatools.util.<a href="net/sourceforge/solexatools/util/SetNodeIdInSession.html" title="class in net.sourceforge.solexatools.util"><span class="strong">SetNodeIdInSession</span></a></li>
 <li type="circle">net.sourceforge.seqware.pipeline.tools.<a href="net/sourceforge/seqware/pipeline/tools/SetOperations.html" title="class in net.sourceforge.seqware.pipeline.tools"><span class="strong">SetOperations</span></a></li>
 <li type="circle">net.sourceforge.seqware.common.model.<a href="net/sourceforge/seqware/common/model/ShareStudy.html" title="class in net.sourceforge.seqware.common.model"><span class="strong">ShareStudy</span></a> (implements java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;T&gt;, java.io.<a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>)</li>
@@ -1359,6 +1355,7 @@
 <li type="circle">net.sourceforge.seqware.pipeline.plugins.batchmetadatainjection.<a href="net/sourceforge/seqware/pipeline/plugins/batchmetadatainjection/BatchMetadataParser.Field.html" title="enum in net.sourceforge.seqware.pipeline.plugins.batchmetadatainjection"><span class="strong">BatchMetadataParser.Field</span></a></li>
 <li type="circle">net.sourceforge.seqware.pipeline.plugins.checkdb.<a href="net/sourceforge/seqware/pipeline/plugins/checkdb/CheckDBPluginInterface.Level.html" title="enum in net.sourceforge.seqware.pipeline.plugins.checkdb"><span class="strong">CheckDBPluginInterface.Level</span></a></li>
 <li type="circle">net.sourceforge.seqware.pipeline.plugins.fileprovenance.<a href="net/sourceforge/seqware/pipeline/plugins/fileprovenance/ProvenanceUtility.HumanProvenanceFilters.html" title="enum in net.sourceforge.seqware.pipeline.plugins.fileprovenance"><span class="strong">ProvenanceUtility.HumanProvenanceFilters</span></a></li>
+<li type="circle">net.sourceforge.seqware.webservice.resources.<a href="net/sourceforge/seqware/webservice/resources/TomcatVersion.html" title="enum in net.sourceforge.seqware.webservice.resources"><span class="strong">TomcatVersion</span></a></li>
 <li type="circle">net.sourceforge.seqware.webservice.resources.tables.<a href="net/sourceforge/seqware/webservice/resources/tables/FileChildWorkflowRunsResource.SEARCH_TYPE.html" title="enum in net.sourceforge.seqware.webservice.resources.tables"><span class="strong">FileChildWorkflowRunsResource.SEARCH_TYPE</span></a></li>
 </ul>
 </li>
