@@ -2200,7 +2200,7 @@
  pf.processing_id=pp.processing_id AND (pp.ancestor_workflow_run_id=wr.workflow_run_id OR pp.workflow_run_id=wr.workflow_run_id) AND
  wr.workflow_run_id=iwr.workflow_run_id AND iwr.ius_id = i.ius_id AND iwr2.ius_id = i.ius_id AND wr2.workflow_run_id =
  iwr2.workflow_run_id ORDER BY f.sw_accession;
- 
+
  select f.sw_accession, wr.workflow_run_id, wr.sw_accession, wr2.workflow_run_id, wr2.sw_accession from File f, Processing_files pf,
  Processing pp, Workflow_Run wr, lane_workflow_runs iwr, lane i, lane_workflow_runs iwr2, workflow_run wr2 WHERE f.file_id=pf.file_id
  AND pf.processing_id=pp.processing_id AND (pp.ancestor_workflow_run_id=wr.workflow_run_id OR pp.workflow_run_id=wr.workflow_run_id)

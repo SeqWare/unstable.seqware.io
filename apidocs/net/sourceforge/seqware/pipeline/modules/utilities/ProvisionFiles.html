@@ -107,10 +107,10 @@
 <pre>public class <span class="strong">ProvisionFiles</span>
 extends <a href="../../../../../../net/sourceforge/seqware/pipeline/module/Module.html" title="class in net.sourceforge.seqware.pipeline.module">Module</a></pre>
 <div class="block">Purpose:
- 
+
  This module takes one or more inputs (S3 URL, HTTP/HTTPS URL, or local file path) and copies the file to the specified output (S3 bucket
  URL, HTTP/HTTPS URL, or local directory path). For S3 this bundle supports large, multipart file upload which is needed for files >2G.
- 
+
  FIXME: needs to return errors on failures/exceptions</div>
 <dl><dt><span class="strong">Version:</span></dt>
   <dd>$Id: $Id</dd>
@@ -435,7 +435,7 @@ extends <a href="../../../../../../net/sourceforge/seqware/pipeline/module/Modul
 <div class="block"><p>
  do_test.
  </p>
- 
+
  Things to check: * FIXME</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
@@ -513,7 +513,7 @@ extends <a href="../../../../../../net/sourceforge/seqware/pipeline/module/Modul
 <div class="block"><p>
  provisionFile.
  </p></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>input</code> - a <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> object.</dd><dd><code>output</code> - a <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> object.</dd><dd><code>skipIfMissing</code> - a boolean.</dd><dd><code>fileArray</code> - a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util"><code>ArrayList</code></a> object.</dd><dd><code>fullOutputPath</code> - </dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>input</code> - original path to the file, a file path if local, otherwise a http path or s3 path</dd><dd><code>output</code> - path to the destination, a file path if local, otherwise a http path or s3 path</dd><dd><code>skipIfMissing</code> - skip missing files with only a warning</dd><dd><code>fileArray</code> - metadata about the file (files) to be copied</dd><dd><code>fullOutputPath</code> - the full output path overrides any concatenation of variables</dd>
 <dt><span class="strong">Returns:</span></dt><dd>a boolean.</dd></dl>
 </li>
 </ul>
@@ -531,7 +531,7 @@ extends <a href="../../../../../../net/sourceforge/seqware/pipeline/module/Modul
                      boolean&nbsp;fullOutputPath)</pre>
 <div class="block">HTTP writeback currently not supported S3 uses multi-part upload which should deal with failed uploads (maybe) I'm not really dealing
  with failed upload recovery here... Keep in mind only the writeout to local file will attempt to recover from failed reader</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>output</code> - a <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> object.</dd><dd><code>reader</code> - a <a href="http://docs.oracle.com/javase/7/docs/api/java/io/BufferedInputStream.html?is-external=true" title="class or interface in java.io"><code>BufferedInputStream</code></a> object.</dd><dd><code>bufLen</code> - a int.</dd><dd><code>input</code> - a <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> object.</dd><dd><code>fileArray</code> - a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util"><code>ArrayList</code></a> object.</dd><dd><code>fullOutputPath</code> - </dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>output</code> - where the file should be copied to</dd><dd><code>reader</code> - a reader open to the file that needs to be copied</dd><dd><code>bufLen</code> - passed right through to filesUtil</dd><dd><code>input</code> - where the file is copied from</dd><dd><code>fileArray</code> - a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util"><code>ArrayList</code></a> object.</dd><dd><code>fullOutputPath</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd>a boolean.</dd></dl>
 </li>
 </ul>
