@@ -198,6 +198,12 @@ Our tools will abort and refuse to run if this is not set. </p>
 <span class="c1"># optional: Legacy key used to decrypt provisioned files</span>
 <span class="na">SW_DECRYPT_KEY</span><span class="o">=</span><span class="s">seqware</span>
 
+<span class="c1"># LAUNCH</span>
+<span class="c1"># Oozie engine settings. Only used for both 'oozie' and 'oozie-sge' engines.</span>
+
+<span class="c1"># optional: Used to determine whether provisioned (out) files should be run through MD5 before and after provisioning</span>
+<span class="na">SW_PROVISION_FILES_MD5</span><span class="o">=</span><span class="s">true</span>
+
 <span class="c1"># TESTING</span>
 <span class="c1"># Used for regression testing</span>
 
