@@ -100,13 +100,13 @@
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>&gt;, <a href="../../../../../net/sourceforge/seqware/common/model/ParentAccessionModel.html" title="interface in net.sourceforge.seqware.common.model">ParentAccessionModel</a></dd>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>&gt;, <a href="../../../../../net/sourceforge/seqware/common/model/Annotatable.html" title="interface in net.sourceforge.seqware.common.model">Annotatable</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">SampleAttribute</a>&gt;, <a href="../../../../../net/sourceforge/seqware/common/model/ParentAccessionModel.html" title="interface in net.sourceforge.seqware.common.model">ParentAccessionModel</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="strong">Sample</span>
 extends <a href="../../../../../net/sourceforge/seqware/common/security/PermissionsAware.html" title="class in net.sourceforge.seqware.common.security">PermissionsAware</a>
-implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>&gt;, <a href="../../../../../net/sourceforge/seqware/common/model/ParentAccessionModel.html" title="interface in net.sourceforge.seqware.common.model">ParentAccessionModel</a></pre>
+implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>&gt;, <a href="../../../../../net/sourceforge/seqware/common/model/ParentAccessionModel.html" title="interface in net.sourceforge.seqware.common.model">ParentAccessionModel</a>, <a href="../../../../../net/sourceforge/seqware/common/model/Annotatable.html" title="interface in net.sourceforge.seqware.common.model">Annotatable</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">SampleAttribute</a>&gt;</pre>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../serialized-form.html#net.sourceforge.seqware.common.model.Sample">Serialized Form</a></dd></dl>
 </li>
 </ul>
@@ -190,500 +190,506 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">SampleAttribute</a>&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getAnnotations()">getAnnotations</a></strong>()</code>
+<div class="block">Get the annotations for this model</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getAnonymizedName()">getAnonymizedName</a></strong>()</code>
 <div class="block">
  Getter for the field <code>anonymizedName</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getChildren()">getChildren</a></strong>()</code>
 <div class="block">
  Getter for the field <code>children</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getCountFile()">getCountFile</a></strong>()</code>
 <div class="block">
  Getter for the field <code>countFile</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Date.html?is-external=true" title="class or interface in java.util">Date</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getCreateTimestamp()">getCreateTimestamp</a></strong>()</code>
 <div class="block">
  Getter for the field <code>createTimestamp</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getDescription()">getDescription</a></strong>()</code>
 <div class="block">
  Getter for the field <code>description</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getExpectedNumReads()">getExpectedNumReads</a></strong>()</code>
 <div class="block">
  Getter for the field <code>expectedNumReads</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getExpectedNumRuns()">getExpectedNumRuns</a></strong>()</code>
 <div class="block">
  Getter for the field <code>expectedNumRuns</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getExpectedNumSpots()">getExpectedNumSpots</a></strong>()</code>
 <div class="block">
  Getter for the field <code>expectedNumSpots</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../net/sourceforge/seqware/common/model/Experiment.html" title="class in net.sourceforge.seqware.common.model">Experiment</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getExperiment()">getExperiment</a></strong>()</code>
 <div class="block">
  Getter for the field <code>experiment</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getIndividualName()">getIndividualName</a></strong>()</code>
 <div class="block">
  Getter for the field <code>individualName</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getIsHasFile()">getIsHasFile</a></strong>()</code>
 <div class="block">
  Getter for the field <code>isHasFile</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getIsSelected()">getIsSelected</a></strong>()</code>
 <div class="block">
  Getter for the field <code>isSelected</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/IUS.html" title="class in net.sourceforge.seqware.common.model">IUS</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getIUS()">getIUS</a></strong>()</code>
 <div class="block">
  getIUS.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getJsonEscapeDescription()">getJsonEscapeDescription</a></strong>()</code>
 <div class="block">
  getJsonEscapeDescription.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getJsonEscapeName()">getJsonEscapeName</a></strong>()</code>
 <div class="block">
  getJsonEscapeName.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getJsonEscapeTitle()">getJsonEscapeTitle</a></strong>()</code>
 <div class="block">
  getJsonEscapeTitle.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Lane.html" title="class in net.sourceforge.seqware.common.model">Lane</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getLanes()">getLanes</a></strong>()</code>
 <div class="block">
  Getter for the field <code>lanes</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getName()">getName</a></strong>()</code>
 <div class="block">
  Getter for the field <code>name</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../net/sourceforge/seqware/common/model/Organism.html" title="class in net.sourceforge.seqware.common.model">Organism</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getOrganism()">getOrganism</a></strong>()</code>
 <div class="block">
  Getter for the field <code>organism</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getOrganismId()">getOrganismId</a></strong>()</code>
 <div class="block">
  Getter for the field <code>organismId</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../net/sourceforge/seqware/common/model/Registration.html" title="class in net.sourceforge.seqware.common.model">Registration</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getOwner()">getOwner</a></strong>()</code>
 <div class="block">
  Getter for the field <code>owner</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getParents()">getParents</a></strong>()</code>
 <div class="block">
  Getter for the field <code>parents</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Processing.html" title="class in net.sourceforge.seqware.common.model">Processing</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getProcessings()">getProcessings</a></strong>()</code>
 <div class="block">
  Getter for the field <code>processings</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getRegions()">getRegions</a></strong>()</code>
 <div class="block">
  Getter for the field <code>regions</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">SampleAttribute</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getSampleAttributes()">getSampleAttributes</a></strong>()</code>
 <div class="block">
  Getter for the field <code>sampleAttributes</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getSampleId()">getSampleId</a></strong>()</code>
 <div class="block">
  Getter for the field <code>sampleId</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getSerialVersionUID()">getSerialVersionUID</a></strong>()</code>
 <div class="block">
  Getter for the field <code>serialVersionUID</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getSkip()">getSkip</a></strong>()</code>
 <div class="block">
  Getter for the field <code>skip</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getStrExpectedNumReads()">getStrExpectedNumReads</a></strong>()</code>
 <div class="block">
  Getter for the field <code>strExpectedNumReads</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getStrExpectedNumRuns()">getStrExpectedNumRuns</a></strong>()</code>
 <div class="block">
  Getter for the field <code>strExpectedNumRuns</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getSwAccession()">getSwAccession</a></strong>()</code>
 <div class="block">
  Getter for the field <code>swAccession</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getTags()">getTags</a></strong>()</code>
 <div class="block">
  Getter for the field <code>tags</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getTitle()">getTitle</a></strong>()</code>
 <div class="block">
  Getter for the field <code>title</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getType()">getType</a></strong>()</code>
 <div class="block">
  Getter for the field <code>type</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Date.html?is-external=true" title="class or interface in java.util">Date</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#getUpdateTimestamp()">getUpdateTimestamp</a></strong>()</code>
 <div class="block">
  Getter for the field <code>updateTimestamp</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#givesPermissionInternal(net.sourceforge.seqware.common.model.Registration, java.util.Set)">givesPermissionInternal</a></strong>(<a href="../../../../../net/sourceforge/seqware/common/model/Registration.html" title="class in net.sourceforge.seqware.common.model">Registration</a>&nbsp;registration,
                        <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;considered)</code>
 <div class="block">Short-circuit permission checking by providing a set of entities that have already been checked</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#hashCode()">hashCode</a></strong>()</code></td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setAdapters(java.lang.String)">setAdapters</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;adapters)</code>
 <div class="block">
  Setter for the field <code>adapters</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setAlias(java.lang.String)">setAlias</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;alias)</code>
 <div class="block">
  Setter for the field <code>alias</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setAnonymizedName(java.lang.String)">setAnonymizedName</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;anonymizedName)</code>
 <div class="block">
  Setter for the field <code>anonymizedName</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setChildren(java.util.Set)">setChildren</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>&gt;&nbsp;children)</code>
 <div class="block">
  Setter for the field <code>children</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setCountFile(java.lang.Integer)">setCountFile</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;countFile)</code>
 <div class="block">
  Setter for the field <code>countFile</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setCreateTimestamp(java.util.Date)">setCreateTimestamp</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Date.html?is-external=true" title="class or interface in java.util">Date</a>&nbsp;createTimestamp)</code>
 <div class="block">
  Setter for the field <code>createTimestamp</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setDescription(java.lang.String)">setDescription</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;description)</code>
 <div class="block">
  Setter for the field <code>description</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setExpectedNumReads(java.lang.Integer)">setExpectedNumReads</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;expectedNumReads)</code>
 <div class="block">
  Setter for the field <code>expectedNumReads</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setExpectedNumRuns(java.lang.Integer)">setExpectedNumRuns</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;expectedNumRuns)</code>
 <div class="block">
  Setter for the field <code>expectedNumRuns</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setExpectedNumSpots(java.lang.Integer)">setExpectedNumSpots</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;expectedNumSpots)</code>
 <div class="block">
  Setter for the field <code>expectedNumSpots</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setExperiment(net.sourceforge.seqware.common.model.Experiment)">setExperiment</a></strong>(<a href="../../../../../net/sourceforge/seqware/common/model/Experiment.html" title="class in net.sourceforge.seqware.common.model">Experiment</a>&nbsp;experiment)</code>
 <div class="block">
  Setter for the field <code>experiment</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setIndividualName(java.lang.String)">setIndividualName</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;individualName)</code>
 <div class="block">
  Setter for the field <code>individualName</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setIsHasFile(java.lang.Boolean)">setIsHasFile</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&nbsp;isHasFile)</code>
 <div class="block">
  Setter for the field <code>isHasFile</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setIsSelected(java.lang.Boolean)">setIsSelected</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&nbsp;isSelected)</code>
 <div class="block">
  Setter for the field <code>isSelected</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setIUS(java.util.SortedSet)">setIUS</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/IUS.html" title="class in net.sourceforge.seqware.common.model">IUS</a>&gt;&nbsp;ius)</code>
 <div class="block">
  setIUS.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setLanes(java.util.SortedSet)">setLanes</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Lane.html" title="class in net.sourceforge.seqware.common.model">Lane</a>&gt;&nbsp;lanes)</code>
 <div class="block">
  Setter for the field <code>lanes</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setLanesForView(java.util.SortedSet)">setLanesForView</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Lane.html" title="class in net.sourceforge.seqware.common.model">Lane</a>&gt;&nbsp;lanes)</code>
 <div class="block">
  setLanesForView.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setName(java.lang.String)">setName</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">
  Setter for the field <code>name</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setOrganism(net.sourceforge.seqware.common.model.Organism)">setOrganism</a></strong>(<a href="../../../../../net/sourceforge/seqware/common/model/Organism.html" title="class in net.sourceforge.seqware.common.model">Organism</a>&nbsp;organism)</code>
 <div class="block">
  Setter for the field <code>organism</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setOrganismId(java.lang.Integer)">setOrganismId</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;organismId)</code>
 <div class="block">
  Setter for the field <code>organismId</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setOwner(net.sourceforge.seqware.common.model.Registration)">setOwner</a></strong>(<a href="../../../../../net/sourceforge/seqware/common/model/Registration.html" title="class in net.sourceforge.seqware.common.model">Registration</a>&nbsp;owner)</code>
 <div class="block">
  Setter for the field <code>owner</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setParents(java.util.Set)">setParents</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>&gt;&nbsp;parents)</code>
 <div class="block">
  Setter for the field <code>parents</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setProcessings(java.util.Set)">setProcessings</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/Processing.html" title="class in net.sourceforge.seqware.common.model">Processing</a>&gt;&nbsp;processings)</code>
 <div class="block">
  Setter for the field <code>processings</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setRegions(java.lang.String)">setRegions</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;regions)</code>
 <div class="block">
  Setter for the field <code>regions</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setSampleAttributes(java.util.Set)">setSampleAttributes</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">SampleAttribute</a>&gt;&nbsp;sampleAttributes)</code>
 <div class="block">
  Setter for the field <code>sampleAttributes</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setSampleId(java.lang.Integer)">setSampleId</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;sampleId)</code>
 <div class="block">
  Setter for the field <code>sampleId</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setSkip(java.lang.Boolean)">setSkip</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&nbsp;skip)</code>
 <div class="block">
  Setter for the field <code>skip</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setStrExpectedNumReads(java.lang.String)">setStrExpectedNumReads</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;strExpectedNumReads)</code>
 <div class="block">
  Setter for the field <code>strExpectedNumReads</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setStrExpectedNumRuns(java.lang.String)">setStrExpectedNumRuns</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;strExpectedNumRuns)</code>
 <div class="block">
  Setter for the field <code>strExpectedNumRuns</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setSwAccession(java.lang.Integer)">setSwAccession</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;swAccession)</code>
 <div class="block">
  Setter for the field <code>swAccession</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setTags(java.lang.String)">setTags</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;tags)</code>
 <div class="block">
  Setter for the field <code>tags</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setTitle(java.lang.String)">setTitle</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;title)</code>
 <div class="block">
  Setter for the field <code>title</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setType(java.lang.String)">setType</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;type)</code>
 <div class="block">
  Setter for the field <code>type</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#setUpdateTimestamp(java.util.Date)">setUpdateTimestamp</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Date.html?is-external=true" title="class or interface in java.util">Date</a>&nbsp;updateTimestamp)</code>
 <div class="block">
  Setter for the field <code>updateTimestamp</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../net/sourceforge/seqware/common/model/Sample.html#toString()">toString</a></strong>()</code></td>
 </tr>
@@ -1733,7 +1739,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <a name="givesPermissionInternal(net.sourceforge.seqware.common.model.Registration, java.util.Set)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>givesPermissionInternal</h4>
 <pre>public&nbsp;boolean&nbsp;givesPermissionInternal(<a href="../../../../../net/sourceforge/seqware/common/model/Registration.html" title="class in net.sourceforge.seqware.common.model">Registration</a>&nbsp;registration,
@@ -1742,6 +1748,21 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../net/sourceforge/seqware/common/security/PermissionsAware.html#givesPermissionInternal(net.sourceforge.seqware.common.model.Registration, java.util.Set)">givesPermissionInternal</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../net/sourceforge/seqware/common/security/PermissionsAware.html" title="class in net.sourceforge.seqware.common.security">PermissionsAware</a></code></dd>
+<dt><span class="strong">Returns:</span></dt><dd></dd></dl>
+</li>
+</ul>
+<a name="getAnnotations()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getAnnotations</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">SampleAttribute</a>&gt;&nbsp;getAnnotations()</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../net/sourceforge/seqware/common/model/Annotatable.html#getAnnotations()">Annotatable</a></code></strong></div>
+<div class="block">Get the annotations for this model</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../../net/sourceforge/seqware/common/model/Annotatable.html#getAnnotations()">getAnnotations</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../net/sourceforge/seqware/common/model/Annotatable.html" title="interface in net.sourceforge.seqware.common.model">Annotatable</a>&lt;<a href="../../../../../net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">SampleAttribute</a>&gt;</code></dd>
 <dt><span class="strong">Returns:</span></dt><dd></dd></dl>
 </li>
 </ul>

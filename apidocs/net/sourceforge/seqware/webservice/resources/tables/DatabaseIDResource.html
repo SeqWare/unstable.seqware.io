@@ -215,7 +215,7 @@ extends <a href="../../../../../../net/sourceforge/seqware/webservice/resources/
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected static &lt;S,T extends <a href="../../../../../../net/sourceforge/seqware/common/model/Attribute.html" title="interface in net.sourceforge.seqware.common.model">Attribute</a>&gt;&nbsp;<br>void</code></td>
+<td class="colFirst"><code>protected static &lt;S,T extends <a href="../../../../../../net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&gt;&nbsp;<br>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../net/sourceforge/seqware/webservice/resources/tables/DatabaseIDResource.html#mergeAttributes(java.util.Set, java.util.Set, S)">mergeAttributes</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;T&gt;&nbsp;existingAttributeSet,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;T&gt;&nbsp;newAttributeSet,
                S&nbsp;parent)</code>
@@ -390,10 +390,14 @@ public&nbsp;org.restlet.representation.Representation&nbsp;delete()</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>mergeAttributes</h4>
-<pre>protected static&nbsp;&lt;S,T extends <a href="../../../../../../net/sourceforge/seqware/common/model/Attribute.html" title="interface in net.sourceforge.seqware.common.model">Attribute</a>&gt;&nbsp;void&nbsp;mergeAttributes(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;T&gt;&nbsp;existingAttributeSet,
+<pre>protected static&nbsp;&lt;S,T extends <a href="../../../../../../net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&gt;&nbsp;void&nbsp;mergeAttributes(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;T&gt;&nbsp;existingAttributeSet,
                                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;T&gt;&nbsp;newAttributeSet,
                                            S&nbsp;parent)</pre>
-<div class="block">Merge attributes from a new set into an existing one while removing duplicates. Unfortunately, due to how duplicates work,</div>
+<div class="block">Merge attributes from a new set into an existing one while removing duplicates.
+
+ Unfortunately, due to how we've previously established the semantics here, the web service will always merge new annotations into old
+ annotations. If there are duplicate tags between old and new, the old annotation will be deleted and the new one written. If there
+ are duplicates in the new collection, the request will be ignored.</div>
 <dl><dt><span class="strong">Type Parameters:</span></dt><dd><code>S</code> - </dd><dd><code>T</code> - </dd><dt><span class="strong">Parameters:</span></dt><dd><code>existingAttributeSet</code> - </dd><dd><code>newAttributeSet</code> - </dd><dd><code>parent</code> - </dd></dl>
 </li>
 </ul>

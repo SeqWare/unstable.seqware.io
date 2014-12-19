@@ -3439,13 +3439,9 @@
 <h4>swAccession</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a> swAccession</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>finishedTimestamp</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Date.html?is-external=true" title="class or interface in java.util">Date</a> finishedTimestamp</pre>
-</li>
-<li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
 </li>
 </ul>
 </li>
@@ -3633,13 +3629,9 @@
 <h4>strExpectedNumberRuns</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> strExpectedNumberRuns</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>strExpectedNumberReads</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> strExpectedNumberReads</pre>
-</li>
-<li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
 </li>
 </ul>
 </li>
@@ -3648,7 +3640,7 @@
 <li class="blockList"><a name="net.sourceforge.seqware.common.model.ExperimentAttribute">
 <!--   -->
 </a>
-<h3>Class <a href="net/sourceforge/seqware/common/model/ExperimentAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.ExperimentAttribute</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<h3>Class <a href="net/sourceforge/seqware/common/model/ExperimentAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.ExperimentAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/Experiment.html" title="class in net.sourceforge.seqware.common.model">Experiment</a>,<a href="net/sourceforge/seqware/common/model/ExperimentAttribute.html" title="class in net.sourceforge.seqware.common.model">ExperimentAttribute</a>&gt; implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>1L</dd>
@@ -3923,13 +3915,43 @@
 <h4>size</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a> size</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>skip</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a> skip</pre>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="net.sourceforge.seqware.common.model.FileAttribute">
+<!--   -->
+</a>
+<h3>Class <a href="net/sourceforge/seqware/common/model/FileAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.FileAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/File.html" title="class in net.sourceforge.seqware.common.model">File</a>,<a href="net/sourceforge/seqware/common/model/FileAttribute.html" title="class in net.sourceforge.seqware.common.model">FileAttribute</a>&gt; implements Serializable</h3>
+<ul class="blockList">
+<li class="blockList"><a name="serializedForm">
+<!--   -->
+</a>
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>fileAttributeId</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a> fileAttributeId</pre>
+</li>
+<li class="blockList">
+<h4>file</h4>
+<pre><a href="net/sourceforge/seqware/common/model/File.html" title="class in net.sourceforge.seqware.common.model">File</a> file</pre>
+</li>
+<li class="blockList">
+<h4>tag</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> tag</pre>
+</li>
+<li class="blockList">
+<h4>value</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> value</pre>
+</li>
 <li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
+<h4>unit</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> unit</pre>
 </li>
 </ul>
 </li>
@@ -4093,10 +4115,6 @@
 <h4>createTimestamp</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Date.html?is-external=true" title="class or interface in java.util">Date</a> createTimestamp</pre>
 </li>
-<li class="blockList">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
-</li>
 <li class="blockListLast">
 <h4>expenses</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">E</a>&gt; expenses</pre>
@@ -4183,13 +4201,9 @@
 <h4>isHasFile</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a> isHasFile</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>isSelected</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a> isSelected</pre>
-</li>
-<li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
 </li>
 </ul>
 </li>
@@ -4198,7 +4212,7 @@
 <li class="blockList"><a name="net.sourceforge.seqware.common.model.IUSAttribute">
 <!--   -->
 </a>
-<h3>Class <a href="net/sourceforge/seqware/common/model/IUSAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.IUSAttribute</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<h3>Class <a href="net/sourceforge/seqware/common/model/IUSAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.IUSAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/IUS.html" title="class in net.sourceforge.seqware.common.model">IUS</a>,<a href="net/sourceforge/seqware/common/model/IUSAttribute.html" title="class in net.sourceforge.seqware.common.model">IUSAttribute</a>&gt; implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>1L</dd>
@@ -4355,13 +4369,9 @@
 <h4>librarySelection</h4>
 <pre><a href="net/sourceforge/seqware/common/model/LibrarySelection.html" title="class in net.sourceforge.seqware.common.model">LibrarySelection</a> librarySelection</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>librarySource</h4>
 <pre><a href="net/sourceforge/seqware/common/model/LibrarySource.html" title="class in net.sourceforge.seqware.common.model">LibrarySource</a> librarySource</pre>
-</li>
-<li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
 </li>
 </ul>
 </li>
@@ -4370,7 +4380,7 @@
 <li class="blockList"><a name="net.sourceforge.seqware.common.model.LaneAttribute">
 <!--   -->
 </a>
-<h3>Class <a href="net/sourceforge/seqware/common/model/LaneAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.LaneAttribute</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<h3>Class <a href="net/sourceforge/seqware/common/model/LaneAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.LaneAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/Lane.html" title="class in net.sourceforge.seqware.common.model">Lane</a>,<a href="net/sourceforge/seqware/common/model/LaneAttribute.html" title="class in net.sourceforge.seqware.common.model">LaneAttribute</a>&gt; implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>1L</dd>
@@ -4717,13 +4727,9 @@
 <h4>stdout</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> stdout</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>stderr</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> stderr</pre>
-</li>
-<li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
 </li>
 </ul>
 </li>
@@ -4732,7 +4738,7 @@
 <li class="blockList"><a name="net.sourceforge.seqware.common.model.ProcessingAttribute">
 <!--   -->
 </a>
-<h3>Class <a href="net/sourceforge/seqware/common/model/ProcessingAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.ProcessingAttribute</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<h3>Class <a href="net/sourceforge/seqware/common/model/ProcessingAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.ProcessingAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/Processing.html" title="class in net.sourceforge.seqware.common.model">Processing</a>,<a href="net/sourceforge/seqware/common/model/ProcessingAttribute.html" title="class in net.sourceforge.seqware.common.model">ProcessingAttribute</a>&gt; implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>1L</dd>
@@ -5327,13 +5333,9 @@
 <h4>sampleAttributes</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">E</a>&gt; sampleAttributes</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>organismId</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a> organismId</pre>
-</li>
-<li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
 </li>
 </ul>
 </li>
@@ -5342,7 +5344,7 @@
 <li class="blockList"><a name="net.sourceforge.seqware.common.model.SampleAttribute">
 <!--   -->
 </a>
-<h3>Class <a href="net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.SampleAttribute</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<h3>Class <a href="net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.SampleAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/Sample.html" title="class in net.sourceforge.seqware.common.model">Sample</a>,<a href="net/sourceforge/seqware/common/model/SampleAttribute.html" title="class in net.sourceforge.seqware.common.model">SampleAttribute</a>&gt; implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>1L</dd>
@@ -5543,13 +5545,9 @@
 <h4>lanes</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">E</a>&gt; lanes</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>strRefLane</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> strRefLane</pre>
-</li>
-<li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
 </li>
 </ul>
 </li>
@@ -5558,7 +5556,7 @@
 <li class="blockList"><a name="net.sourceforge.seqware.common.model.SequencerRunAttribute">
 <!--   -->
 </a>
-<h3>Class <a href="net/sourceforge/seqware/common/model/SequencerRunAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.SequencerRunAttribute</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<h3>Class <a href="net/sourceforge/seqware/common/model/SequencerRunAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.SequencerRunAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/SequencerRunWizardDTO.html" title="class in net.sourceforge.seqware.common.model">SequencerRunWizardDTO</a>,<a href="net/sourceforge/seqware/common/model/SequencerRunAttribute.html" title="class in net.sourceforge.seqware.common.model">SequencerRunAttribute</a>&gt; implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>1L</dd>
@@ -5991,13 +5989,9 @@
 <h4>processings</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">E</a>&gt; processings</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>studyAttributes</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">E</a>&gt; studyAttributes</pre>
-</li>
-<li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
 </li>
 </ul>
 </li>
@@ -6006,7 +6000,7 @@
 <li class="blockList"><a name="net.sourceforge.seqware.common.model.StudyAttribute">
 <!--   -->
 </a>
-<h3>Class <a href="net/sourceforge/seqware/common/model/StudyAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.StudyAttribute</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<h3>Class <a href="net/sourceforge/seqware/common/model/StudyAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.StudyAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/Study.html" title="class in net.sourceforge.seqware.common.model">Study</a>,<a href="net/sourceforge/seqware/common/model/StudyAttribute.html" title="class in net.sourceforge.seqware.common.model">StudyAttribute</a>&gt; implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>1L</dd>
@@ -6264,13 +6258,47 @@
 <h4>workflowParams</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">E</a>&gt; workflowParams</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>workflowAttributes</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">E</a>&gt; workflowAttributes</pre>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="net.sourceforge.seqware.common.model.WorkflowAttribute">
+<!--   -->
+</a>
+<h3>Class <a href="net/sourceforge/seqware/common/model/WorkflowAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.WorkflowAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/Workflow.html" title="class in net.sourceforge.seqware.common.model">Workflow</a>,<a href="net/sourceforge/seqware/common/model/WorkflowAttribute.html" title="class in net.sourceforge.seqware.common.model">WorkflowAttribute</a>&gt; implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>1L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList"><a name="serializedForm">
+<!--   -->
+</a>
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>workflowAttributeId</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a> workflowAttributeId</pre>
+</li>
+<li class="blockList">
+<h4>workflow</h4>
+<pre><a href="net/sourceforge/seqware/common/model/Workflow.html" title="class in net.sourceforge.seqware.common.model">Workflow</a> workflow</pre>
+</li>
+<li class="blockList">
+<h4>tag</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> tag</pre>
+</li>
+<li class="blockList">
+<h4>value</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> value</pre>
+</li>
 <li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
+<h4>unit</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> unit</pre>
 </li>
 </ul>
 </li>
@@ -6538,13 +6566,47 @@
 <h4>workflowAccession</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a> workflowAccession</pre>
 </li>
-<li class="blockList">
+<li class="blockListLast">
 <h4>ownerUserName</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> ownerUserName</pre>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="net.sourceforge.seqware.common.model.WorkflowRunAttribute">
+<!--   -->
+</a>
+<h3>Class <a href="net/sourceforge/seqware/common/model/WorkflowRunAttribute.html" title="class in net.sourceforge.seqware.common.model">net.sourceforge.seqware.common.model.WorkflowRunAttribute</a> extends <a href="net/sourceforge/seqware/common/model/Attribute.html" title="class in net.sourceforge.seqware.common.model">Attribute</a>&lt;<a href="net/sourceforge/seqware/common/model/WorkflowRun.html" title="class in net.sourceforge.seqware.common.model">WorkflowRun</a>,<a href="net/sourceforge/seqware/common/model/WorkflowRunAttribute.html" title="class in net.sourceforge.seqware.common.model">WorkflowRunAttribute</a>&gt; implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>1L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList"><a name="serializedForm">
+<!--   -->
+</a>
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>workflowRunAttributeId</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a> workflowRunAttributeId</pre>
+</li>
+<li class="blockList">
+<h4>workflowRun</h4>
+<pre><a href="net/sourceforge/seqware/common/model/WorkflowRun.html" title="class in net.sourceforge.seqware.common.model">WorkflowRun</a> workflowRun</pre>
+</li>
+<li class="blockList">
+<h4>tag</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> tag</pre>
+</li>
+<li class="blockList">
+<h4>value</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> value</pre>
+</li>
 <li class="blockListLast">
-<h4>logger</h4>
-<pre>org.slf4j.Logger logger</pre>
+<h4>unit</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> unit</pre>
 </li>
 </ul>
 </li>
