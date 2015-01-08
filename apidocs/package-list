@@ -72,9 +72,3 @@ net.sourceforge.seqware.webservice.resources
 net.sourceforge.seqware.webservice.resources.filters
 net.sourceforge.seqware.webservice.resources.queries
 net.sourceforge.seqware.webservice.resources.tables
-net.sourceforge.solexatools
-net.sourceforge.solexatools.authentication
-net.sourceforge.solexatools.util
-net.sourceforge.solexatools.validation
-net.sourceforge.solexatools.webapp.controller
-net.sourceforge.solexatools.webapp.metamodel
