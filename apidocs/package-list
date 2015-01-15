@@ -24,7 +24,6 @@ net.sourceforge.seqware.common.err
 net.sourceforge.seqware.common.factory
 net.sourceforge.seqware.common.hibernate
 net.sourceforge.seqware.common.hibernate.reports
-net.sourceforge.seqware.common.invitation
 net.sourceforge.seqware.common.metadata
 net.sourceforge.seqware.common.model
 net.sourceforge.seqware.common.model.adapters
